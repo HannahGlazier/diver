@@ -13,6 +13,11 @@ code {
 }
 
 /* Log Cards */
+.container{
+  justify-content: center;
+  align-items: center;
+}
+
 .log{
   border: 1px solid;
   height: 500px;

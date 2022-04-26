@@ -11,7 +11,7 @@ function LogContainer({ logs }) {
     ))
 
     return (
-    <div>{logMap}</div>
+    <div className="container">{logMap}</div>
     )
 }
 

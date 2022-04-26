@@ -1,7 +1,10 @@
 // client/src/components/App.js
 import React, { useState, useEffect, useRef } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+
+// Internal Components
 import AddDiveLog from "./AddDiveLog"
+import Header from "./Header"
 
 function App() {
   const [count, setCount] = useState(0);
@@ -13,22 +16,17 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
       <div className="App">
+        <Header />
         <Switch>
-          <Route path="/testing">
-            <h1>Test Route</h1>
-          </Route>
-          <Route path="/">
+          <Route exact path="/">
             <h1>Page Count: {count}</h1>
-            <AddDiveLog />
           </Route>
-          <Route path="/add">
+          <Route exact path="/add">
             <AddDiveLog />
           </Route>
         </Switch>
       </div>
-    </BrowserRouter>
   );
 }
 

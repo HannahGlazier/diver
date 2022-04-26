@@ -21,12 +21,15 @@ function AddDiveLog() {
     }
 
     return (
-        <div className="signature">Add Dive Log
+        <div>Add Dive Log
         <button onClick={clear}>Clear</button>
         <button onClick={save}>Save</button>
         <button onClick={show}>Show</button>
             <SignaturePad
                 ref = {sigPad}
+                canvasProps={{
+                    className: 'signature'
+                }}
             />
         </div>
     )

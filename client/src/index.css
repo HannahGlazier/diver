@@ -12,6 +12,17 @@ code {
     monospace;
 }
 
+/* Log Cards */
+.log{
+  border: 1px solid;
+  height: 500px;
+  width: 300px;
+  margin: 50px;
+
+  text-align: center;
+}
+
+/* Signature Feature */
 .signature {
   border: 10px solid;
 

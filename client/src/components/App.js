@@ -3,16 +3,18 @@ import React, { useState, useEffect, useRef } from "react";
 import { Switch, Route } from "react-router-dom";
 
 // Internal Components
-import AddDiveLog from "./AddDiveLog"
 import Header from "./Header"
+import MainFeed from "./MainFeed"
+import AddDiveLog from "./AddDiveLog"
+
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [logs, setLogs] = useState([]);
 
   useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
+    fetch("http://localhost:3000/logs")
+      .then((response) => response.json())
+      .then(logs => setLogs(logs));
   }, []);
 
   return (
@@ -20,7 +22,9 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/">
-            <h1>Page Count: {count}</h1>
+            <MainFeed
+              logs={logs}
+            />
           </Route>
           <Route exact path="/add">
             <AddDiveLog />

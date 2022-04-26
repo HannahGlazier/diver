@@ -1,6 +1,7 @@
 // client/src/components/App.js
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import AddDiveLog from "./AddDiveLog"
 
 function App() {
   const [count, setCount] = useState(0);
@@ -11,8 +12,6 @@ function App() {
       .then((data) => setCount(data.count));
   }, []);
 
-
-  // test commit 
   return (
     <BrowserRouter>
       <div className="App">
@@ -22,6 +21,10 @@ function App() {
           </Route>
           <Route path="/">
             <h1>Page Count: {count}</h1>
+            <AddDiveLog />
+          </Route>
+          <Route path="/add">
+            <AddDiveLog />
           </Route>
         </Switch>
       </div>

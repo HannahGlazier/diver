@@ -1,6 +1,6 @@
 class LogsController < ApplicationController
     before_action :find_log, only: [:update, :destroy, :show]
-
+    skip_before_action :authorize, only: [:index]
 
     # GET /logs
     def index

@@ -1,5 +1,6 @@
 import React from 'react'
 import LogCard from './LogCard'
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 function LogContainer({ logs }) {
     

@@ -11,13 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* Header */
+.header{
+  background-color: grey;
+  height: 50px;
+}
+
 
 /* Log Cards */
-.container{
+/* .container{
   justify-content: center;
   align-items: center;
   margin-left: 30%;
-}
+} */
 
 .log{
   border: 1px solid;
@@ -29,9 +35,12 @@ code {
 }
 
 .signature-img{
-  height: 100px;
-  width: 200px;
+  /* height: 100px;
+  width: 200px; */
   
+  display: block;
+  margin: 0 auto;
+  width: 150px;
 }
 
 /* Signature Feature */

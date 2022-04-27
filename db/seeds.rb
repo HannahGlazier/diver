@@ -6,7 +6,7 @@ puts "Clearing old data..."
 
 puts "🌱 Seeding Users"
 
-u1 = User.create(name: Faker::FunnyName.name, certification_level: "Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
+u1 = User.create(name: "Hannah", certification_level: "Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
 
 u2 = User.create(name: Faker::FunnyName.name, certification_level: "Advanced Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
 

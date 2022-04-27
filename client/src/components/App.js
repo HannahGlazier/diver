@@ -3,27 +3,33 @@ import React, { useState, useEffect, useRef } from "react";
 import { Switch, Route } from "react-router-dom";
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-// TESTING SCROLL
-
-
 // Internal Components
 import Header from "./Header"
 import MainFeed from "./MainFeed"
 import AddDiveLog from "./AddDiveLog"
-import ScrollTest from "./ScrollTest"
-
-
-
+import SignIn from "./SignIn";
 
 function App() {
   const [logs, setLogs] = useState([]);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/logs")
-      .then((response) => response.json())
-      .then(logs => setLogs(logs));
-      // .then(console.log)
+    // auto-login
+    fetch("/me").then((response) => {
+      if (response.ok) {
+        response.json().then((user) => setUser(user));
+      }
+    });
   }, []);
+
+  if (!user) return <SignIn onLogin={setUser} />;
+
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/logs")
+  //     .then((response) => response.json())
+  //     .then(logs => setLogs(logs));
+  //     // .then(console.log)
+  // }, []);
 
 
   return (

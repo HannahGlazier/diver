@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SignIn from "./SignIn";
 
 
 function SignUp({ onLogin, onSignIn }) {
@@ -10,6 +11,7 @@ function SignUp({ onLogin, onSignIn }) {
     const [homebase, setHomebase] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [showLogin, setShowLogin] = useState(true)
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -39,7 +41,12 @@ function SignUp({ onLogin, onSignIn }) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <>
+        { showLogin ? (
+        <form 
+        className="signup"
+        onSubmit={handleSubmit}
+        >
     
             <label htmlFor="name">Name</label>
             <input
@@ -50,7 +57,7 @@ function SignUp({ onLogin, onSignIn }) {
             onChange={(e) => setName(e.target.value)}
             />
         
-    
+            <br></br>
             <label htmlFor="password">Password</label>
             <input
             type="password"
@@ -60,7 +67,7 @@ function SignUp({ onLogin, onSignIn }) {
             autoComplete="current-password"
             />
         
-    
+            <br></br>
             <label htmlFor="password">Password Confirmation</label>
             <input
             type="password"
@@ -70,7 +77,7 @@ function SignUp({ onLogin, onSignIn }) {
             autoComplete="current-password"
             />
         
-    
+            <br></br>
             <label htmlFor="certificationLevel">Certification Level</label>
             <input
             type="text"
@@ -79,7 +86,7 @@ function SignUp({ onLogin, onSignIn }) {
             onChange={(e) => setCertificationLevel(e.target.value)}
             />
         
-    
+            <br></br>
             <label htmlFor="certificationDate">Certification Date</label>
             <textarea
             rows="3"
@@ -88,6 +95,7 @@ function SignUp({ onLogin, onSignIn }) {
             onChange={(e) => setCertificationDate(e.target.value)}
             />
 
+            <br></br>
             <label htmlFor="homebase">Homebase</label>
             <textarea
             rows="3"
@@ -96,15 +104,19 @@ function SignUp({ onLogin, onSignIn }) {
             onChange={(e) => setHomebase(e.target.value)}
             />
         
-    
+            <br></br>
             <button type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>
-        
+            <button onClick={() => setShowLogin(false)}>Take me back</button>
     
             {/* {errors.map((err) => (
             <Error key={err}>{err}</Error> */}
             {/* ))} */}
         
         </form>
+        ) : (
+            <SignIn onSignIn={onSignIn}/>
+        )}
+        </>
     );
     }
 

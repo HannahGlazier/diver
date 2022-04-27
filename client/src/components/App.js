@@ -13,8 +13,16 @@ function App() {
   const [logs, setLogs] = useState([]);
   const [user, setUser] = useState(null);
 
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/logs")
+  //     .then((response) => response.json())
+  //     .then(logs => setLogs(logs));
+  //     // .then(console.log)
+  // }, []);
+
+
+  // Auto-Login
   useEffect(() => {
-    // auto-login
     fetch("/me").then((response) => {
       if (response.ok) {
         response.json().then((user) => setUser(user));
@@ -24,17 +32,19 @@ function App() {
 
   if (!user) return <SignIn onLogin={setUser} />;
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/logs")
-  //     .then((response) => response.json())
-  //     .then(logs => setLogs(logs));
-  //     // .then(console.log)
-  // }, []);
-
+  // Logout
+  function handleLogoutClick() {
+    fetch ("/logout", {method: "DELETE"}).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
+  }
 
   return (
       <div className="App">
         <Header />
+        <button onClick={handleLogoutClick}>Logout</button>
         <Switch>
           <Route exact path="/">
             <MainFeed

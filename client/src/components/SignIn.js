@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import SignUp from './SignUp'
 
 
-function SignIn({ onLogin }) {
+function SignIn({ onLogin, onSignIn }) {
 
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [showLogin, setShowLogin] = useState(true)
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -28,6 +30,8 @@ function SignIn({ onLogin }) {
     }
 
     return (
+        <>
+        {showLogin ? (
         <form onSubmit={handleSubmit}>
         <div>
             <label htmlFor="name">Username</label>
@@ -59,7 +63,12 @@ function SignIn({ onLogin }) {
             <error key={err}>{err}</error>
             ))}
         </form> */}
+        <button onClick={() => setShowLogin(false)}>Don't have an account? Sign Up</button>
         </form>
+        ) : (
+        <SignUp onSignIn={onSignIn} />
+        )}
+        </>
     );
 }
 

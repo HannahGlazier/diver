@@ -11,6 +11,9 @@
         "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
     },
     "dependencies": {
+        "axios": "^0.27.1",
+        "jquery": "^3.6.0",
+        "jscroll": "^2.4.1",
         "react-signature-pad-wrapper": "^3.1.3"
     }
 }

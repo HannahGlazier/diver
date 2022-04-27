@@ -22,6 +22,7 @@ function LogCard({ log }) {
                 alt="signature"
                 className="signature-img"
             ></img>
+            
         </div>
     )
 }

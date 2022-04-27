@@ -1,9 +1,10 @@
 class LogsController < ApplicationController
     before_action :find_log, only: [:update, :destroy, :show]
 
+
     # GET /logs
     def index
-        render json: Log.all
+        render json: Log.limit(per_page).offset(paginate_offset)   
     end
 
     #GET /logs/:id

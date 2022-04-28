@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
+
 import SignaturePad from 'react-signature-canvas'
-import SignIn from "./SignIn";
+import Popup from 'reactjs-popup'
+
 
 function AddDiveLog({ addNewLog, user, setUser }) {
     let history = useHistory();
@@ -23,6 +25,8 @@ function AddDiveLog({ addNewLog, user, setUser }) {
         user_id: user.id 
     }
 
+    const [signatureState, setSignatureState] = useState("")
+
     const [logForm, setLogForm] = useState(initialLogForm)
 
     const handleChange = (e) => {
@@ -30,15 +34,9 @@ function AddDiveLog({ addNewLog, user, setUser }) {
         setLogForm(logForm => ({...logForm, [name]: value}))
     }
 
-    // function handleChange (e){
-    //     setFormLogData(formLogData => ({
-    //         ...formLogData, [e.target.value]: e.target.value
-    //     })
-    //     )
-    // }
-
     function handleSubmit(e){
         e.preventDefault();
+        e.stopPropagation()
 
         const newLog = {
         notes: logForm.notes,
@@ -53,7 +51,7 @@ function AddDiveLog({ addNewLog, user, setUser }) {
         date: logForm.date, 
         divemaster: logForm.divemaster,
         diveBuddy: logForm.diveBuddy,
-        signature: logForm.signature,
+        signature: signatureState,
         user_id: user.id 
         }
 
@@ -80,28 +78,24 @@ function AddDiveLog({ addNewLog, user, setUser }) {
     function save(){
         data = sigPad.current.toDataURL()
         console.log(data)
+        setSignatureState(data)
     }
 
     function show(){
         sigPad.current.fromDataURL(data)
     }
+
+    function handleProp(e){
+        e.stopPropagation()
+    }
+
+
     // END Signature handlers
 
     return (
         <div>Add Dive Log
 
         <form onSubmit={handleSubmit}>
-
-        <label htmlFor="notes">Notes: </label>
-        <input
-            type="text"
-            label="notes"
-            name="notes"
-            value={logForm.notes}
-            // id={FormData.notes}
-            onChange={handleChange}
-            placeholder="Dive Notes"
-        ></input>
 
         <br></br>
         <br></br>
@@ -112,7 +106,6 @@ function AddDiveLog({ addNewLog, user, setUser }) {
             label="Depth"
             name="depth"
             value={logForm.depth}
-            // id={FormData.notes}
             onChange={handleChange}
             placeholder="Depth"
         ></input>   
@@ -126,7 +119,6 @@ function AddDiveLog({ addNewLog, user, setUser }) {
             label="suitThickness"
             name="suitThickness"
             value={logForm.suitThickness}
-            // id={FormData.notes}
             onChange={handleChange}
             placeholder="Suit Thickness"
         ></input> 
@@ -140,7 +132,6 @@ function AddDiveLog({ addNewLog, user, setUser }) {
             label="weight"
             name="weight"
             value={logForm.weight}
-            // id={FormData.notes}
             onChange={handleChange}
             placeholder="Weight"
         ></input> 
@@ -154,7 +145,6 @@ function AddDiveLog({ addNewLog, user, setUser }) {
             label="divemaster"
             name="divemaster"
             value={logForm.divemaster}
-            // id={FormData.notes}
             onChange={handleChange}
             placeholder="Dive Master"
         ></input>
@@ -168,7 +158,6 @@ function AddDiveLog({ addNewLog, user, setUser }) {
             label="diveBuddy"
             name="diveBuddy"
             value={logForm.diveBuddy}
-            // id={FormData.notes}
             onChange={handleChange}
             placeholder="Dive Buddy"
         ></input>
@@ -182,7 +171,6 @@ function AddDiveLog({ addNewLog, user, setUser }) {
             label="timeIn"
             name="timeIn"
             value={logForm.timeIn}
-            // id={FormData.notes}
             onChange={handleChange}
             placeholder="Time In"
         ></input> 
@@ -196,7 +184,6 @@ function AddDiveLog({ addNewLog, user, setUser }) {
             label="timeOut"
             name="timeOut"
             value={logForm.timeOut}
-            // id={FormData.notes}
             onChange={handleChange}
             placeholder="Time Out"
         ></input> 
@@ -210,7 +197,6 @@ function AddDiveLog({ addNewLog, user, setUser }) {
             label="bottomTime"
             name="bottomTime"
             value={logForm.bottomTime}
-            // id={FormData.notes}
             onChange={handleChange}
             placeholder="Bottom Time"
         ></input> 
@@ -224,7 +210,6 @@ function AddDiveLog({ addNewLog, user, setUser }) {
             label="date"
             name="date"
             value={logForm.date}
-            // id={FormData.notes}
             onChange={handleChange}
             placeholder="Date"
         ></input>
@@ -234,11 +219,10 @@ function AddDiveLog({ addNewLog, user, setUser }) {
 
         <label htmlFor="fresh">Fresh Water(T/F): </label>
         <input
-            type="fresh"
+            type="text"
             label="fresh"
             name="fresh"
             value={logForm.fresh}
-            // id={FormData.notes}
             onChange={handleChange}
             placeholder="Water Type"
         ></input>
@@ -248,32 +232,73 @@ function AddDiveLog({ addNewLog, user, setUser }) {
 
         <label htmlFor="boat">Boat Dive(T/F): </label>
         <input
-            type="boat"
+            type="text"
             label="boat"
             name="boat"
             value={logForm.boat}
-            // id={FormData.notes}
             onChange={handleChange}
             placeholder="Boat Dive"
         ></input>    
 
+        <br></br>
+        <br></br>
+
+        <label htmlFor="notes">Notes: </label>
+        <textarea
+            type="text"
+            label="notes"
+            name="notes"
+            value={logForm.notes}
+            onChange={handleChange}
+            placeholder="Dive Notes"
+        ></textarea>
+        
+        <br></br>
+        <br></br>
+
+            <Popup 
+                modal 
+                trigger={<button> Open Signature Pad</button>}
+                closeOnDocumentClick={false}
+            >
+                {close => (
+                <>  
+                <label>Signature</label>
+                    <SignaturePad
+                    ref = {sigPad}
+                    canvasProps={{
+                        className: 'signature'
+                    }}
+                    />
+                <button onClick={save}>Save</button>
+                <button onClick={show}>Show</button>
+                <button onClick={clear}>Clear</button>  
+                <button onClick={close}>Close</button>
+                </>
+                )} 
+            </Popup> 
+
+
+            <input
+                className="hidden"
+                type="text"
+                label="signature"
+                name="signature"
+                value={signatureState}
+                onChange={handleChange}
+                placeholder="Signature"
+        ></input> 
+
+        <br></br>
+        <br></br>
+
         <button type="submit">Add Log</button>
 
         </form>
-
-
-
-        {/* <button onClick={clear}>Clear</button>
-        <button onClick={save}>Save</button>
-        <button onClick={show}>Show</button>
-            <SignaturePad
-                ref = {sigPad}
-                canvasProps={{
-                    className: 'signature'
-                }}
-            /> */}
         </div>
     )
 }
 
 export default AddDiveLog
+
+

@@ -50,5 +50,11 @@ code {
 
 /* Signature Feature */
 .signature {
-  border: 10px solid;
+  border: 1px solid black;
+  width: 80%;
+  min-width: 500px;
+}
+
+.hidden {
+  opacity: 0;
 }

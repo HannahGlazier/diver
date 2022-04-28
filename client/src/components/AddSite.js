@@ -37,9 +37,9 @@ function AddSite({ addNewLog, user, setUser, addNewSite }) {
             body: JSON.stringify(newSite)
         })
         .then(response => response.json())
-        // .then(console.log)
-
-        .then(site => addNewSite(site))
+        // .then(site => addNewSite(site))
+        .then(console.log())
+        .then(setSiteForm(initialSiteForm))
 
     }
 

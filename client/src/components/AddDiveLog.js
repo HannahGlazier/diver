@@ -12,7 +12,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
         notes: "",
         depth: "",
         bottom_temp: "",
-        bottom_time: "",
+        // bottom_time: "",
         suit_thickness: "",
         weight: "",
         time_in: "",
@@ -52,7 +52,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
         notes: logForm.notes,
         depth: logForm.depth,
         bottom_temp: logForm.bottom_temp,
-        bottom_time: logForm.bottom_time,
+        // bottom_time: logForm.time_out - logForm.time_in,
         suit_thickness: logForm.suit_thickness,
         weight: logForm.weight,
         time_in: logForm.time_in,
@@ -216,7 +216,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
             <br></br>
             <br></br>
 
-            <label htmlFor="bottom_time">Bottom Time: </label>
+            {/* <label htmlFor="bottom_time">Bottom Time: </label>
             <input
                 type="time"
                 label="bottom_time"
@@ -224,7 +224,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
                 value={logForm.bottom_time}
                 onChange={handleChange}
                 placeholder="Bottom Time"
-            ></input> 
+            ></input>  */}
 
             <br></br>
             <br></br>

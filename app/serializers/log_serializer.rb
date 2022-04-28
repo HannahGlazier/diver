@@ -6,7 +6,8 @@ class LogSerializer < ActiveModel::Serializer
   # Custom serializers needed to remove only the time from PostgreSQL's time conversion.
 
   def bottom_time
-    self.object.bottom_time.to_s.slice(11..15)
+    # self.object.bottom_time.to_s.slice(11..15)
+   ( self.object.time_out.to_i - self.object.time_in.to_i) /  60
   end
 
   def time_in

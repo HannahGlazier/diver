@@ -48,7 +48,9 @@ class LogsController < ApplicationController
             :date,
             :divemaster, 
             :dive_budy,
-            :signature
+            :signature, 
+            :user_id,
+            :site_id
         )
     end
 

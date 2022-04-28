@@ -13,6 +13,7 @@ function App() {
   const [logs, setLogs] = useState([]);
   const [user, setUser] = useState(null);
 
+
   useEffect(() => {
     fetch("http://localhost:3000/logs")
       .then((response) => response.json())

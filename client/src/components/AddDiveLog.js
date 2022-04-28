@@ -46,7 +46,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
 
     function handleSubmit(e){
         e.preventDefault();
-        e.stopPropagation(e)
+        e.stopPropagation()
 
         const newLog = {
         notes: logForm.notes,
@@ -76,7 +76,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
         })
         .then((response) => response.json())
         .then(console.log(newLog))
-        .then(setLogForm(initialLogForm))
+        // .then(setLogForm(initialLogForm))
     }
 
     // Signature handlers
@@ -85,16 +85,15 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
 
     function clear(e){
         e.stopPropagation()
+        e.preventDefault()
         sigPad.current.clear();
     }
 
-    function save(){
+    function save(e){
+        e.stopPropagation()
+        e.preventDefault()
         data = sigPad.current.toDataURL()
         setSignatureState(data)
-    }
-
-    function show(){
-        sigPad.current.fromDataURL(data)
     }
 
     function handleProp(e){
@@ -308,9 +307,8 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
                             className: 'signature'
                         }}
                         />
-                    <button onClick={save}>Save</button>
-                    <button onClick={show}>Show</button>
-                    <button onClick={(e)=> clear(e)}>Clear</button>  
+                    <button onClick={e => save(e)}>Save</button>
+                    <button onClick={e => clear(e)}>Clear</button>  
                     {/* <button onClick={close}>Close</button> */}
                     {/* </> */}
                     {/* )} 

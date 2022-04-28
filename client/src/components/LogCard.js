@@ -10,6 +10,7 @@ function LogCard({ log }) {
             <h5>{log.user.name}'s Log</h5>
             <h6>Time In: {log.time_in}</h6>
             <h6>Time Out: {log.time_out}</h6>
+            <h6>Bottom Time: {log.bottom_time} minutes</h6>
             <h6>Depth: {log.depth}'</h6>
             <h6>Suit Thickness: {log.suit_thickness}mm</h6>
             <h6>Weight: {log.weight}lbs</h6>

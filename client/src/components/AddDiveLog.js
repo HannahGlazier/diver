@@ -11,16 +11,17 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
     const initialLogForm = { 
         notes: "",
         depth: "",
-        bottomTime: "",
-        suitThickness: "",
+        bottom_temp: "",
+        bottom_time: "",
+        suit_thickness: "",
         weight: "",
-        timeIn: "",
-        timeOut: "",
+        time_in: "",
+        time_out: "",
         boat: true,
         fresh: false,
         date: "", 
         divemaster: "",
-        diveBuddy: "",
+        dive_budy: "",
         signature: "",
         user_id: user.id,
         // site_id: siteState.id  
@@ -50,16 +51,17 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
         const newLog = {
         notes: logForm.notes,
         depth: logForm.depth,
-        bottomTime: logForm.bottomTime,
-        suitThickness: logForm.suitThickness,
+        bottom_temp: logForm.bottom_temp,
+        bottom_time: logForm.bottom_time,
+        suit_thickness: logForm.suit_thickness,
         weight: logForm.weight,
-        timeIn: logForm.timeIn,
-        timeOut: logForm.timeOut,
+        time_in: logForm.time_in,
+        time_out: logForm.time_out,
         boat: logForm.boat,
         fresh: logForm.fresh,
         date: logForm.date, 
         divemaster: logForm.divemaster,
-        diveBuddy: logForm.diveBuddy,
+        dive_budy: logForm.dive_budy,
         signature: signatureState,
         user_id: user.id,
         site_id: site.id 
@@ -123,15 +125,28 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
             <br></br>
             <br></br>
 
-            <label htmlFor="suitThickness">Suit Thinkness(mm): </label>
+            <label htmlFor="suit_thickness">Suit Thinkness(mm): </label>
             <input
                 type="number"
-                label="suitThickness"
-                name="suitThickness"
-                value={logForm.suitThickness}
+                label="suit_thickness"
+                name="suit_thickness"
+                value={logForm.suit_thickness}
                 onChange={handleChange}
                 placeholder="Suit Thickness"
             ></input> 
+
+            <br></br>
+            <br></br>
+
+            <label htmlFor="bottom_temp">Bottom Temp: </label>
+            <input
+                type="number"
+                label="bottom_temp"
+                name="bottom_temp"
+                value={logForm.bottom_temp}
+                onChange={handleChange}
+                placeholder="Bottom Temp"
+            ></input>   
 
             <br></br>
             <br></br>
@@ -162,12 +177,12 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
             <br></br>
             <br></br>
 
-            <label htmlFor="diveBuddy">Dive Buddy: </label>
+            <label htmlFor="dive_budy">Dive Buddy: </label>
             <input
                 type="text"
-                label="diveBuddy"
-                name="diveBuddy"
-                value={logForm.diveBuddy}
+                label="dive_budy"
+                name="dive_budy"
+                value={logForm.dive_budy}
                 onChange={handleChange}
                 placeholder="Dive Buddy"
             ></input>
@@ -175,12 +190,12 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
             <br></br>
             <br></br>
 
-            <label htmlFor="timeIn">Time In: </label>
+            <label htmlFor="time_in">Time In: </label>
             <input
                 type="time"
-                label="timeIn"
-                name="timeIn"
-                value={logForm.timeIn}
+                label="time_in"
+                name="time_in"
+                value={logForm.time_in}
                 onChange={handleChange}
                 placeholder="Time In"
             ></input> 
@@ -188,12 +203,12 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
             <br></br>
             <br></br>
 
-            <label htmlFor="timeOut">Time Out: </label>
+            <label htmlFor="time_out">Time Out: </label>
             <input
                 type="time"
-                label="timeOut"
-                name="timeOut"
-                value={logForm.timeOut}
+                label="time_out"
+                name="time_out"
+                value={logForm.time_out}
                 onChange={handleChange}
                 placeholder="Time Out"
             ></input> 
@@ -201,12 +216,12 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
             <br></br>
             <br></br>
 
-            <label htmlFor="bottomTime">Bottom Time: </label>
+            <label htmlFor="bottom_time">Bottom Time: </label>
             <input
                 type="time"
-                label="bottomTime"
-                name="bottomTime"
-                value={logForm.bottomTime}
+                label="bottom_time"
+                name="bottom_time"
+                value={logForm.bottom_time}
                 onChange={handleChange}
                 placeholder="Bottom Time"
             ></input> 

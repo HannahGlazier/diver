@@ -20,7 +20,7 @@ function AddSite({ addNewLog, user, setUser, addNewSite }) {
 
     function handleSubmit(e) {
         e.stopPropagation()
-        e.preventDefault()
+        e.preventDefault(e)
 
         const newSite = {
             name: siteForm.name,

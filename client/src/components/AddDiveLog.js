@@ -98,6 +98,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
 
     function handleProp(e){
         e.stopPropagation()
+        e.preventDefault()
     }
     // END Signature handlers
 
@@ -292,14 +293,14 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
 
             <br></br>
             <br></br>
-
-                {/* <Popup 
+{/* 
+                <Popup 
                     modal 
-                    trigger={<button> Open Signature Pad</button>}
+                    trigger={<button onClick={e => handleProp(e)}> Open Signature Pad</button>}
                     closeOnDocumentClick={false}
                 >
                     {close => (
-                    <>   */}
+                    <>    */}
                     <label>Signature</label>
                         <SignaturePad
                         ref = {sigPad}
@@ -309,10 +310,10 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
                         />
                     <button onClick={e => save(e)}>Save</button>
                     <button onClick={e => clear(e)}>Clear</button>  
-                    {/* <button onClick={close}>Close</button> */}
-                    {/* </> */}
-                    {/* )} 
-                </Popup>  */}
+                    {/* <button onClick={close}>Close</button> 
+                    </> 
+                    )} 
+                </Popup>   */}
 
 
                 <input

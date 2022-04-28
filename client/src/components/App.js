@@ -41,6 +41,12 @@ function App() {
     });
   }
 
+
+  function handleAddNewLog(newLog){
+    setLogs([...logs, newLog])
+  }
+
+
   return (
       <div className="App">
         <Header />
@@ -52,7 +58,11 @@ function App() {
             />
           </Route>
           <Route exact path="/add">
-            <AddDiveLog />
+            <AddDiveLog
+              addNewLog={handleAddNewLog}
+              user={user}
+              setUser={setUser}
+            />
           </Route>
         </Switch>
       </div>

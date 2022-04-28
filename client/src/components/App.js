@@ -7,10 +7,12 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Header from "./Header"
 import MainFeed from "./MainFeed"
 import AddDiveLog from "./AddDiveLog"
+import AddSite from "./AddSite"
 import SignIn from "./SignIn";
 
 function App() {
   const [logs, setLogs] = useState([]);
+  const [sites, setSites] = useState([]);
   const [user, setUser] = useState(null);
 
 
@@ -47,6 +49,9 @@ function App() {
     setLogs([...logs, newLog])
   }
 
+  function handleAddNewSite(newSite){
+    setSites([...sites, newSite])
+  }
 
   return (
       <div className="App">
@@ -59,7 +64,8 @@ function App() {
             />
           </Route>
           <Route exact path="/add">
-            <AddDiveLog
+            <AddSite
+              addNewSite={handleAddNewSite}
               addNewLog={handleAddNewLog}
               user={user}
               setUser={setUser}

@@ -4,7 +4,11 @@ class LogsController < ApplicationController
 
     # GET /logs
     def index
-        render json: Log.limit(per_page).offset(paginate_offset)   
+        # PAGINATION
+        # render json: Log.limit(per_page).offset(paginate_offset).reverse 
+
+        render json: Log.all
+
     end
 
     #GET /logs/:id
@@ -48,7 +52,9 @@ class LogsController < ApplicationController
             :date,
             :divemaster, 
             :dive_budy,
-            :signature
+            :signature, 
+            :user_id,
+            :site_id
         )
     end
 

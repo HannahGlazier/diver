@@ -69,16 +69,16 @@ function App() {
             <MainFeed
               logs={logs}
               handleDeleteLog={handleDeleteLog}
+              user={user}
             />
           </Route>
           <Route exact path="/addLog">
             <AddDiveLog 
-              addNewSite={handleAddNewSite}
+              // addNewSite={handleAddNewSite}
               addNewLog={handleAddNewLog}
               user={user}
               setUser={setUser}
               sites={sites}
-              
               logs={logs}
               setLogs={setLogs}
             />
@@ -86,9 +86,9 @@ function App() {
           <Route exact path="/addSite">
             <AddSite
                 addNewSite={handleAddNewSite}
-                addNewLog={handleAddNewLog}
-                user={user}
-                setUser={setUser}
+                // addNewLog={handleAddNewLog}
+                // user={user}
+                // setUser={setUser}
                 sites={sites}
               />
           </Route>

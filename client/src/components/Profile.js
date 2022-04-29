@@ -6,7 +6,7 @@ function Profile({ user }) {
     const followee = user.followees
     // console.log(user)
     const followerMap = follower.map(f => f.name)
-    const followeeMap = followee.map(f => f.name)
+    const followeeMap = followee.map(f => f.name + " ")
 
 
     return (

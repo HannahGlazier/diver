@@ -8,7 +8,10 @@ function LogCard({ log, handleDeleteLog, user, userId }) {
         handleDeleteLog(log)
     }
 
-    const deleteLog = userId === log.user.id && <button onClick={e => handleDelete(e)}>Delete Log</button>
+    const deleteLog = userId === log.user.id && <button className="ui button" onClick={e => handleDelete(e)}>Delete Log</button>
+    
+    const follow = userId !== log.user.id && <button className="ui button">Follow Diver</button>
+
 
     return (
         <div className="log">
@@ -30,6 +33,7 @@ function LogCard({ log, handleDeleteLog, user, userId }) {
                 className="signature-img"
             ></img>
             {deleteLog}
+            {follow}
         </div>
     )
 }

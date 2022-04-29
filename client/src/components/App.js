@@ -62,8 +62,8 @@ function App() {
 
   return (
       <div className="App">
-        <Header />
-        <button onClick={handleLogoutClick}>Logout</button>
+        <Header handleLogoutClick={handleLogoutClick}/>
+        {/* <button onClick={handleLogoutClick}>Logout</button> */}
         <Switch>
           <Route exact path="/">
             <MainFeed

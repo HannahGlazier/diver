@@ -8,7 +8,8 @@ import Header from "./Header"
 import MainFeed from "./MainFeed"
 import AddDiveLog from "./AddDiveLog"
 import AddSite from "./AddSite"
-import SignIn from "./SignIn";
+import SignIn from "./SignIn"
+import Profile from "./Profile";
 
 function App() {
   const [logs, setLogs] = useState([]);
@@ -83,6 +84,11 @@ function App() {
                 user={user}
                 setUser={setUser}
                 sites={sites}
+              />
+          </Route>
+          <Route exact path="/profile">
+            <Profile
+              user={user}
               />
           </Route>
         </Switch>

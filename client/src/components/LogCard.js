@@ -1,12 +1,14 @@
 import React from 'react'
 
 
-function LogCard({ log, handleDeleteLog }) {
+function LogCard({ log, handleDeleteLog, user, userId }) {
 
     function handleDelete(e){
         e.stopPropagation();
         handleDeleteLog(log)
     }
+
+    const deleteLog = userId === log.user.id && <button onClick={e => handleDelete(e)}>Delete Log</button>
 
     return (
         <div className="log">
@@ -27,7 +29,7 @@ function LogCard({ log, handleDeleteLog }) {
                 alt="signature"
                 className="signature-img"
             ></img>
-            <button onClick={e => handleDelete(e)}>Delete Log</button>
+            {deleteLog}
         </div>
     )
 }

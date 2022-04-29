@@ -8,11 +8,11 @@ puts "🌱 Seeding Users"
 
 u1 = User.create(name: "Hannah", certification_level: "Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
 
-u2 = User.create(name: Faker::FunnyName.name, certification_level: "Advanced Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
+u2 = User.create(name: "Stella", certification_level: "Advanced Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
 
-u3 = User.create(name: Faker::FunnyName.name, certification_level: "Dive Master", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
+u3 = User.create(name: "Stan", certification_level: "Dive Master", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
 
-u4 = User.create(name: Faker::FunnyName.name, certification_level: "Advanced Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
+u4 = User.create(name:  "Mia", certification_level: "Advanced Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
 
 u5 = User.create(name: Faker::FunnyName.name, certification_level: "Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
 

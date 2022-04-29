@@ -17,7 +17,7 @@ function App() {
   const [user, setUser] = useState(null);
   let history = useHistory();
 
-
+  // Fetches
   useEffect(() => {
     fetch("http://localhost:3000/logs")
       .then((response) => response.json())
@@ -46,6 +46,11 @@ function App() {
     });
   }
 
+  function handleDeleteLog(log){
+    fetch(`http://localhost:3000/logs/${log.id}`, { method: 'DELETE' })
+    const newLogs = logs.filter( indivdualLog => indivdualLog !== log)
+    setLogs(newLogs)
+  }
 
   function handleAddNewLog(newLog){
     setLogs([...logs, newLog])
@@ -63,6 +68,7 @@ function App() {
           <Route exact path="/">
             <MainFeed
               logs={logs}
+              handleDeleteLog={handleDeleteLog}
             />
           </Route>
           <Route exact path="/addLog">

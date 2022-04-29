@@ -32,9 +32,10 @@ code {
 
 .log{
   border: 1px solid;
-  height: 500px;
-  width: 300px;
+  height: auto;
+  width: auto;
   margin: 50px;
+  padding: 100px;
 
   text-align: center;
 }

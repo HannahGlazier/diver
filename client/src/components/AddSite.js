@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {  useHistory } from "react-router-dom";
 import AddDiveLog from './AddDiveLog'
 
 function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
@@ -12,6 +13,8 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
 
     const [siteForm, setSiteForm] = useState(initialSiteForm)
     const [siteState, setSiteState] = useState(null)
+    let history = useHistory();
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -43,6 +46,13 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
 
     }
 
+
+function goToAddLog(e){
+    e.stopPropagation()
+    e.preventDefault()
+    history.push('/addLog')
+  }
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -56,6 +66,9 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
                     onChange={handleChange}
                     placeholder="Dive Site Name"
                 ></input> 
+
+                <br></br>
+                <br></br>
 
                 <br></br>
                 <br></br>
@@ -97,6 +110,7 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
                 ></input> 
 
                 <button type="submit">Add Site</button>
+                <button onClick={(e) => goToAddLog(e)}>Return to Dive Log</button>
 
             </form>
             {/* <AddDiveLog

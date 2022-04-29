@@ -4,7 +4,7 @@ import AddSite from './AddSite'
 
 import SignaturePad from 'react-signature-canvas'
 import Popup from 'reactjs-popup'
-
+// test commit
 
 function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs }) {
     const [site, setSite] = useState([])

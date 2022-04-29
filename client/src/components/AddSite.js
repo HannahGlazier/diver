@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import {  useHistory } from "react-router-dom";
 import AddDiveLog from './AddDiveLog'
+import Profile from './Profile'
+
 
 function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
 

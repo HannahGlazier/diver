@@ -1,8 +1,12 @@
 import React from 'react'
 
 
-function LogCard({ log }) {
+function LogCard({ log, handleDeleteLog }) {
 
+    function handleDelete(e){
+        e.stopPropagation();
+        handleDeleteLog(log)
+    }
 
     return (
         <div className="log">
@@ -23,7 +27,7 @@ function LogCard({ log }) {
                 alt="signature"
                 className="signature-img"
             ></img>
-            
+            <button onClick={e => handleDelete(e)}>Delete Log</button>
         </div>
     )
 }

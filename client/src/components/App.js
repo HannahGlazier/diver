@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 // Internal Components
@@ -14,6 +14,7 @@ function App() {
   const [logs, setLogs] = useState([]);
   const [sites, setSites] = useState([]);
   const [user, setUser] = useState(null);
+  let history = useHistory();
 
 
   useEffect(() => {
@@ -63,21 +64,26 @@ function App() {
               logs={logs}
             />
           </Route>
-          <Route exact path="/add">
-            <AddSite
-              addNewSite={handleAddNewSite}
-              addNewLog={handleAddNewLog}
-              user={user}
-              setUser={setUser}
-              sites={sites}
-            />
+          <Route exact path="/addLog">
             <AddDiveLog 
               addNewSite={handleAddNewSite}
               addNewLog={handleAddNewLog}
               user={user}
               setUser={setUser}
               sites={sites}
+              
+              logs={logs}
+              setLogs={setLogs}
             />
+          </Route>
+          <Route exact path="/addSite">
+            <AddSite
+                addNewSite={handleAddNewSite}
+                addNewLog={handleAddNewLog}
+                user={user}
+                setUser={setUser}
+                sites={sites}
+              />
           </Route>
         </Switch>
       </div>

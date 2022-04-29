@@ -6,7 +6,7 @@ import SignaturePad from 'react-signature-canvas'
 import Popup from 'reactjs-popup'
 
 
-function AddDiveLog({ addNewLog, user, setUser, siteState, sites }) {
+function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs }) {
     const [site, setSite] = useState([])
 
     const initialLogForm = { 
@@ -73,7 +73,6 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites }) {
         dive_budy: logForm.dive_budy,
         signature: signatureState,
         user_id: user.id,
-        // site_id: site.id 
         site_id: logForm.site_id
         }
 
@@ -86,13 +85,21 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites }) {
         })
         .then((response) => response.json())
         .then(console.log(newLog))
+
+        // .then(addNewLog(newLog))
+        
         .then(setLogForm(initialLogForm))
-        // .then(history.push("/"))
+
+        // .then(fetch("http://localhost:3000/logs")
+        // .then((response) => response.json())
+        // .then(logs => setLogs(logs)))
+
+        history.push('/')
     }
 
     // Signature handlers
     let sigPad = useRef({})
-    let data = '';
+    let data = ''
 
     function clear(e){
         e.stopPropagation()
@@ -112,9 +119,21 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites }) {
     }
     // END Signature handlers
 
+
+function goToAddSite(e){
+    e.stopPropagation()
+    e.preventDefault()
+    history.push('/addSite')
+}
+
+function returnHome(e){
+    e.stopPropagation()
+    e.preventDefault()
+    history.push('/')
+}
+
     return (
         <>
-            {/* <AddSite /> */}
             <div>Add Dive Log
 
             <form onSubmit={handleSubmit}>
@@ -131,6 +150,10 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites }) {
             >
                 {siteMap}
             </select>  
+
+
+            <p>Dont see the site you're looking for? </p>
+            <button onClick={e =>  goToAddSite(e)}>Add new dive site</button>
 
             <br></br>
             <br></br>
@@ -239,19 +262,6 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites }) {
             <br></br>
             <br></br>
 
-            {/* <label htmlFor="bottom_time">Bottom Time: </label>
-            <input
-                type="time"
-                label="bottom_time"
-                name="bottom_time"
-                value={logForm.bottom_time}
-                onChange={handleChange}
-                placeholder="Bottom Time"
-            ></input>  */}
-
-            <br></br>
-            <br></br>
-
             <label htmlFor="date">Date: </label>
             <input
                 type="date"
@@ -304,19 +314,6 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites }) {
             <br></br>
             <br></br>
 
-            {/* <label htmlFor="site_id">Dive Site: </label>
-            <input
-                type="number"
-                label="site"
-                name="site_id"
-                value={logForm.site_id}
-                onChange={handleChange}
-                placeholder="Dive Site"
-            ></input>     */}
-
-            <br></br>
-            <br></br>
-
                 {/* <Popup 
                     modal 
                     trigger={<button> Open Signature Pad</button>}
@@ -355,6 +352,9 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites }) {
             <button type="submit">Add Log</button>
 
             </form>
+
+                <button onClick={e => returnHome(e)}>Return Home</button>
+
             </div>
         </>
     )

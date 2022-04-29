@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import AddDiveLog from './AddDiveLog'
 
-function AddSite({ addNewLog, user, setUser, addNewSite }) {
+function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
 
     const initialSiteForm = {
         name: "",
@@ -20,7 +20,7 @@ function AddSite({ addNewLog, user, setUser, addNewSite }) {
 
     function handleSubmit(e) {
         e.stopPropagation()
-        e.preventDefault(e)
+        e.preventDefault()
 
         const newSite = {
             name: siteForm.name,
@@ -37,8 +37,8 @@ function AddSite({ addNewLog, user, setUser, addNewSite }) {
             body: JSON.stringify(newSite)
         })
         .then(response => response.json())
-        // .then(site => addNewSite(site))
-        .then(console.log())
+        .then(site => addNewSite(site))
+        // .then(console.log())
         .then(setSiteForm(initialSiteForm))
 
     }
@@ -96,15 +96,16 @@ function AddSite({ addNewLog, user, setUser, addNewSite }) {
                     placeholder="Longitude"
                 ></input> 
 
-                <button type="submit">Add Log</button>
+                <button type="submit">Add Site</button>
 
             </form>
-            <AddDiveLog
+            {/* <AddDiveLog
                 addNewLog={addNewLog}
                 user={user}
                 setUser={setUser}
                 siteState={siteState}
-            />
+                sites={sites}
+            /> */}
         </div>
     )
 }

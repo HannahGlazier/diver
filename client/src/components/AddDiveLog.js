@@ -6,13 +6,13 @@ import SignaturePad from 'react-signature-canvas'
 import Popup from 'reactjs-popup'
 
 
-function AddDiveLog({ addNewLog, user, setUser, siteState }) {
+function AddDiveLog({ addNewLog, user, setUser, siteState, sites }) {
+    const [site, setSite] = useState([])
 
     const initialLogForm = { 
         notes: "",
         depth: "",
         bottom_temp: "",
-        // bottom_time: "",
         suit_thickness: "",
         weight: "",
         time_in: "",
@@ -24,20 +24,30 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
         dive_budy: "",
         signature: "",
         user_id: user.id,
-        // site_id: siteState.id  
+        // site_id: site.id 
     }
     
     const [signatureState, setSignatureState] = useState("")
     const [logForm, setLogForm] = useState(initialLogForm)
-    const [site, setSite] = useState([])
-
-    useEffect(() => {
-    fetch("/last")
-    .then((response) => response.json())
-    .then(site => setSite(site));
-    }, []);
 
     let history = useHistory();
+
+    // Handle Rendering Site Option List
+    useEffect(() => {
+        fetch("http://localhost:3000/sites")
+        .then((response) => response.json())
+        .then(site => setSite(site));
+        }, []);
+
+
+    const siteMap = site.map(s => (
+        <option
+            key={s.id}
+            value={s.id}
+        >{s.name} - {s.location}</option>
+    ))
+
+    // Begin Dive Log Form Handlers
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -52,7 +62,6 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
         notes: logForm.notes,
         depth: logForm.depth,
         bottom_temp: logForm.bottom_temp,
-        // bottom_time: logForm.time_out - logForm.time_in,
         suit_thickness: logForm.suit_thickness,
         weight: logForm.weight,
         time_in: logForm.time_in,
@@ -64,7 +73,8 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
         dive_budy: logForm.dive_budy,
         signature: signatureState,
         user_id: user.id,
-        site_id: site.id 
+        // site_id: site.id 
+        site_id: logForm.site_id
         }
 
         fetch("http://localhost:3000/logs", {
@@ -76,7 +86,8 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
         })
         .then((response) => response.json())
         .then(console.log(newLog))
-        // .then(setLogForm(initialLogForm))
+        .then(setLogForm(initialLogForm))
+        // .then(history.push("/"))
     }
 
     // Signature handlers
@@ -107,6 +118,19 @@ function AddDiveLog({ addNewLog, user, setUser, siteState }) {
             <div>Add Dive Log
 
             <form onSubmit={handleSubmit}>
+
+            <br></br>
+            <br></br>
+
+            <label htmlFor="site">Select Dive Site: </label>
+            <select 
+                id="site"
+                name="site_id"
+                value={logForm.site_id}
+                onChange={handleChange}
+            >
+                {siteMap}
+            </select>  
 
             <br></br>
             <br></br>

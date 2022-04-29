@@ -69,6 +69,14 @@ function App() {
               addNewLog={handleAddNewLog}
               user={user}
               setUser={setUser}
+              sites={sites}
+            />
+            <AddDiveLog 
+              addNewSite={handleAddNewSite}
+              addNewLog={handleAddNewLog}
+              user={user}
+              setUser={setUser}
+              sites={sites}
             />
           </Route>
         </Switch>

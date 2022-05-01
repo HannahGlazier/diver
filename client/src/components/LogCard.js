@@ -21,6 +21,7 @@ import Button from '@mui/material/Button';
 
 function LogCard({ log, handleDeleteLog, user, userId }) {
 
+    // Material UI Styling
     const [expanded, setExpanded] = React.useState(false);
 
     const ExpandMore = styled((props) => {
@@ -37,6 +38,14 @@ function LogCard({ log, handleDeleteLog, user, userId }) {
     const handleExpandClick = () => {
         setExpanded(!expanded);
         };
+    // END Material UI Styling
+
+    // POST Follow
+    // function handleFollow(e){
+
+    //     const newFollow =
+
+    // }
 
     function handleDelete(e){
         e.stopPropagation();

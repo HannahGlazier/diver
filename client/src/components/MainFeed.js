@@ -4,11 +4,11 @@ import LogContainer from './LogContainer'
 function MainFeed({ logs, handleDeleteLog, user }) {
 
     return (
-    <div>
+    <div  className="container">
         <LogContainer 
             logs={logs} 
             user={user}
-            handleDeleteLog={handleDeleteLog} 
+            handleDeleteLog={handleDeleteLog}
         />
     </div>
     )

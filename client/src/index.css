@@ -25,13 +25,14 @@ code {
 }
 
 /* Log Cards */
-/* .container{
+.container{
   justify-content: center;
   align-items: center;
-  margin-left: 30%;
-} */
+  margin-bottom: 200px;
+  
+} 
 
-.log{
+/* .log{
   border: 1px solid;
   height: auto;
   width: auto;
@@ -39,7 +40,7 @@ code {
   padding: 100px;
 
   text-align: center;
-}
+} */
 
 .signature-img{
   

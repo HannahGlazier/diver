@@ -19,31 +19,31 @@ function App() {
   let history = useHistory();
 
     // Fetches
-    useEffect(() => {
-      fetch("http://localhost:3000/logs")
-        .then((response) => response.json())
-        .then(logs => setLogs(logs));
-        // .then(console.log)
-    }, [user]);
+    // useEffect(() => {
+    //   fetch("/logs")
+    //     .then((response) => response.json())
+    //     .then(logs => setLogs(logs));
+    //     // .then(console.log)
+    // }, [user]);
 
     function fetchLogs(){
-      fetch("http://localhost:3000/logs")
+      fetch("/logs")
       .then((response) => response.json())
       .then(logs => setLogs(logs));
     }
 
   // Auto-Login
-  // useEffect(() => {
-  //   fetch("/me").then((response) => {
-  //     if (response.ok) {
-  //       response.json().then((user) => {setUser(user)
-  //         if (user.id) {
-  //           fetchLogs()
-  //         }
-  //       });   
-  //     } 
-  //   });
-  // }, []);
+  useEffect(() => {
+    fetch("/me").then((response) => {
+      if (response.ok) {
+        response.json().then((user) => {setUser(user)
+          if (user.id) {
+            fetchLogs()
+          }
+        });   
+      } 
+    });
+  }, []);
 
   useEffect(() => {
     fetch("/me").then((response) => {

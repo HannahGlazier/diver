@@ -49,7 +49,7 @@ function LogCard({ log, handleDeleteLog, user, userId, following, setFollowing, 
             followee_id: log.user.id
         }
 
-        fetch('http://localhost:3000/follows', {
+        fetch('/follows', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -81,10 +81,8 @@ function LogCard({ log, handleDeleteLog, user, userId, following, setFollowing, 
             // handleUnfollow(follow)
 
 
-            // fetch(`http://localhost:3000/follows/${log.user.id}`, { method: 'DELETE' })
-            // const logMap = log.user.map(l => l.followees.name)
+            fetch(`/follows/${log.user.id}`, { method: 'DELETE' })
             console.log(log.user.id)
-            console.log("you already follow them!")
             
         }
 

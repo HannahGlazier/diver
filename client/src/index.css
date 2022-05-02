@@ -24,6 +24,14 @@ code {
   padding: 20px;
 }
 
+/* Profile Page */
+.profile{
+  text-align: center;
+  border: 1px solid;
+  margin: 100px;
+  padding: 20px;
+}
+
 /* Log Cards */
 .container{
   justify-content: center;

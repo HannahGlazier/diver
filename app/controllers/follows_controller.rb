@@ -1,5 +1,5 @@
 class FollowsController < ApplicationController
-    skip_before_action :authorize, only: [:create, :show, :index, :destroy]
+    # skip_before_action :authorize, only: [:create, :show, :index, ]
 
     def index
         render json: Follow.all
@@ -19,9 +19,9 @@ class FollowsController < ApplicationController
     # DELETE /follows/:id
     def destroy
 
-        follow = Follow.find(params[:id])
-        follow.destroy
-        head :no_content
+        # follow = Follow.find(params[:id])
+        # follow.destroy
+        # head :no_content
 
 
         # follow =  Follower.find_by(followee_id: params[:followee_id],
@@ -32,11 +32,11 @@ class FollowsController < ApplicationController
         # session.merge!({})
         # current_user = User.find_by(id: session[:user_id])
         # current_user = User.first
-    
-        # follow = Follow.find_by(followee_id: params[:followee_id], follower_id: [current_user.id])
-        # follow.destroy
         
-        # head :no_content
+        follow = Follow.find_by(followee_id: params[:id], follower_id: @current_user.id)
+        follow.destroy
+        
+        head :no_content
 
         # follow = Follow.where(follower_id = [@current_user.id], followee_id = [:followee_id])
         # follow.destroy

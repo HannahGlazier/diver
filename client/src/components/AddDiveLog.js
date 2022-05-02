@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import AddSite from './AddSite'
+import Profile from './Profile'
 
 import SignaturePad from 'react-signature-canvas'
 import Popup from 'reactjs-popup'

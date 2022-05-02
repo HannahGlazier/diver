@@ -35,7 +35,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs 
 
     // Handle Rendering Site Option List
     useEffect(() => {
-        fetch("http://localhost:3000/sites")
+        fetch("/sites")
         .then((response) => response.json())
         .then(site => setSite(site));
         }, []);
@@ -77,7 +77,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs 
         site_id: logForm.site_id
         }
 
-        fetch("http://localhost:3000/logs", {
+        fetch("/logs", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

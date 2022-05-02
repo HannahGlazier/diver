@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
 
-    skip_before_action :authorize, only: [:create, :index]
+    # skip_before_action :authorize, only: [:index]
 
     # GET /sites
     def index

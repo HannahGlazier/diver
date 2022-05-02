@@ -34,7 +34,7 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
             long: siteForm.long
         }
 
-        fetch("http://localhost:3000/sites", {
+        fetch("/sites", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

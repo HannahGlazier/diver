@@ -94,9 +94,9 @@ function LogCard({ log, handleDeleteLog, user, userId, following, setFollowing, 
 
     function handleFollowConditional(e){
         if (followeeMap.includes(log.user.id)){
-            return (<Button onClick={handleDeleteFolow}>Unfollow</Button>)
+            return (<Button variant="contained" onClick={handleDeleteFolow}>Unfollow</Button>)
         } else if (userId !== log.user.id){
-            return (<Button onClick={e => handleFollow(e)}>Follow</Button>)
+            return (<Button variant="contained" onClick={e => handleFollow(e)}>Follow</Button>)
         }
     }
 

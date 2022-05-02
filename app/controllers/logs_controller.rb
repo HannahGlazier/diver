@@ -1,12 +1,13 @@
 class LogsController < ApplicationController
     before_action :find_log, only: [:update, :destroy, :show]
+
     skip_before_action :authorize, only: [:index, :create, :show, :destroy]
 
     # GET /logs
     def index
         # PAGINATION
         # render json: Log.limit(per_page).offset(paginate_offset).reverse 
-
+        # debugger
         render json: Log.all
 
     end

@@ -15,27 +15,47 @@ function App() {
   const [logs, setLogs] = useState([]);
   const [sites, setSites] = useState([]);
   const [user, setUser] = useState(null);
+  const [following, setFollowing] = useState([])
   let history = useHistory();
 
-  // Fetches
-  useEffect(() => {
-    fetch("http://localhost:3000/logs")
+    // Fetches
+    useEffect(() => {
+      fetch("http://localhost:3000/logs")
+        .then((response) => response.json())
+        .then(logs => setLogs(logs));
+        // .then(console.log)
+    }, [user]);
+
+    function fetchLogs(){
+      fetch("http://localhost:3000/logs")
       .then((response) => response.json())
       .then(logs => setLogs(logs));
-      // .then(console.log)
-  }, []);
-
+    }
 
   // Auto-Login
+  // useEffect(() => {
+  //   fetch("/me").then((response) => {
+  //     if (response.ok) {
+  //       response.json().then((user) => {setUser(user)
+  //         if (user.id) {
+  //           fetchLogs()
+  //         }
+  //       });   
+  //     } 
+  //   });
+  // }, []);
+
   useEffect(() => {
     fetch("/me").then((response) => {
       if (response.ok) {
-        response.json().then((user) => setUser(user));
-      }
+        response.json().then((user) => {setUser(user)
+        });   
+      } 
     });
   }, []);
 
   if (!user) return <SignIn onLogin={setUser} />;
+
 
   // Logout
   function handleLogoutClick() {
@@ -46,8 +66,10 @@ function App() {
     });
   }
 
+
   function handleDeleteLog(log){
     fetch(`http://localhost:3000/logs/${log.id}`, { method: 'DELETE' })
+    console.log(log)
     const newLogs = logs.filter( indivdualLog => indivdualLog !== log)
     setLogs(newLogs)
   }
@@ -60,6 +82,19 @@ function App() {
     setSites([...sites, newSite])
   }
 
+  function handleFollowState(newFollow){
+    setFollowing([following, ...newFollow]);   
+}
+
+// function handleUnfollow(user){
+//   // fetch(`http://localhost:3000/follows/${log.user.id}`, {method: 'DELETE'})
+//   console.log(user)
+//   // const newFollows = following.filter(individualFollow => individualFollow !== user.follow.id)
+//   // setFollowing(newFollows)
+
+// }
+
+
   return (
       <div className="App">
         <Header handleLogoutClick={handleLogoutClick}/>
@@ -70,6 +105,10 @@ function App() {
               logs={logs}
               handleDeleteLog={handleDeleteLog}
               user={user}
+              following={following}
+              handleFollowState={handleFollowState}
+              setFollowing={setFollowing}
+              // handleUnfollow={handleUnfollow}
             />
           </Route>
           <Route exact path="/addLog">

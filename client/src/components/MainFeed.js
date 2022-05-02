@@ -1,7 +1,7 @@
 import React from 'react'
 import LogContainer from './LogContainer'
 
-function MainFeed({ logs, handleDeleteLog, user }) {
+function MainFeed({ logs, handleDeleteLog, user, following, setFollowing, handleFollowState, handleUnfollow }) {
 
     return (
     <div  className="container">
@@ -9,6 +9,10 @@ function MainFeed({ logs, handleDeleteLog, user }) {
             logs={logs} 
             user={user}
             handleDeleteLog={handleDeleteLog}
+            following={following}
+            setFollowing={setFollowing}
+            handleFollowState={handleFollowState}
+            handleUnfollow={handleUnfollow}
         />
     </div>
     )

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
-  # get "/last", to: "sites#last"
+  get "/followees", to: "follows#followees"
 
   # TEST NEW FOLLOW METHOD
   # post '/users/:id/follow', to: "users#follow", as: "follow_user"

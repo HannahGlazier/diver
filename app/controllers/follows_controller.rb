@@ -1,13 +1,20 @@
 class FollowsController < ApplicationController
     # skip_before_action :authorize, only: [:create, :show, :index, ]
 
+    # GET /follows
     def index
         render json: Follow.all
     end
 
+    # GET /follows/:id
     def show
         follow = Follow.find(params[:id])
         render json: follow
+    end
+
+    # GET /followees
+    def followees
+        render json: @current_user.followees
     end
 
     # POST /follows

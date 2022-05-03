@@ -85,16 +85,8 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs 
             body: JSON.stringify(newLog)
         })
         .then((response) => response.json())
-        .then(console.log(newLog))
-
-        // .then(addNewLog(newLog))
-        
         .then(setLogForm(initialLogForm))
-
-        // .then(fetch("http://localhost:3000/logs")
-        // .then((response) => response.json())
-        // .then(logs => setLogs(logs)))
-
+        .then(newLog => setLogs([...logs, newLog]))
         history.push('/')
     }
 

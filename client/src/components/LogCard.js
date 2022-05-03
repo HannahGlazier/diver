@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 
 import { styled } from '@mui/material/styles';
@@ -19,10 +19,26 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
-function LogCard({ log, handleDeleteLog, user, userId, following, setFollowing, handleFollowState, handleUnfollow }) {
+function LogCard({ 
+    log, 
+    handleDeleteLog, 
+    user, 
+    userId, 
+    following, 
+    setFollowing, 
+    handleFollowState, 
+    handleUnfollow 
+}) {
+
+    // const [followTest, setFollowTest] = useState(user.followees.includes(log.user.id))
+    // const [notFollow, setNotFollow] = useState(!user.followees.includes(log.user.id))
+
+    const [followTest, setFollowTest] = useState([])
+
 
     // Material UI Styling
     const [expanded, setExpanded] = React.useState(false);
+
 
     const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -40,9 +56,15 @@ function LogCard({ log, handleDeleteLog, user, userId, following, setFollowing, 
         };
     // END Material UI Styling
 
+    // FETCH followees
+        useEffect(() => {
+            fetch("/followees")
+            .then((response) => response.json())
+            .then(f => setFollowTest(f))
+        }, [])
+
     // POST Follow
-    function handleFollow(e){
-        e.stopPropagation(e)
+    function handleFollow(){
 
         const newFollow = {
             follower_id: user.id,
@@ -57,17 +79,10 @@ function LogCard({ log, handleDeleteLog, user, userId, following, setFollowing, 
             body: JSON.stringify(newFollow)
         })
         .then(response => response.json())
-        .then(console.log(newFollow))
+        .then(setFollowTest([...followTest, newFollow]))
     }
 
     // DELETE Unfollow
-
-    // function handleUnfollow(follow){
-    //     fetch(`http://localhost:3000/follows/${follow.id}`, { method: 'DELETE' })
-    //     console.log(follow)
-    //     const newFollow = following.filter( indivdual => indivdual !== follow)
-    //     setFollowing(newFollow)
-    // }
 
     // function handleFollowConditional(e){
     //     if (userId !== log.user.id){
@@ -76,27 +91,38 @@ function LogCard({ log, handleDeleteLog, user, userId, following, setFollowing, 
     //         return (<Button onClick={follow => handleUnfollow(follow)}>Unfollow</Button>)
     //     }
     // // }
-    function handleDeleteFolow(){
-            // e.stopPropagation(e)
-            // handleUnfollow(follow)
 
-
+    function handleDeleteFolow(fol){
             fetch(`/follows/${log.user.id}`, { method: 'DELETE' })
-            console.log(log.user.id)
-            
+            const newFollows = followTest.filter(unfollow => unfollow !== fol)
+            setFollowTest(newFollows)         
         }
 
 
     const followeeMap = user.followees.map(f => f.id)
     
 
-    function handleFollowConditional(e){
+    // function handleFollowConditional(e){
+    //     if (followeeMap.includes(log.user.id)){
+    //         return (<Button variant="contained" onClick={handleDeleteFolow}>Unfollow</Button>)
+    //     } else if (userId !== log.user.id){
+    //         return (<Button variant="contained" onClick={e => handleFollow(e)}>Follow</Button>)
+    //     }
+
+    // }
+
+    const doesFollow = followTest.includes(log.user)
+
+
+    function handleFollowConditional(){
         if (followeeMap.includes(log.user.id)){
-            return (<Button variant="contained" onClick={handleDeleteFolow}>Unfollow</Button>)
-        } else if (userId !== log.user.id){
-            return (<Button variant="contained" onClick={e => handleFollow(e)}>Follow</Button>)
+            return (<Button variant="contained" onClick={fol=> handleDeleteFolow(fol)}>Unfollow</Button>)
+        } if (!followeeMap.includes(log.user.id)){
+            return (<Button variant="contained" onClick={handleFollow}>Follow</Button>)
         }
     }
+
+    const follow = handleFollowConditional()
 
     // Handle deleting your personal Dive logs
     function handleDelete(e){
@@ -110,8 +136,6 @@ function LogCard({ log, handleDeleteLog, user, userId, following, setFollowing, 
     //     variant="contained"  
     //     onClick={e => handleFollowConditional(e)}
     //     >Follow Diver</Button>)
-
-    const follow = handleFollowConditional()
 
     // const follow = {
     // if (userId != log.user.id) && (user.id !== follower_id) {

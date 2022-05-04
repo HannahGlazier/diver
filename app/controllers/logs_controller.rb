@@ -8,7 +8,7 @@ class LogsController < ApplicationController
         # PAGINATION
         # render json: Log.limit(per_page).offset(paginate_offset).reverse 
         # debugger
-        render json: Log.all
+        render json: Log.all.reverse
 
     end
 

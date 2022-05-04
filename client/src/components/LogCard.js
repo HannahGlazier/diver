@@ -18,7 +18,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+// import Grid from '@mui/material/Grid';
 
 function LogCard({ 
     log, 
@@ -33,7 +33,7 @@ function LogCard({
     onChangeFollow
 }) {
     
-    console.log('isFollowee: ', isFollowee);
+    // console.log('isFollowee: ', isFollowee);
     // const [followTest, setFollowTest] = useState(user.followees.includes(log.user.id))
     // const [notFollow, setNotFollow] = useState(!user.followees.includes(log.user.id))
 
@@ -158,14 +158,6 @@ function LogCard({
 
     return (
         <div >
-            <Grid
-                // container
-                // spacing={100}
-                // direction="column"
-                // justifyContent="center"
-                // alignItems="center"
-                >
-            <Grid item>
             <Card className="container"  sx={{ maxWidth: 345 }}>
             <CardHeader
                 avatar={
@@ -235,8 +227,6 @@ function LogCard({
                 </CardContent>
             </Collapse>
             </Card>
-            </Grid>
-        </Grid>
         </div>
     )
 }

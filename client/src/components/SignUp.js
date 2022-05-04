@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import SignIn from "./SignIn";
 
 
-function SignUp({ onLogin, onSignIn }) {
+function SignUp({ onLogin, onSignIn, setUser }) {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
-    const [certificationLevel, setCertificationLevel] = useState("");
-    const [certificationDate, setCertificationDate] = useState("");
+    const [certification_level, setCertificationLevel] = useState("");
+    const [certification_date, setCertificationDate] = useState("");
     const [homebase, setHomebase] = useState("");
+    const [icon, setIcon] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [showLogin, setShowLogin] = useState(true)
@@ -26,16 +27,17 @@ function SignUp({ onLogin, onSignIn }) {
             name,
             password,
             password_confirmation: passwordConfirmation,
-            certificationLevel,
-            certificationDate,
-            homebase
+            certification_level,
+            certification_date,
+            homebase, 
+            icon
         }),
         }).then((r) => {
         setIsLoading(false);
         if (r.ok) {
-            r.json().then((user) => onLogin(user));
+            r.json().then((user) => setUser(user));
         } else {
-            r.json().then((err) => setErrors(err.errors));
+            r.json().then(err => window.alert(err.errors))
         }
         });
     }
@@ -76,33 +78,52 @@ function SignUp({ onLogin, onSignIn }) {
             onChange={(e) => setPasswordConfirmation(e.target.value)}
             autoComplete="current-password"
             />
+            <br></br>
+
+            <label htmlFor="icon">Choose an Icon: </label>
+            <select 
+                id="icon"
+                name="icon"
+                value={icon}
+                onChange={(e) => setIcon(e.target.value)}
+            >
+                <option value="">Select Icon</option>
+                <option value="https://img.icons8.com/color/96/000000/clown-fish.png">Clown Fish</option>
+                <option value="https://img.icons8.com/color/96/000000/fish.png">Angel Fish</option>
+                <option value="https://img.icons8.com/color/96/000000/big-eats-small.png">Big eats small fish</option>
+                <option value="https://img.icons8.com/emoji/96/000000/blow-fish.png">Blow Fish</option>
+                <option value="https://img.icons8.com/fluency/96/000000/perch.png">Perch</option>
+            </select> 
+        
         
             <br></br>
-            <label htmlFor="certificationLevel">Certification Level</label>
+            <label htmlFor="certification_level">Certification Level</label>
             <input
             type="text"
-            id="certificationLevel"
-            value={certificationLevel}
+            id="certification_level"
+            value={certification_level}
             onChange={(e) => setCertificationLevel(e.target.value)}
             />
         
             <br></br>
-            <label htmlFor="certificationDate">Certification Date</label>
-            <textarea
-            rows="3"
-            id="certificationDate"
-            value={certificationDate}
+            <label htmlFor="certification_date">Certification Date</label>
+            <input
+            type="date"
+            label="date"
+            // id="certificationDate"
+            value={certification_date}
             onChange={(e) => setCertificationDate(e.target.value)}
-            />
+            ></input>
 
             <br></br>
             <label htmlFor="homebase">Homebase</label>
-            <textarea
-            rows="3"
+            <input
+            type="text"
             id="homebase"
+            label="homebase"
             value={homebase}
             onChange={(e) => setHomebase(e.target.value)}
-            />
+            ></input>
         
             <br></br>
             <button type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>
@@ -114,7 +135,7 @@ function SignUp({ onLogin, onSignIn }) {
         
         </form>
         ) : (
-            <SignIn onSignIn={onSignIn}/>
+            <SignIn setUser={setUser}/>
         )}
         </>
     );

@@ -3,6 +3,8 @@ import LogContainer from './LogContainer'
 
 function MainFeed({ logs, handleDeleteLog, user, following, setFollowing, handleFollowState, handleUnfollow, onFollow }) {
 
+// function MainFeed({ logs, handleDeleteLog, user, setUser, following, setFollowing, handleFollowState, handleUnfollow }) {
+
     return (
     <div  className="container">
         <LogContainer 
@@ -14,6 +16,9 @@ function MainFeed({ logs, handleDeleteLog, user, following, setFollowing, handle
             handleFollowState={handleFollowState}
             handleUnfollow={handleUnfollow}
             onFollow={onFollow}
+
+//             setUser={setUser}
+
         />
     </div>
     )

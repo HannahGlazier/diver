@@ -45,16 +45,16 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    fetch("/me").then((response) => {
-      if (response.ok) {
-        response.json().then((user) => {setUser(user)
-        });   
-      } 
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetch("/me").then((response) => {
+  //     if (response.ok) {
+  //       response.json().then((user) => {setUser(user)
+  //       });   
+  //     } 
+  //   });
+  // }, []);
 
-  if (!user) return <SignIn onLogin={setUser} />;
+  if (!user) return <SignIn setUser={setUser} />;
 
 
   // Logout
@@ -97,7 +97,7 @@ function App() {
 
   return (
       <div className="App">
-        <Header handleLogoutClick={handleLogoutClick}/>
+        <Header handleLogoutClick={handleLogoutClick} user={user}/>
         {/* <button onClick={handleLogoutClick}>Logout</button> */}
         <Switch>
           <Route exact path="/">
@@ -108,7 +108,11 @@ function App() {
               following={following}
               handleFollowState={handleFollowState}
               setFollowing={setFollowing}
+
               onFollow={setUser}
+// =======
+//               setUser={setUser}
+// >>>>>>> main
               // handleUnfollow={handleUnfollow}
             />
           </Route>

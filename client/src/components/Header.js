@@ -144,7 +144,7 @@ function Header({user, setUser, handleLogoutClick}) {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Profile Options">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Typography sx={{ my: 2, color: 'white', display: 'block' }}>{user.name}</Typography>
+                <Typography sx={{color: 'white'}}>Welcome, {user.name}!</Typography>
                 <Avatar alt={user.name} src={user.icon} />
               </IconButton>
             </Tooltip>
@@ -154,7 +154,7 @@ function Header({user, setUser, handleLogoutClick}) {
             component="div"
             id = "header_font"
           >
-            {/* Welcome {user.username}! */}
+            {/* Welcome {user.name}! */}
           </Typography>
             <Menu
               sx={{ mt: '45px' }}

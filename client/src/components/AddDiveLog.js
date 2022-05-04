@@ -25,7 +25,8 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs 
         dive_budy: "",
         signature: "",
         user_id: user.id,
-        // site_id: site.id 
+        site_id: site.id 
+        // maybe dont need site id?
     }
     
     const [signatureState, setSignatureState] = useState("")
@@ -54,6 +55,41 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs 
         const { name, value } = e.target;
         setLogForm(logForm => ({...logForm, [name]: value}))
     }
+
+    // function handleSubmit(e){
+    //     e.preventDefault();
+    //     e.stopPropagation()
+
+    //     const newLog = {
+    //     notes: logForm.notes,
+    //     depth: logForm.depth,
+    //     bottom_temp: logForm.bottom_temp,
+    //     suit_thickness: logForm.suit_thickness,
+    //     weight: logForm.weight,
+    //     time_in: logForm.time_in,
+    //     time_out: logForm.time_out,
+    //     boat: logForm.boat,
+    //     fresh: logForm.fresh,
+    //     date: logForm.date, 
+    //     divemaster: logForm.divemaster,
+    //     dive_budy: logForm.dive_budy,
+    //     signature: signatureState,
+    //     user_id: user.id,
+    //     site_id: logForm.site_id
+    //     }
+
+    //     fetch("/logs", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(newLog)
+    //     })
+    //     .then((response) => response.json())
+    //     .then(setLogForm(initialLogForm))
+    //     .then(newLog => setLogs([...logs, newLog]))
+    //     history.push('/')
+    // }
 
     function handleSubmit(e){
         e.preventDefault();
@@ -84,10 +120,15 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs 
             },
             body: JSON.stringify(newLog)
         })
-        .then((response) => response.json())
-        .then(setLogForm(initialLogForm))
-        .then(newLog => setLogs([...logs, newLog]))
-        history.push('/')
+        .then((r) => {
+            if (r.ok) {
+                r.json().then(setLogForm(initialLogForm))
+                .then(newLog => setLogs([...logs, newLog]))
+                history.push('/')
+            } else {
+                r.json().then(err => window.alert(err.errors))
+            }
+        })
     }
 
     // Signature handlers
@@ -142,6 +183,7 @@ function returnHome(e){
                 value={logForm.site_id}
                 onChange={handleChange}
             >
+                <option>Select Dive Site</option>
                 {siteMap}
             </select>  
 

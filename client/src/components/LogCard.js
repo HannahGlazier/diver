@@ -33,12 +33,7 @@ function LogCard({
     onChangeFollow
 }) {
     
-    // console.log('isFollowee: ', isFollowee);
-    // const [followTest, setFollowTest] = useState(user.followees.includes(log.user.id))
-    // const [notFollow, setNotFollow] = useState(!user.followees.includes(log.user.id))
-
     const [followTest, setFollowTest] = useState([])
-
 
     // Material UI Styling
     const [expanded, setExpanded] = React.useState(false);
@@ -60,12 +55,6 @@ function LogCard({
         };
     // END Material UI Styling
 
-    // FETCH followees
-        // useEffect(() => {
-        //     fetch("/followees")
-        //     .then((response) => response.json())
-        //     .then(f => setFollowTest(f))
-        // }, [])
 
     // POST Follow
     function handleFollow(){
@@ -95,7 +84,6 @@ function LogCard({
 
     function handleDeleteFolow(){
             fetch(`/follows/${log.user.id}`, { method: 'DELETE' })
-            // const newFollows = followTest.filter(unfollow => unfollow !== fol)
             const filteredFollowees = user.followees.filter(fol => fol.id !== log.user.id)
             onChangeFollow({
                 ...user,

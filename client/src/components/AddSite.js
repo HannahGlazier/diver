@@ -23,6 +23,31 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
         setSiteForm(siteForm => ({...siteForm, [name]: value}))
     }
 
+    // function handleSubmit(e) {
+    //     e.stopPropagation()
+    //     e.preventDefault()
+
+    //     const newSite = {
+    //         name: siteForm.name,
+    //         location: siteForm.location, 
+    //         lat: siteForm.lat, 
+    //         long: siteForm.long
+    //     }
+
+    //     fetch("/sites", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         }, 
+    //         body: JSON.stringify(newSite)
+    //     })
+    //     .then(response => response.json())
+    //     .then(site => addNewSite(site))
+    //     // .then(console.log())
+    //     .then(setSiteForm(initialSiteForm))
+
+    // }
+
     function handleSubmit(e) {
         e.stopPropagation()
         e.preventDefault()
@@ -41,19 +66,23 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
             }, 
             body: JSON.stringify(newSite)
         })
-        .then(response => response.json())
-        .then(site => addNewSite(site))
-        // .then(console.log())
-        .then(setSiteForm(initialSiteForm))
-
+        .then((r) => {
+            if (r.ok) {
+                r.json().then((site => addNewSite(site)))
+                .then(setSiteForm(initialSiteForm))
+            } else {
+                r.json().then(err => window.alert(err.errors))
+            }
+        })
     }
 
 
-function goToAddLog(e){
-    e.stopPropagation()
-    e.preventDefault()
-    history.push('/addLog')
-  }
+
+    function goToAddLog(e){
+        e.stopPropagation()
+        e.preventDefault()
+        history.push('/addLog')
+    }
 
     return (
         <div>

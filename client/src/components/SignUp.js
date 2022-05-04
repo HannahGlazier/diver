@@ -41,7 +41,7 @@ function SignUp({ onLogin, onSignIn, setUser }) {
         }
         });
     }
-console.log(icon)
+
     return (
         <>
         { showLogin ? (
@@ -87,6 +87,7 @@ console.log(icon)
                 value={icon}
                 onChange={(e) => setIcon(e.target.value)}
             >
+                <option value="">Select Icon</option>
                 <option value="https://img.icons8.com/color/96/000000/clown-fish.png">Clown Fish</option>
                 <option value="https://img.icons8.com/color/96/000000/fish.png">Angel Fish</option>
                 <option value="https://img.icons8.com/color/96/000000/big-eats-small.png">Big eats small fish</option>
@@ -119,6 +120,7 @@ console.log(icon)
             <input
             type="text"
             id="homebase"
+            label="homebase"
             value={homebase}
             onChange={(e) => setHomebase(e.target.value)}
             ></input>

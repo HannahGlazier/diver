@@ -28,7 +28,8 @@ function LogCard({
     setFollowing, 
     handleFollowState, 
     handleUnfollow,
-    isFollowee 
+    isFollowee,
+    onChangeFollow
 }) {
     
     console.log('isFollowee: ', isFollowee);
@@ -81,7 +82,12 @@ function LogCard({
             body: JSON.stringify(newFollow)
         })
         .then(response => response.json())
-        .then(setFollowTest([...followTest, newFollow]))
+        .then(newFollowee => {
+            onChangeFollow({
+                ...user,
+                followees: [...user.followees, newFollowee.followee]
+            })
+        })
     }
 
     // DELETE Unfollow
@@ -94,10 +100,14 @@ function LogCard({
     //     }
     // // }
 
-    function handleDeleteFolow(fol){
+    function handleDeleteFolow(){
             fetch(`/follows/${log.user.id}`, { method: 'DELETE' })
-            const newFollows = followTest.filter(unfollow => unfollow !== fol)
-            setFollowTest(newFollows)         
+            // const newFollows = followTest.filter(unfollow => unfollow !== fol)
+            const filteredFollowees = user.followees.filter(fol => fol.id != log.user.id)
+            onChangeFollow({
+                ...user,
+                followees: filteredFollowees
+            })         
         }
 
 
@@ -118,7 +128,7 @@ function LogCard({
 
     function handleFollowConditional(){
         if (followeeMap.includes(log.user.id)){
-            return (<Button variant="contained" onClick={fol=> handleDeleteFolow(fol)}>Unfollow</Button>)
+            return (<Button variant="contained" onClick={handleDeleteFolow}>Unfollow</Button>)
         } if (!followeeMap.includes(log.user.id)){
             return (<Button variant="contained" onClick={handleFollow}>Follow</Button>)
         }
@@ -178,7 +188,10 @@ function LogCard({
         </CardContent>
         <CardActions disableSpacing>
 
-            {follow}
+            {/* {follow} */}
+            {isFollowee 
+              ? <Button variant="contained" onClick={fol=> handleDeleteFolow(fol)}>Unfollow</Button>
+              : <Button variant="contained" onClick={handleFollow}>Follow</Button>}
             {/* <Button onClick={handleDeleteFolow}>Unfollow</Button> */}
 
             {deleteLog}

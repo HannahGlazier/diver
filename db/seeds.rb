@@ -1,8 +1,8 @@
 puts "Clearing old data..."
-# User.destroy_all
-# Log.destroy_all
-# Follow.destroy_all
-# Site.destroy_all
+User.destroy_all
+Log.destroy_all
+Follow.destroy_all
+Site.destroy_all
 
 puts "🌱 Seeding Users"
 

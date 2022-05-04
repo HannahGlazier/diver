@@ -93,14 +93,6 @@ function LogCard({
 
     // DELETE Unfollow
 
-    // function handleFollowConditional(e){
-    //     if (userId !== log.user.id){
-    //         return (<Button onClick={e => handleFollow(e)}>Follow</Button>)
-    //     } else if (user.followers.includes(log.user.id)){
-    //         return (<Button onClick={follow => handleUnfollow(follow)}>Unfollow</Button>)
-    //     }
-    // // }
-
     function handleDeleteFolow(){
             fetch(`/follows/${log.user.id}`, { method: 'DELETE' })
             // const newFollows = followTest.filter(unfollow => unfollow !== fol)
@@ -113,17 +105,6 @@ function LogCard({
 
 
     const followeeMap = user.followees.map(f => f.id)
-    
-
-    // function handleFollowConditional(e){
-    //     if (followeeMap.includes(log.user.id)){
-    //         return (<Button variant="contained" onClick={handleDeleteFolow}>Unfollow</Button>)
-    //     } else if (userId !== log.user.id){
-    //         return (<Button variant="contained" onClick={e => handleFollow(e)}>Follow</Button>)
-    //     }
-
-    // }
-
     const doesFollow = followTest.includes(log.user)
 
 
@@ -132,12 +113,8 @@ function LogCard({
             return (<Button variant="contained" onClick={fol=> handleDeleteFolow(fol)}>Unfollow</Button>)
         } else if (!isFollowee && userId !== log.user.id){
             return (<Button variant="contained" onClick={handleFollow}>Follow</Button>)
-        } 
-        
+        }     
     }
-    // {isFollowee
-    //     ? <Button variant="contained" onClick={fol=> handleDeleteFolow(fol)}>Unfollow</Button>
-    //     : <Button variant="contained" onClick={handleFollow}>Follow</Button>}
 
     // Handle deleting your personal Dive logs
     function handleDelete(e){
@@ -147,16 +124,6 @@ function LogCard({
 
     const deleteLog = userId === log.user.id &&  <Button variant="contained" onClick={e => handleDelete(e)}>Delete Log</Button>
     
-    // const follow = userId !== log.user.id && ( <Button 
-    //     variant="contained"  
-    //     onClick={e => handleFollowConditional(e)}
-    //     >Follow Diver</Button>)
-
-    // const follow = {
-    // if (userId != log.user.id) && (user.id !== follower_id) {
-    //     return <Button variant="contained" onClick={e => handleFollow(e)}>Follow Diver</Button>
-    // }
-    // }
     const headerLocation = `${log.site.name} - ${log.site.location}`
     const headerUserName = `${log.user.name}'s Dive Log`
 
@@ -193,11 +160,10 @@ function LogCard({
             </CardContent>
             <CardActions disableSpacing>
 
-                {/* {follow} */}
+
                 {/* {isFollowee
                     ? <Button variant="contained" onClick={fol=> handleDeleteFolow(fol)}>Unfollow</Button>
                     : <Button variant="contained" onClick={handleFollow}>Follow</Button>}  */}
-                {/* {/* <Button onClick={handleDeleteFolow}>Unfollow</Button> */}
 
                 {handleFollowConditional()}
                 {deleteLog}
@@ -237,29 +203,3 @@ function LogCard({
 }
 
 export default LogCard
-
-
-
-
-
-        // <div className="log">
-        //     <h4>{log.site.name} - {log.site.location}</h4>
-        //     <h5>{log.user.name}'s Log</h5>
-        //     <h6>Time In: {log.time_in}</h6>
-        //     <h6>Time Out: {log.time_out}</h6>
-        //     <h6>Bottom Time: {log.bottom_time} minutes</h6>
-        //     <h6>Depth: {log.depth}'</h6>
-        //     <h6>Suit Thickness: {log.suit_thickness}mm</h6>
-        //     <h6>Weight: {log.weight}lbs</h6>
-        //     <h6>Water: {log.fresh ? 'Fresh' : 'Salt'}</h6>
-        //     <h6>{log.boat ? "Boat" : "Shore"} dive</h6>
-        //     <h6>NOTES: {log.notes}</h6>
-        //     <h6>Dive Master: {log.divemaster}</h6>
-        //     <img
-        //         src={log.signature}
-        //         alt="signature"
-        //         className="signature-img"
-        //     ></img>
-        //     {deleteLog}
-        //     {follow}
-        // </div>

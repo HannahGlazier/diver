@@ -28,7 +28,7 @@ function SignIn({ setUser }) {
             r.json().then((user) => setUser(user));
             history.push('/')
         } else {
-            r.json().then((err) => setErrors(err.errors));
+            r.json().then(err => window.alert(err.errors))
         }
         });
     }

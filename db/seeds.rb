@@ -18,20 +18,20 @@ u5 = User.create(name: Faker::FunnyName.name, certification_level: "Open Water D
 
 puts "🌱 Seeding Sites"
 # <a href="https://www.flaticon.com/free-icons/dolly-fish" title="dolly fish icons">Dolly fish icons created by Freepik - Flaticon</a>
-s1 = Site.create(name: Faker::Lorem.sentence(word_count: 3), location: Faker::Nation.capital_city, lat: rand(1...100), long: rand(1...100))
+s1 = Site.create(name: "Swim Through", location: "Belize", lat: rand(1...100), long: rand(1...100))
 
-s2 = Site.create(name: Faker::Lorem.sentence(word_count: 3), location: Faker::Nation.capital_city, lat: rand(1...100), long: rand(1...100))
+s2 = Site.create(name: "Push'em Ups", location: "Big Island", lat: rand(1...100), long: rand(1...100))
 
-s3 = Site.create(name: Faker::Lorem.sentence(word_count: 3), location: Faker::Nation.capital_city, lat: rand(1...100), long: rand(1...100))
+s3 = Site.create(name: "Shark Alley", location: "Belize", lat: rand(1...100), long: rand(1...100))
 
-s4 = Site.create(name: Faker::Lorem.sentence(word_count: 3), location: Faker::Nation.capital_city, lat: rand(1...100), long: rand(1...100))
+s4 = Site.create(name: "Coral Garden", location: "Honduras", lat: rand(1...100), long: rand(1...100))
 
-s5 = Site.create(name: Faker::Lorem.sentence(word_count: 3), location: Faker::Nation.capital_city, lat: rand(1...100), long: rand(1...100))
+s5 = Site.create(name: "The Big Wall", location: "Mexico", lat: rand(1...100), long: rand(1...100))
 
 puts "🌱 Seeding Logs"
 
 Log.create(
-    notes: Faker::Lorem.sentence(word_count: 5), 
+    notes: "Really amazing location! Struggled with the current a bit in the beginning, but it mellowed out. Even saw some sea turtles!", 
     depth: rand(20...100), 
     bottom_time: '01:00', 
     bottom_temp: rand(60...85), 
@@ -49,7 +49,7 @@ Log.create(
     site_id: s1.id)
 
 Log.create(
-    notes: Faker::Lorem.sentence(word_count: 5), 
+    notes: "Was really cold for the first have, but I eventually warmed up by swimming around. Also had some trouble clearing my ears. Lots of interesting coral", 
     depth: rand(20...100), 
     bottom_time: '01:00', 
     bottom_temp: rand(60...85), 
@@ -67,7 +67,7 @@ Log.create(
     site_id: s2.id)
 
 Log.create(
-    notes: Faker::Lorem.sentence(word_count: 5), 
+    notes: "First shore dive, I was nervous about the walk in - but it all went smoothly!", 
     depth: rand(20...100), 
     bottom_time: '01:00', 
     bottom_temp: rand(60...85), 
@@ -75,7 +75,7 @@ Log.create(
     weight: rand(6...25), 
     time_in: '03:00', 
     time_out: '04:00',
-    boat: true, 
+    boat: false, 
     fresh: false, 
     date: '2019-02-09', 
     divemaster: Faker::FunnyName.name, 
@@ -85,7 +85,7 @@ Log.create(
     site_id: s3.id)
 
 Log.create(
-    notes: Faker::Lorem.sentence(word_count: 5), 
+    notes: "Didn't see a lot of fish, but really cool coral and spent some time working on my buoyancy", 
     depth: rand(20...100), 
     bottom_time: '01:00', 
     bottom_temp: rand(60...85), 
@@ -103,7 +103,7 @@ Log.create(
     site_id: s4.id)
 
 Log.create(
-    notes: Faker::Lorem.sentence(word_count: 5), 
+    notes: "First dive back after awhile. Felt great to be back in the water. Saw a lot of eels and parrot fish", 
     depth: rand(20...100), 
     bottom_time: '01:00', 
     bottom_temp: rand(60...85), 

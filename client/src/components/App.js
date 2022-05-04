@@ -68,7 +68,7 @@ function App() {
 
 
   function handleDeleteLog(log){
-    fetch(`http://localhost:3000/logs/${log.id}`, { method: 'DELETE' })
+    fetch(`/logs/${log.id}`, { method: 'DELETE' })
     console.log(log)
     const newLogs = logs.filter( indivdualLog => indivdualLog !== log)
     setLogs(newLogs)

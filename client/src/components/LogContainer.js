@@ -3,8 +3,12 @@ import LogCard from './LogCard'
 // import InfiniteScroll from 'react-infinite-scroll-component';
 
 function LogContainer({ logs, handleDeleteLog, user, following, setFollowing, handleFollowState, handleUnfollow }) {
-    
-    const logMap = logs.map(log => (
+    console.log(user.followees)
+    const followeeIds = user.followees.map(f => f.id)
+    const logMap = logs.map(log => {
+        // console.log(followeeIds.includes(log.user.id))
+        const isFollowee = followeeIds.includes(log.user.id)
+        return (
         <LogCard
             key={log.id}
             log={log}
@@ -15,8 +19,9 @@ function LogContainer({ logs, handleDeleteLog, user, following, setFollowing, ha
             setFollowing={setFollowing}
             handleFollowState={handleFollowState}
             handleUnfollow={handleUnfollow}
+            isFollowee={isFollowee}
         />
-    ))
+    )})
 
     return (
     <div className="container">{logMap}</div>

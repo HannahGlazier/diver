@@ -128,14 +128,16 @@ function LogCard({
 
 
     function handleFollowConditional(){
-        if (followeeMap.includes(log.user.id)){
-            return (<Button variant="contained" onClick={handleDeleteFolow}>Unfollow</Button>)
-        } if (!followeeMap.includes(log.user.id)){
+        if (isFollowee && userId !== log.user.id){
+            return (<Button variant="contained" onClick={fol=> handleDeleteFolow(fol)}>Unfollow</Button>)
+        } else if (!isFollowee && userId !== log.user.id){
             return (<Button variant="contained" onClick={handleFollow}>Follow</Button>)
-        }
+        } 
+        
     }
-
-    const follow = handleFollowConditional()
+    // {isFollowee
+    //     ? <Button variant="contained" onClick={fol=> handleDeleteFolow(fol)}>Unfollow</Button>
+    //     : <Button variant="contained" onClick={handleFollow}>Follow</Button>}
 
     // Handle deleting your personal Dive logs
     function handleDelete(e){
@@ -155,6 +157,8 @@ function LogCard({
     //     return <Button variant="contained" onClick={e => handleFollow(e)}>Follow Diver</Button>
     // }
     // }
+    const headerLocation = `${log.site.name} - ${log.site.location}`
+    const headerUserName = `${log.user.name}'s Dive Log`
 
     return (
         <div >
@@ -169,11 +173,11 @@ function LogCard({
                     <MoreVertIcon />
                 </IconButton>
                 }
-                title={log.site.name}
+                title={headerLocation}
                 subheader={log.date}
             />
             <CardHeader 
-                title={log.user.name}
+                title={headerUserName}
             />  
             {/* <CardMedia
                 component="img"
@@ -190,11 +194,12 @@ function LogCard({
             <CardActions disableSpacing>
 
                 {/* {follow} */}
-                {isFollowee
+                {/* {isFollowee
                     ? <Button variant="contained" onClick={fol=> handleDeleteFolow(fol)}>Unfollow</Button>
-                    : <Button variant="contained" onClick={handleFollow}>Follow</Button>}
-                {/* <Button onClick={handleDeleteFolow}>Unfollow</Button> */}
+                    : <Button variant="contained" onClick={handleFollow}>Follow</Button>}  */}
+                {/* {/* <Button onClick={handleDeleteFolow}>Unfollow</Button> */}
 
+                {handleFollowConditional()}
                 {deleteLog}
 
                 <ExpandMore

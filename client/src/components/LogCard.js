@@ -82,7 +82,10 @@ function LogCard({
         })
         .then(response => response.json())
         // .then(newFollow => setFollowTest([...followTest, newFollow]))
-        .then(newFollow => setUser({...user, followees: [...user.followees, newFollow]}))
+        // .then(newFollow => setUser({...user, followees: [...user.followees, newFollow]}))
+        fetch("/followees")
+        .then((response) => response.json())
+        .then(f => setUser({...user, followees: f}))
         // .then(newFollow => setUser({...user, newFollow}))
         // .then(user => console.log(user))
         // .then(newFollow => console.log(newFollow))
@@ -101,7 +104,7 @@ function LogCard({
     // }
     // console.log(followee)
 
-    function handleDeleteFollow(fol){
+    function handleDeleteFollow(){
             fetch(`/follows/${log.user.id}`, { method: 'DELETE' })
             // const newFollows = user.filter(unfollow => unfollow !== fol)
             fetch("/followees")
@@ -232,7 +235,7 @@ function LogCard({
             {deleteLog}
             {
         followee ? (<Button variant="contained" onClick={e => handleDeleteFollow(e)}>Unfollow</Button>) : (<Button variant="contained" onClick={handleFollow}>Follow</Button>)} 
-            {/* {handleFollowConditional()}
+            {/* 
 
             {/* <Button variant="contained" onClick={e => handleDeleteFollow(e)}>Unfollow</Button>
             <Button variant="contained" onClick={handleFollow}>Follow</Button> */}

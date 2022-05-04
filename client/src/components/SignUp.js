@@ -9,6 +9,7 @@ function SignUp({ onLogin, onSignIn, setUser }) {
     const [certification_level, setCertificationLevel] = useState("");
     const [certification_date, setCertificationDate] = useState("");
     const [homebase, setHomebase] = useState("");
+    const [icon, setIcon] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [showLogin, setShowLogin] = useState(true)
@@ -28,7 +29,8 @@ function SignUp({ onLogin, onSignIn, setUser }) {
             password_confirmation: passwordConfirmation,
             certification_level,
             certification_date,
-            homebase
+            homebase, 
+            icon
         }),
         }).then((r) => {
         setIsLoading(false);
@@ -39,7 +41,7 @@ function SignUp({ onLogin, onSignIn, setUser }) {
         }
         });
     }
-
+console.log(icon)
     return (
         <>
         { showLogin ? (
@@ -76,6 +78,22 @@ function SignUp({ onLogin, onSignIn, setUser }) {
             onChange={(e) => setPasswordConfirmation(e.target.value)}
             autoComplete="current-password"
             />
+            <br></br>
+
+            <label htmlFor="icon">Choose an Icon: </label>
+            <select 
+                id="icon"
+                name="icon"
+                value={icon}
+                onChange={(e) => setIcon(e.target.value)}
+            >
+                <option value="https://img.icons8.com/color/96/000000/clown-fish.png">Clown Fish</option>
+                <option value="https://img.icons8.com/color/96/000000/fish.png">Angel Fish</option>
+                <option value="https://img.icons8.com/color/96/000000/big-eats-small.png">Big eats small fish</option>
+                <option value="https://img.icons8.com/emoji/96/000000/blow-fish.png">Blow Fish</option>
+                <option value="https://img.icons8.com/fluency/96/000000/perch.png">Perch</option>
+            </select> 
+        
         
             <br></br>
             <label htmlFor="certification_level">Certification Level</label>

@@ -122,7 +122,7 @@ function Header({user, setUser, handleLogoutClick}) {
               <Button
                 key="home"
                 onClick={handleCloseNavMenuHome}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ color: 'white', display: { xs: 'none', md: 'flex' } }}
               >
               Home
               </Button>
@@ -144,7 +144,7 @@ function Header({user, setUser, handleLogoutClick}) {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Profile Options">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Typography>{user.name}</Typography>
+                <Typography sx={{ my: 2, color: 'white', display: 'block' }}>{user.name}</Typography>
                 <Avatar alt={user.name} src={user.icon} />
               </IconButton>
             </Tooltip>

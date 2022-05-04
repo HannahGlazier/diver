@@ -108,6 +108,7 @@ function App() {
               following={following}
               handleFollowState={handleFollowState}
               setFollowing={setFollowing}
+              setUser={setUser}
               // handleUnfollow={handleUnfollow}
             />
           </Route>

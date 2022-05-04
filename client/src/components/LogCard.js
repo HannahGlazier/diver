@@ -156,75 +156,77 @@ function LogCard({
     // }
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
-        <CardHeader
-            avatar={
-            <Avatar sx={{ bgcolor: blue[100] }} aria-label="recipe" src={log.user.icon} alt="fish icon from https://icons8.com/icons/set/fish">
-            </Avatar>
-            }
-            action={
-            <IconButton aria-label="settings">
-                <MoreVertIcon />
-            </IconButton>
-            }
-            title={log.site.name}
-            subheader={log.date}
-        />
-        <CardHeader 
-            title={log.user.name}
-        />  
-        {/* <CardMedia
-            component="img"
-            height="194"
-            image="/static/images/cards/paella.jpg"
-            alt="Paella dish"
-        /> */}
-        <CardContent>
-        <Typography variant="body2" color="text.secondary">- Dive Notes -</Typography>
-            <Typography variant="body2" color="text.secondary">
-                {log.notes}
-            </Typography>
-        </CardContent>
-        <CardActions disableSpacing>
-
-            {/* {follow} */}
-            {isFollowee 
-                ? <Button variant="contained" onClick={fol=> handleDeleteFolow(fol)}>Unfollow</Button>
-                : <Button variant="contained" onClick={handleFollow}>Follow</Button>}
-            {/* <Button onClick={handleDeleteFolow}>Unfollow</Button> */}
-
-            {deleteLog}
-
-            <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-            >
-            <ExpandMoreIcon />
-            </ExpandMore>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <div >
+            <Card className="container"  sx={{ maxWidth: 345 }}>
+            <CardHeader
+                avatar={
+                <Avatar sx={{ bgcolor: blue[100] }} aria-label="recipe" src={log.user.icon} alt="fish icon from https://icons8.com/icons/set/fish">
+                </Avatar>
+                }
+                action={
+                <IconButton aria-label="settings">
+                    <MoreVertIcon />
+                </IconButton>
+                }
+                title={log.site.name}
+                subheader={log.date}
+            />
+            <CardHeader 
+                title={log.user.name}
+            />  
+            {/* <CardMedia
+                component="img"
+                height="194"
+                image="/static/images/cards/paella.jpg"
+                alt="Paella dish"
+            /> */}
             <CardContent>
-            <Typography paragraph>The Details: </Typography>
-            <Typography paragraph>Time In: {log.time_in}</Typography>
-            <Typography paragraph>Time Out: {log.time_out}</Typography>
-            <Typography paragraph>Bottom Time: {log.bottom_time}</Typography>
-            <Typography>Suit Thickness: {log.suit_thickness}</Typography>
-            <Typography>Depth: {log.depth}</Typography>
-            <Typography>Weight: {log.weight}</Typography>
-            <Typography>{log.fresh ? 'Fresh' : 'Salt'} Water - {log.boat ? "Boat" : "Shore"} Dive</Typography>
-            <Typography>Dive Buddy: {log.dive_budy}</Typography>
-            <Typography>Dive Master: {log.divemaster}</Typography>
-
-            <CardMedia
-            component="img"
-            height="100"
-            image={log.signature}
-            alt="signature"/>
+            <Typography variant="body2" color="text.secondary">- Dive Notes -</Typography>
+                <Typography variant="body2" color="text.secondary">
+                    {log.notes}
+                </Typography>
             </CardContent>
-        </Collapse>
-        </Card>
+            <CardActions disableSpacing>
+
+                {/* {follow} */}
+                {isFollowee 
+                    ? <Button variant="contained" onClick={fol=> handleDeleteFolow(fol)}>Unfollow</Button>
+                    : <Button variant="contained" onClick={handleFollow}>Follow</Button>}
+                {/* <Button onClick={handleDeleteFolow}>Unfollow</Button> */}
+
+                {deleteLog}
+
+                <ExpandMore
+                expand={expanded}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+                >
+                <ExpandMoreIcon />
+                </ExpandMore>
+            </CardActions>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent>
+                <Typography paragraph>The Details: </Typography>
+                <Typography paragraph>Time In: {log.time_in}</Typography>
+                <Typography paragraph>Time Out: {log.time_out}</Typography>
+                <Typography paragraph>Bottom Time: {log.bottom_time}</Typography>
+                <Typography>Suit Thickness: {log.suit_thickness}</Typography>
+                <Typography>Depth: {log.depth}</Typography>
+                <Typography>Weight: {log.weight}</Typography>
+                <Typography>{log.fresh ? 'Fresh' : 'Salt'} Water - {log.boat ? "Boat" : "Shore"} Dive</Typography>
+                <Typography>Dive Buddy: {log.dive_budy}</Typography>
+                <Typography>Dive Master: {log.divemaster}</Typography>
+
+                <CardMedia
+                component="img"
+                height="100"
+                image={log.signature}
+                alt="signature"/>
+                </CardContent>
+            </Collapse>
+            </Card>
+        </div>
     )
 }
 

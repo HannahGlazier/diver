@@ -25,7 +25,7 @@ function LogContainer({ logs, handleDeleteLog, user, following, setFollowing, ha
     )})
 
     return (
-    <div className="container">{logMap}</div>
+    <div>{logMap}</div>
     )
 }
 

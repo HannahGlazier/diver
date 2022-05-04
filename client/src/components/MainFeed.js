@@ -6,7 +6,7 @@ function MainFeed({ logs, handleDeleteLog, user, following, setFollowing, handle
 // function MainFeed({ logs, handleDeleteLog, user, setUser, following, setFollowing, handleFollowState, handleUnfollow }) {
 
     return (
-    <div  className="container">
+    <div>
         <LogContainer 
             logs={logs} 
             user={user}
@@ -16,9 +16,6 @@ function MainFeed({ logs, handleDeleteLog, user, following, setFollowing, handle
             handleFollowState={handleFollowState}
             handleUnfollow={handleUnfollow}
             onFollow={onFollow}
-
-//             setUser={setUser}
-
         />
     </div>
     )

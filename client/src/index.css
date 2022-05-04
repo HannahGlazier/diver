@@ -34,9 +34,11 @@ code {
 
 /* Log Cards */
 .container{
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 200px;
+  /* justify-content: center; */
+  /* align-items: center; */
+
+  margin: 100px;
+  background-color: pink;
   
 } 
 

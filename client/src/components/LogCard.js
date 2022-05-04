@@ -11,7 +11,7 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { blue, red } from '@mui/material/colors';
+import { blue } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -27,15 +27,9 @@ function LogCard({
     following, 
     setFollowing, 
     handleFollowState, 
-
     handleUnfollow,
     isFollowee,
     onChangeFollow
-// =======
-//     handleUnfollow, 
-//     followee, 
-//     setUser 
-// >>>>>>> main
 }) {
     
     console.log('isFollowee: ', isFollowee);
@@ -43,7 +37,7 @@ function LogCard({
     // const [notFollow, setNotFollow] = useState(!user.followees.includes(log.user.id))
 
     const [followTest, setFollowTest] = useState([])
-    // const [toggleButton, setToggleButton] = useState(false)
+
 
     // Material UI Styling
     const [expanded, setExpanded] = React.useState(false);
@@ -88,59 +82,33 @@ function LogCard({
             body: JSON.stringify(newFollow)
         })
         .then(response => response.json())
-
         .then(newFollowee => {
             onChangeFollow({
                 ...user,
                 followees: [...user.followees, newFollowee.followee]
             })
         })
-// =======
-//         // .then(newFollow => setFollowTest([...followTest, newFollow]))
-//         // .then(newFollow => setUser({...user, followees: [...user.followees, newFollow]}))
-//         fetch("/followees")
-//         .then((response) => response.json())
-//         .then(f => setUser({...user, followees: f}))
-//         // .then(newFollow => setUser({...user, newFollow}))
-//         // .then(user => console.log(user))
-//         // .then(newFollow => console.log(newFollow))
-
-// >>>>>>> main
     }
 
-    // console.log(user.followees)
     // DELETE Unfollow
 
     // function handleFollowConditional(e){
     //     if (userId !== log.user.id){
     //         return (<Button onClick={e => handleFollow(e)}>Follow</Button>)
-    //     } if (user.followers.includes(log.user.id)){
+    //     } else if (user.followers.includes(log.user.id)){
     //         return (<Button onClick={follow => handleUnfollow(follow)}>Unfollow</Button>)
     //     }
-    // }
-    // console.log(followee)
-
+    // // }
 
     function handleDeleteFolow(){
             fetch(`/follows/${log.user.id}`, { method: 'DELETE' })
             // const newFollows = followTest.filter(unfollow => unfollow !== fol)
-            const filteredFollowees = user.followees.filter(fol => fol.id != log.user.id)
+            const filteredFollowees = user.followees.filter(fol => fol.id !== log.user.id)
             onChangeFollow({
                 ...user,
                 followees: filteredFollowees
             })         
-
-//     function handleDeleteFollow(){
-//             fetch(`/follows/${log.user.id}`, { method: 'DELETE' })
-//             // const newFollows = user.filter(unfollow => unfollow !== fol)
-//             fetch("/followees")
-//             .then((response) => response.json())
-//             .then(f => setUser({...user, followees: f}))
-//             // setUser({...user, followees: newFollows})
-//             // setUser(newFollows => ({...user, followees: [...user.followees, newFollows]}))   
-
-// >>>>>>> main
-//         }
+        }
 
 
     const followeeMap = user.followees.map(f => f.id)
@@ -148,51 +116,14 @@ function LogCard({
 
     // function handleFollowConditional(e){
     //     if (followeeMap.includes(log.user.id)){
-    //         return (<Button variant="contained" onClick={handleDeleteFollow}>Unfollow</Button>)
+    //         return (<Button variant="contained" onClick={handleDeleteFolow}>Unfollow</Button>)
     //     } else if (userId !== log.user.id){
     //         return (<Button variant="contained" onClick={e => handleFollow(e)}>Follow</Button>)
     //     }
 
     // }
 
-    const fMap = followTest.map (f => f.id)
-
-    // console.log(followTest)
-    // console.log(fMap)
-    
-    // console.log(typeof(log.user.id))
-    // console.log(typeof(followTest[0].id))
-
-    // console.log(followee)
-    // console.log(log.user.id)
-
-    // console.log(fMap)
-    // user.followees.some(fol => fol.id === log.user.id)
-    // const followw = fMap.some(fol => fol === log.user.id)
-    // console.log(followw)
-    // console.log(followw)
-// console.log(followee)
-// console.log(user.followees)
-    // function handleFollowConditional(){
-    //     if (followee){
-    //         // console.log("returning unfollow")
-    
-    //         return (<Button variant="contained" onClick={e => handleDeleteFollow(e)}>Unfollow</Button>)
-    //     } else {
-    //         // console.log('returning follow')
-    //         return (<Button variant="contained" onClick={handleFollow}>Follow</Button>)
-    //     }
-    // }
-        // if (followTest){
-        //     return (<Button variant="contained" onClick={fol => handleDeleteFollow(fol)}>Unfollow</Button>)
-        // } else {
-        //     return (<Button variant="contained" onClick={handleFollow}>Follow</Button>)
-        // }
-
-
-    //     // followTest.includes(log.user.id) ? <Button variant="contained" onClick={fol=> handleDeleteFollow(fol)}>Unfollow</Button> : <Button variant="contained" onClick={handleFollow}>Follow</Button>
-    
-
+    const doesFollow = followTest.includes(log.user)
 
 
     function handleFollowConditional(){
@@ -203,8 +134,7 @@ function LogCard({
         }
     }
 
-
-    // const follow = handleFollowConditional()
+    const follow = handleFollowConditional()
 
     // Handle deleting your personal Dive logs
     function handleDelete(e){
@@ -213,10 +143,6 @@ function LogCard({
     }
 
     const deleteLog = userId === log.user.id &&  <Button variant="contained" onClick={e => handleDelete(e)}>Delete Log</Button>
-
-    // const followButton = followw && <Button variant="contained" onClick={fol=> handleDeleteFollow(fol)}>Unfollow</Button>
-
-    // const unFollowButton = !followw && <Button variant="contained" onClick={handleFollow}>Follow</Button>
     
     // const follow = userId !== log.user.id && ( <Button 
     //     variant="contained"  
@@ -228,8 +154,6 @@ function LogCard({
     //     return <Button variant="contained" onClick={e => handleFollow(e)}>Follow Diver</Button>
     // }
     // }
-
-    
 
     return (
         <Card sx={{ maxWidth: 345 }}>
@@ -263,24 +187,13 @@ function LogCard({
         </CardContent>
         <CardActions disableSpacing>
 
-
             {/* {follow} */}
             {isFollowee 
-              ? <Button variant="contained" onClick={fol=> handleDeleteFolow(fol)}>Unfollow</Button>
-              : <Button variant="contained" onClick={handleFollow}>Follow</Button>}
-
+                ? <Button variant="contained" onClick={fol=> handleDeleteFolow(fol)}>Unfollow</Button>
+                : <Button variant="contained" onClick={handleFollow}>Follow</Button>}
             {/* <Button onClick={handleDeleteFolow}>Unfollow</Button> */}
-            {/* <Button onClick={fMap.includes(log.user.id) ? handleDeleteFollow() : handleFollow()} >{followTest ? "Unfollow" : "Follow"}</Button> */}
 
             {deleteLog}
-            {
-        followee ? (<Button variant="contained" onClick={e => handleDeleteFollow(e)}>Unfollow</Button>) : (<Button variant="contained" onClick={handleFollow}>Follow</Button>)} 
-            {/* 
-
-            {/* <Button variant="contained" onClick={e => handleDeleteFollow(e)}>Unfollow</Button>
-            <Button variant="contained" onClick={handleFollow}>Follow</Button> */}
-            {/* {followButton}
-            {unFollowButton} */}
 
             <ExpandMore
             expand={expanded}

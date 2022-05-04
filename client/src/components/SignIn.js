@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SignUp from './SignUp'
 
 
-function SignIn({ onLogin, onSignIn }) {
+function SignIn({ setUser }) {
 
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
@@ -22,7 +22,7 @@ function SignIn({ onLogin, onSignIn }) {
         }).then((r) => {
         setIsLoading(false);
         if (r.ok) {
-            r.json().then((user) => onLogin(user));
+            r.json().then((user) => setUser(user));
         } else {
             r.json().then((err) => setErrors(err.errors));
         }
@@ -66,7 +66,7 @@ function SignIn({ onLogin, onSignIn }) {
         <button onClick={() => setShowLogin(false)}>Don't have an account? Sign Up</button>
         </form>
         ) : (
-        <SignUp onSignIn={onSignIn} />
+        <SignUp setUser={setUser} />
         )}
         </>
     );

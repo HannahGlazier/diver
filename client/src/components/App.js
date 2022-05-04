@@ -54,7 +54,7 @@ function App() {
     });
   }, []);
 
-  if (!user) return <SignIn onLogin={setUser} />;
+  if (!user) return <SignIn setUser={setUser} />;
 
 
   // Logout

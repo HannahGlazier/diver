@@ -11,12 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* LINK */
+a {
+  text-decoration: none;
+  color: black;
+}
 /* Header */
 /* .header{
   background-color: grey;
   height: 50px;
 } */
 
+/* Signin */
+.github{
+  display: flex;
+  align-items: center;
+  align-content: space-between;
+  justify-content: space-between;
+}
 
 /* Signup */
 .signup{

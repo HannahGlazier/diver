@@ -18,6 +18,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 
 function LogCard({ 
     log, 
@@ -157,6 +158,14 @@ function LogCard({
 
     return (
         <div >
+            <Grid
+                // container
+                // spacing={100}
+                // direction="column"
+                // justifyContent="center"
+                // alignItems="center"
+                >
+            <Grid item>
             <Card className="container"  sx={{ maxWidth: 345 }}>
             <CardHeader
                 avatar={
@@ -189,7 +198,7 @@ function LogCard({
             <CardActions disableSpacing>
 
                 {/* {follow} */}
-                {isFollowee 
+                {isFollowee
                     ? <Button variant="contained" onClick={fol=> handleDeleteFolow(fol)}>Unfollow</Button>
                     : <Button variant="contained" onClick={handleFollow}>Follow</Button>}
                 {/* <Button onClick={handleDeleteFolow}>Unfollow</Button> */}
@@ -226,6 +235,8 @@ function LogCard({
                 </CardContent>
             </Collapse>
             </Card>
+            </Grid>
+        </Grid>
         </div>
     )
 }

@@ -68,7 +68,7 @@ function App() {
 
 
   function handleDeleteLog(log){
-    fetch(`http://localhost:3000/logs/${log.id}`, { method: 'DELETE' })
+    fetch(`/logs/${log.id}`, { method: 'DELETE' })
     console.log(log)
     const newLogs = logs.filter( indivdualLog => indivdualLog !== log)
     setLogs(newLogs)
@@ -108,7 +108,11 @@ function App() {
               following={following}
               handleFollowState={handleFollowState}
               setFollowing={setFollowing}
-              setUser={setUser}
+
+              onFollow={setUser}
+// =======
+//               setUser={setUser}
+// >>>>>>> main
               // handleUnfollow={handleUnfollow}
             />
           </Route>

@@ -20,7 +20,7 @@ class FollowsController < ApplicationController
     # POST /follows
     def create
         follow = Follow.create!(follow_params)
-        render json: follow, status: :created
+        render json: follow, status: :created, serializer: FollowWithFolloweeSerializer
     end
 
     # DELETE /follows/:id

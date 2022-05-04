@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SignIn from "./SignIn";
 
 
-function SignUp({ onLogin, onSignIn }) {
+function SignUp({ onLogin, onSignIn, setUser }) {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -33,9 +33,9 @@ function SignUp({ onLogin, onSignIn }) {
         }).then((r) => {
         setIsLoading(false);
         if (r.ok) {
-            r.json().then((user) => onLogin(user));
+            r.json().then((user) => setUser(user));
         } else {
-            r.json().then((err) => setErrors(err.errors));
+            r.json().then(err => window.alert(err.errors))
         }
         });
     }
@@ -98,12 +98,12 @@ function SignUp({ onLogin, onSignIn }) {
 
             <br></br>
             <label htmlFor="homebase">Homebase</label>
-            <textarea
-            rows="3"
+            <input
+            type="text"
             id="homebase"
             value={homebase}
             onChange={(e) => setHomebase(e.target.value)}
-            />
+            ></input>
         
             <br></br>
             <button type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>
@@ -115,7 +115,7 @@ function SignUp({ onLogin, onSignIn }) {
         
         </form>
         ) : (
-            <SignIn onSignIn={onSignIn}/>
+            <SignIn setUser={setUser}/>
         )}
         </>
     );

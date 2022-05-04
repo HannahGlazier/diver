@@ -9,10 +9,10 @@ function Profile({ user }) {
     const follower = user.followers
     const followee = user.followees
     // console.log(user)
-    const followerMap = follower.map(f => f.name)
+    const followerMap = follower.map(f => f.name + " ")
     const followeeMap = followee.map(f => f.name + " ")
 
-console.log(user)
+// console.log(user)
 
     return (
         <div className="profile">

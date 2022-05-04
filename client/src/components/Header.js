@@ -116,7 +116,7 @@ function Header({user, setUser, handleLogoutClick}) {
             id= "header_font"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            Citinerary
+            Diver
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button

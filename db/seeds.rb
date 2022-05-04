@@ -6,18 +6,18 @@ puts "Clearing old data..."
 
 puts "🌱 Seeding Users"
 
-u1 = User.create(name: "Hannah", certification_level: "Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
+u1 = User.create(name: "Hannah", certification_level: "Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password", icon: "https://img.icons8.com/color/96/000000/clown-fish.png")
 
-u2 = User.create(name: "Stella", certification_level: "Advanced Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
+u2 = User.create(name: "Stella", certification_level: "Advanced Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password", icon:"https://img.icons8.com/color/96/000000/fish.png")
 
-u3 = User.create(name: "Stan", certification_level: "Dive Master", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
+u3 = User.create(name: "Stan", certification_level: "Dive Master", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password", icon:"https://img.icons8.com/color/96/000000/big-eats-small.png")
 
-u4 = User.create(name:  "Mia", certification_level: "Advanced Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
+u4 = User.create(name:  "Mia", certification_level: "Advanced Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password", icon: "https://img.icons8.com/emoji/96/000000/blow-fish.png")
 
-u5 = User.create(name: Faker::FunnyName.name, certification_level: "Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password")
+u5 = User.create(name: Faker::FunnyName.name, certification_level: "Open Water Diver", certification_date: Faker::Date.between(from: '2003-09-23', to: '2021-09-25'), homebase: Faker::Games::Witcher.location, password: "password", icon: "https://img.icons8.com/fluency/96/000000/perch.png")
 
 puts "🌱 Seeding Sites"
-
+# <a href="https://www.flaticon.com/free-icons/dolly-fish" title="dolly fish icons">Dolly fish icons created by Freepik - Flaticon</a>
 s1 = Site.create(name: Faker::Lorem.sentence(word_count: 3), location: Faker::Nation.capital_city, lat: rand(1...100), long: rand(1...100))
 
 s2 = Site.create(name: Faker::Lorem.sentence(word_count: 3), location: Faker::Nation.capital_city, lat: rand(1...100), long: rand(1...100))

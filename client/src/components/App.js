@@ -45,14 +45,14 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    fetch("/me").then((response) => {
-      if (response.ok) {
-        response.json().then((user) => {setUser(user)
-        });   
-      } 
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetch("/me").then((response) => {
+  //     if (response.ok) {
+  //       response.json().then((user) => {setUser(user)
+  //       });   
+  //     } 
+  //   });
+  // }, []);
 
   if (!user) return <SignIn setUser={setUser} />;
 

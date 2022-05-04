@@ -11,7 +11,7 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
+import { blue, red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -199,8 +199,7 @@ function LogCard({
         <Card sx={{ maxWidth: 345 }}>
         <CardHeader
             avatar={
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                {log.user.name[0]}
+            <Avatar sx={{ bgcolor: blue[100] }} aria-label="recipe" src={log.user.icon} alt="fish icon from https://icons8.com/icons/set/fish">
             </Avatar>
             }
             action={

@@ -101,10 +101,10 @@ function Header({user, setUser, handleLogoutClick}) {
                 <MenuItem key="home" onClick={handleCloseNavMenuHome}>
                   <Typography textAlign="center">Home</Typography>
                 </MenuItem>
-                <MenuItem key="activity" onClick={handleCloseNavMenuLog}>
+                <MenuItem key="log" onClick={handleCloseNavMenuLog}>
                 <Typography textAlign="center">Add Dive Log</Typography>
                 </MenuItem>
-                <MenuItem key="activity" onClick={handleCloseNavMenuSite}>
+                <MenuItem key="site" onClick={handleCloseNavMenuSite}>
                 <Typography textAlign="center">Add Dive Site</Typography>
                 </MenuItem>
             </Menu>

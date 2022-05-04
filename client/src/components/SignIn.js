@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import SignUp from './SignUp'
 
 
@@ -9,6 +10,8 @@ function SignIn({ setUser }) {
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [showLogin, setShowLogin] = useState(true)
+
+    const history = useHistory();
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -23,6 +26,7 @@ function SignIn({ setUser }) {
         setIsLoading(false);
         if (r.ok) {
             r.json().then((user) => setUser(user));
+            history.push('/')
         } else {
             r.json().then((err) => setErrors(err.errors));
         }

@@ -6,8 +6,8 @@ function SignUp({ onLogin, onSignIn }) {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
-    const [certificationLevel, setCertificationLevel] = useState("");
-    const [certificationDate, setCertificationDate] = useState("");
+    const [certification_level, setCertificationLevel] = useState("");
+    const [certification_date, setCertificationDate] = useState("");
     const [homebase, setHomebase] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -26,8 +26,8 @@ function SignUp({ onLogin, onSignIn }) {
             name,
             password,
             password_confirmation: passwordConfirmation,
-            certificationLevel,
-            certificationDate,
+            certification_level,
+            certification_date,
             homebase
         }),
         }).then((r) => {
@@ -78,22 +78,23 @@ function SignUp({ onLogin, onSignIn }) {
             />
         
             <br></br>
-            <label htmlFor="certificationLevel">Certification Level</label>
+            <label htmlFor="certification_level">Certification Level</label>
             <input
             type="text"
-            id="certificationLevel"
-            value={certificationLevel}
+            id="certification_level"
+            value={certification_level}
             onChange={(e) => setCertificationLevel(e.target.value)}
             />
         
             <br></br>
-            <label htmlFor="certificationDate">Certification Date</label>
-            <textarea
-            rows="3"
-            id="certificationDate"
-            value={certificationDate}
+            <label htmlFor="certification_date">Certification Date</label>
+            <input
+            type="date"
+            label="date"
+            // id="certificationDate"
+            value={certification_date}
             onChange={(e) => setCertificationDate(e.target.value)}
-            />
+            ></input>
 
             <br></br>
             <label htmlFor="homebase">Homebase</label>

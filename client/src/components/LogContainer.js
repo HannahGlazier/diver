@@ -19,7 +19,6 @@ function LogContainer({
     setFilterBy 
 }) {
 
-    mapboxgl.accessToken = "pk.eyJ1IjoiaGFubmFoZ2xhemllciIsImEiOiJjbDJ0OWdzdjcwMTVsM29wZjM4YWQ4anhvIn0.2kctdgtMavhxgpP996WXhA"
     const [sort, setSort] = useState("");
     
 
@@ -54,12 +53,13 @@ function LogContainer({
     return (
         <div>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabel id="demo-simple-select-label">Sort By:</InputLabel>
+            <InputLabel id="demo-simple-select-label">View:</InputLabel>
             <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={sort}
                 onChange={handleFilterBy}
+                label="View"
             >
                 <MenuItem value="explore">Explore</MenuItem>
                 <MenuItem value="following">Folowing</MenuItem>

@@ -3,10 +3,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 // import InfiniteScroll from 'react-infinite-scroll-component';
 
-// MAP 
-import ReactMapGL from "react-map-gl"
-import mapboxgl from 'mapbox-gl';
-
 // Internal Components
 import Header from "./Header"
 import MainFeed from "./MainFeed"
@@ -26,18 +22,7 @@ function App() {
   let history = useHistory();
 
 
-
-  mapboxgl.accessToken = "pk.eyJ1IjoiaGFubmFoZ2xhemllciIsImEiOiJjbDJ0OWdzdjcwMTVsM29wZjM4YWQ4anhvIn0.2kctdgtMavhxgpP996WXhA"
-  const [viewport, setViewport] = useState({
-      latitude: 45.4211,
-      longitude: -75.6903,
-      width: "100vw",
-      height: "100vh",
-      zoom: 100
-  });
-
-    // Fetches
-    // useEffect(() => {
+   // Fetches
 
     function fetchLogs(){
       fetch("/logs")
@@ -95,37 +80,22 @@ function App() {
 
 // Filters
 
-const filterMap = user.followees.map(f => f.id)
-const userMap = user.logs.map(l => l.id)
-// console.log(userMap)
-// console.log(logs.map(log => userMap === user.logs.id))
-
+const filterMap = user.followees.map(f => f.id) 
 
   const filteredLogs = logs.filter((logs) => {
     if (filterBy === "explore"){
       return logs
-      // console.log(logs)
     } else if (filterBy === "following"){
       return filterMap.includes(logs.user.id)
     } else if (filterBy === "self") {
-      // return logs.filter(logs => userMap === user.logs.id)
-      return user.logs
-      // console.log(user.logs)
-    }
+      return logs.user.id === user.id
+    } 
   })
 
 
   return (
       <div className="App">
         <Header handleLogoutClick={handleLogoutClick} user={user}/>
-        {/* <ReactMapGL
-                {...viewport}
-                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-                // mapStyle="mapbox://styles/leighhalliday/cjufmjn1r2kic1fl9wxg7u1l4"
-                onViewportChange={viewport => {
-                setViewport(viewport);
-                }}
-            >TEST</ReactMapGL> */}
         <Switch>
           <Route exact path="/">
             <MainFeed

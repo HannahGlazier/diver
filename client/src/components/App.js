@@ -3,6 +3,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 // import InfiniteScroll from 'react-infinite-scroll-component';
 
+// MAP 
+import ReactMapGL from "react-map-gl"
+import mapboxgl from 'mapbox-gl';
+
 // Internal Components
 import Header from "./Header"
 import MainFeed from "./MainFeed"
@@ -11,6 +15,8 @@ import AddSite from "./AddSite"
 import SignIn from "./SignIn"
 import Profile from "./Profile";
 
+
+
 function App() {
   const [logs, setLogs] = useState([]);
   const [sites, setSites] = useState([]);
@@ -18,6 +24,17 @@ function App() {
   const [following, setFollowing] = useState([])
   const [filterBy, setFilterBy] = useState('explore');
   let history = useHistory();
+
+
+
+  mapboxgl.accessToken = "pk.eyJ1IjoiaGFubmFoZ2xhemllciIsImEiOiJjbDJ0OWdzdjcwMTVsM29wZjM4YWQ4anhvIn0.2kctdgtMavhxgpP996WXhA"
+  const [viewport, setViewport] = useState({
+      latitude: 45.4211,
+      longitude: -75.6903,
+      width: "100vw",
+      height: "100vh",
+      zoom: 100
+  });
 
     // Fetches
     // useEffect(() => {
@@ -101,6 +118,14 @@ const userMap = user.logs.map(l => l.id)
   return (
       <div className="App">
         <Header handleLogoutClick={handleLogoutClick} user={user}/>
+        {/* <ReactMapGL
+                {...viewport}
+                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                // mapStyle="mapbox://styles/leighhalliday/cjufmjn1r2kic1fl9wxg7u1l4"
+                onViewportChange={viewport => {
+                setViewport(viewport);
+                }}
+            >TEST</ReactMapGL> */}
         <Switch>
           <Route exact path="/">
             <MainFeed

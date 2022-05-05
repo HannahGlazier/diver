@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 
 
 import { styled } from '@mui/material/styles';
@@ -20,6 +20,12 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 // import Grid from '@mui/material/Grid';
 
+// MAP
+// import ReactMapGL from "react-map-gl"
+import mapboxgl from 'mapbox-gl';
+import Map, {Marker, Popup} from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+
 function LogCard({ 
     log, 
     handleDeleteLog, 
@@ -30,14 +36,46 @@ function LogCard({
     handleFollowState, 
     handleUnfollow,
     isFollowee,
-    onChangeFollow
+    onChangeFollow,
+    long,
+    lat
 }) {
     
+
     const [followTest, setFollowTest] = useState([])
 
-    // Material UI Styling
-    const [expanded, setExpanded] = React.useState(false);
 
+    mapboxgl.accessToken = "pk.eyJ1IjoiaGFubmFoZ2xhemllciIsImEiOiJjbDJ0OWdzdjcwMTVsM29wZjM4YWQ4anhvIn0.2kctdgtMavhxgpP996WXhA"
+    const MAPBOX_TOKEN = "pk.eyJ1IjoiaGFubmFoZ2xhemllciIsImEiOiJjbDJ0OWdzdjcwMTVsM29wZjM4YWQ4anhvIn0.2kctdgtMavhxgpP996WXhA"
+    // const [viewport, setViewport] = useState({
+    //     latitude: 45.4211,
+    //     longitude: -75.6903,
+    //     width: "100vw",
+    //     height: "100vh",
+    //     zoom: 100
+    // });
+    const [isPopupOpen, setIsPopupOpen] = useState({
+        0: false,
+    });
+
+    const [viewState, setViewState] = useState({
+        latitude: lat,
+        longitude: long,
+        zoom: 6
+    });
+
+// THIS RENDERS!!
+    // const map = new mapboxgl.Map({
+    //     container: 'map', // container ID
+    //     style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    //     center: [-86.52997, 16.32976], // starting position [lng, lat]
+    //     zoom: 9 // starting zoom
+    //     });
+
+
+    // Material UI Styling
+
+    const [expanded, setExpanded] = React.useState(false);
 
     const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -53,6 +91,7 @@ function LogCard({
     const handleExpandClick = () => {
         setExpanded(!expanded);
         };
+
     // END Material UI Styling
 
 
@@ -117,6 +156,9 @@ function LogCard({
 
     return (
         <div >
+            <div>
+            </div>
+            
             <Card className="container"  sx={{ maxWidth: 345 }}>
             <CardHeader
                 avatar={
@@ -140,6 +182,39 @@ function LogCard({
                 image="/static/images/cards/paella.jpg"
                 alt="Paella dish"
             /> */}
+                <Map
+                // id = “map”
+                // initialViewState={{
+                // longitude: -122.4,
+                // latitude: 37.8,
+                // zoom: 11,
+                // }}
+                    initialViewState={{...viewState}}
+                    style = {{width:400, height: 400 }}
+                    mapStyle="mapbox://styles/mapbox/satellite-streets-v11"
+                    mapboxAccessToken={MAPBOX_TOKEN}
+                >
+
+                <div key={log.site.id}>
+                <Marker
+                    longitude={long} 
+                    latitude={lat} 
+                    color="red" 
+                    onClick={() => setIsPopupOpen({ ...isPopupOpen, [log.site.id]: true })}
+                />
+                
+                {isPopupOpen[log.site.id] && (
+                <Popup key={log.site.id} longitude={long} latitude={lat} color="green"closeOnClick={false} onClose={() => setIsPopupOpen(false)}>
+                <div>
+                <h4>Name: {log.site.name}</h4>
+                <h5>Location: {log.site.location}</h5>
+                <h6>{lat}, {long}</h6>
+                </div>
+                </Popup>
+                )}
+                </div>
+            </Map>
+
             <CardContent>
             <Typography variant="body2" color="text.secondary">- Dive Notes -</Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -148,10 +223,6 @@ function LogCard({
             </CardContent>
             <CardActions disableSpacing>
 
-
-                {/* {isFollowee
-                    ? <Button variant="contained" onClick={fol=> handleDeleteFolow(fol)}>Unfollow</Button>
-                    : <Button variant="contained" onClick={handleFollow}>Follow</Button>}  */}
 
                 {handleFollowConditional()}
                 {deleteLog}

@@ -17,11 +17,6 @@ a {
   text-decoration: none;
   color: black;
 }
-/* Header */
-/* .header{
-  background-color: grey;
-  height: 50px;
-} */
 
 /* Signin */
 .github{
@@ -47,30 +42,19 @@ a {
 
 /* Log Cards */
 .container{
-  /* justify-content: center; */
   align-items: center;
   margin: auto;
   margin-bottom: 80px;
-  margin-top: 80px;
-  /* justify-content: space-between; */
+  margin-top: 30px;
   padding: 10px;
-  /* margin: 80px; */
-  /* background-color: pink; */
-  
 } 
 
-/* .log{
-  border: 1px solid;
-  height: auto;
-  width: auto;
-  margin: 50px;
-  padding: 100px;
-
-  text-align: center;
-} */
+.mapbox{
+  border: 1px solid black;
+  filter: drop-shadow(2px 3px 3px #3D52D5);
+}
 
 .signature-img{
-  
   display: block;
   margin: 0 auto;
   width: 150px;

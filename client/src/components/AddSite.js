@@ -130,7 +130,6 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
                         value={siteForm.lat}
                         onChange={handleChange}
                         placeholder="Latitude"
-
                         />
                     </Grid>
 
@@ -179,63 +178,3 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
 }
 
 export default AddSite
-
-
-{/* <form onSubmit={handleSubmit}>
-
-<label htmlFor="name">Dive Site Name: </label>
-<input
-    type="text"
-    label="name"
-    name="name"
-    value={siteForm.name}
-    onChange={handleChange}
-    placeholder="Dive Site Name"
-></input> 
-
-<br></br>
-<br></br>
-
-<br></br>
-<br></br>
-
-<label htmlFor="location">Location: </label>
-<input
-    type="text"
-    label="location"
-    name="location"
-    value={siteForm.location}
-    onChange={handleChange}
-    placeholder="Location"
-></input> 
-
-<br></br>
-<br></br>
-
-<label htmlFor="lat">Latitude: </label>
-<input
-    type="text"
-    label="lat"
-    name="lat"
-    value={siteForm.lat}
-    onChange={handleChange}
-    placeholder="Latitude"
-></input> 
-
-<br></br>
-<br></br>
-
-<label htmlFor="long">Longitude: </label>
-<input
-    type="text"
-    label="long"
-    name="long"
-    value={siteForm.long}
-    onChange={handleChange}
-    placeholder="Longitude"
-></input> 
-
-<button type="submit">Add Site</button>
-<button onClick={(e) => goToAddLog(e)}>Return to Dive Log</button>
-
-</form> */}

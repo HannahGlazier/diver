@@ -6,9 +6,9 @@ class LogsController < ApplicationController
     # GET /logs
     def index
         # PAGINATION
-        # render json: Log.limit(per_page).offset(paginate_offset).reverse 
+        render json: Log.limit(per_page).offset(paginate_offset)
         # debugger
-        render json: Log.all.reverse
+        # render json: Log.all.reverse
 
     end
 

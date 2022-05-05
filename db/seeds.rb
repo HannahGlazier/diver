@@ -18,15 +18,15 @@ u5 = User.create(name: Faker::FunnyName.name, certification_level: "Open Water D
 
 puts "🌱 Seeding Sites"
 # <a href="https://www.flaticon.com/free-icons/dolly-fish" title="dolly fish icons">Dolly fish icons created by Freepik - Flaticon</a>
-s1 = Site.create(name: "Swim Through", location: "Belize", lat: rand(1...100), long: rand(1...100))
+s1 = Site.create(name: "Long Caye Ridge", location: " Lighthouse Reef, Belize", lat: 17.38653, long: -87.51802)
 
-s2 = Site.create(name: "Push'em Ups", location: "Big Island", lat: rand(1...100), long: rand(1...100))
+s2 = Site.create(name: "Great Blue Hole", location: "Belize", lat: 17.316010, long: -87.535103)
 
-s3 = Site.create(name: "Shark Alley", location: "Belize", lat: rand(1...100), long: rand(1...100))
+s3 = Site.create(name: "Mandy's Eel Garden", location: "Roatan, Honduras", lat: 16.32976, long: -86.52997)
 
-s4 = Site.create(name: "Coral Garden", location: "Honduras", lat: rand(1...100), long: rand(1...100))
+s4 = Site.create(name: "Deep Seaquest", location: "Roatan, Honduras", lat: 16.32976, long:  -86.52997)
 
-s5 = Site.create(name: "The Big Wall", location: "Mexico", lat: rand(1...100), long: rand(1...100))
+s5 = Site.create(name: "Yucab", location: "Cozumel, Mexico", lat: 20.46360, long: -86.98828)
 
 puts "🌱 Seeding Logs"
 
@@ -49,7 +49,7 @@ Log.create(
     site_id: s1.id)
 
 Log.create(
-    notes: "Was really cold for the first have, but I eventually warmed up by swimming around. Also had some trouble clearing my ears. Lots of interesting coral", 
+    notes: "Was really cold for the first half, but I eventually warmed up by swimming around. Also had some trouble clearing my ears. Lots of interesting coral", 
     depth: rand(20...100), 
     bottom_time: '01:00', 
     bottom_temp: rand(60...85), 

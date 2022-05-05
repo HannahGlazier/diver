@@ -36,7 +36,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
         },
         body: JSON.stringify({ name, password }),
         }).then((r) => {
-        setIsLoading(false);
+        // setIsLoading(false);
         if (r.ok) {
             r.json().then((user) => setUser(user));
             history.push('/')

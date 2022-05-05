@@ -176,12 +176,7 @@ function LogCard({
             <CardHeader 
                 title={headerUserName}
             />  
-            {/* <CardMedia
-                component="img"
-                height="194"
-                image="/static/images/cards/paella.jpg"
-                alt="Paella dish"
-            /> */}
+            <div className="mapbox">
                 <Map
                 // id = “map”
                 // initialViewState={{
@@ -190,16 +185,17 @@ function LogCard({
                 // zoom: 11,
                 // }}
                     initialViewState={{...viewState}}
-                    style = {{width:400, height: 400 }}
-                    mapStyle="mapbox://styles/mapbox/satellite-streets-v11"
+                    style = {{width:323, height: 300 }}
+                    mapStyle="mapbox://styles/mapbox/outdoors-v11"
                     mapboxAccessToken={MAPBOX_TOKEN}
+                    
                 >
 
                 <div key={log.site.id}>
                 <Marker
                     longitude={long} 
                     latitude={lat} 
-                    color="red" 
+                    color="blue" 
                     onClick={() => setIsPopupOpen({ ...isPopupOpen, [log.site.id]: true })}
                 />
                 
@@ -208,13 +204,13 @@ function LogCard({
                 <div>
                 <h4>Name: {log.site.name}</h4>
                 <h5>Location: {log.site.location}</h5>
-                <h6>{lat}, {long}</h6>
+                <h5>{lat}, {long}</h5>
                 </div>
                 </Popup>
                 )}
                 </div>
             </Map>
-
+            </div>
             <CardContent>
             <Typography variant="body2" color="text.secondary">- Dive Notes -</Typography>
                 <Typography variant="body2" color="text.secondary">

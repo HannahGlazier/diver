@@ -193,7 +193,7 @@ function returnHome(e){
                     alignItems: 'center',
                 }}
                 >
-                    <Avatar sx={{  width: 80, height: 80, bgcolor: blue[100] }} aria-label="Coral icon by Icons8" src={"https://img.icons8.com/external-wanicon-flat-wanicon/64/000000/external-coral-world-oceans-day-wanicon-flat-wanicon.png"}>
+                    <Avatar sx={{  width: 80, height: 80, bgcolor: blue[100] }} aria-label="Scuba Tank icon by Icons8" src={"https://img.icons8.com/fluency/96/000000/scuba-tank.png"}>
                     </Avatar>
                 <Typography component="h1" variant="h5">
                     Create New Dive Log

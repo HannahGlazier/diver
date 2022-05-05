@@ -16,15 +16,11 @@ function App() {
   const [sites, setSites] = useState([]);
   const [user, setUser] = useState(null);
   const [following, setFollowing] = useState([])
+  const [filterBy, setFilterBy] = useState('explore');
   let history = useHistory();
 
     // Fetches
     // useEffect(() => {
-    //   fetch("/logs")
-    //     .then((response) => response.json())
-    //     .then(logs => setLogs(logs));
-    //     // .then(console.log)
-    // }, [user]);
 
     function fetchLogs(){
       fetch("/logs")
@@ -45,14 +41,6 @@ function App() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   fetch("/me").then((response) => {
-  //     if (response.ok) {
-  //       response.json().then((user) => {setUser(user)
-  //       });   
-  //     } 
-  //   });
-  // }, []);
 
   if (!user) return <SignIn setUser={setUser} />;
 
@@ -74,6 +62,8 @@ function App() {
     setLogs(newLogs)
   }
 
+  // State handlers
+
   function handleAddNewLog(newLog){
     setLogs([...logs, newLog])
   }
@@ -86,39 +76,46 @@ function App() {
     setFollowing([following, ...newFollow]);   
 }
 
-// function handleUnfollow(user){
-//   // fetch(`http://localhost:3000/follows/${log.user.id}`, {method: 'DELETE'})
-//   console.log(user)
-//   // const newFollows = following.filter(individualFollow => individualFollow !== user.follow.id)
-//   // setFollowing(newFollows)
+// Filters
 
-// }
+const filterMap = user.followees.map(f => f.id)
+const userMap = user.logs.map(l => l.id)
+// console.log(userMap)
+// console.log(logs.map(log => userMap === user.logs.id))
+
+
+  const filteredLogs = logs.filter((logs) => {
+    if (filterBy === "explore"){
+      return logs
+      // console.log(logs)
+    } else if (filterBy === "following"){
+      return filterMap.includes(logs.user.id)
+    } else if (filterBy === "self") {
+      // return logs.filter(logs => userMap === user.logs.id)
+      return user.logs
+      // console.log(user.logs)
+    }
+  })
 
 
   return (
       <div className="App">
         <Header handleLogoutClick={handleLogoutClick} user={user}/>
-        {/* <button onClick={handleLogoutClick}>Logout</button> */}
         <Switch>
           <Route exact path="/">
             <MainFeed
-              logs={logs}
+              logs={filteredLogs}
               handleDeleteLog={handleDeleteLog}
               user={user}
               following={following}
               handleFollowState={handleFollowState}
               setFollowing={setFollowing}
-
+              setFilterBy={setFilterBy}
               onFollow={setUser}
-// =======
-//               setUser={setUser}
-// >>>>>>> main
-              // handleUnfollow={handleUnfollow}
             />
           </Route>
           <Route exact path="/addLog">
             <AddDiveLog 
-              // addNewSite={handleAddNewSite}
               addNewLog={handleAddNewLog}
               user={user}
               setUser={setUser}
@@ -130,9 +127,6 @@ function App() {
           <Route exact path="/addSite">
             <AddSite
                 addNewSite={handleAddNewSite}
-                // addNewLog={handleAddNewLog}
-                // user={user}
-                // setUser={setUser}
                 sites={sites}
               />
           </Route>

@@ -7,7 +7,9 @@ import SignaturePad from 'react-signature-canvas'
 import Popup from 'reactjs-popup'
 
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, createTheme, ThemeProvider, MenuItem, Select, InputLabel} from "@mui/material";
+import { blue } from '@mui/material/colors';
+import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, createTheme, ThemeProvider, MenuItem, Select, InputLabel } from "@mui/material";
+
 
 function Copyright() {
     return (
@@ -191,10 +193,10 @@ function returnHome(e){
                     alignItems: 'center',
                 }}
                 >
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                </Avatar>
+                    <Avatar sx={{  width: 80, height: 80, bgcolor: blue[100] }} aria-label="Coral icon by Icons8" src={"https://img.icons8.com/external-wanicon-flat-wanicon/64/000000/external-coral-world-oceans-day-wanicon-flat-wanicon.png"}>
+                    </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign up
+                    Create New Dive Log
                 </Typography>
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                     <Grid container spacing={2}>
@@ -216,7 +218,7 @@ function returnHome(e){
                     </Grid>
 
                     <p>Dont see the site you're looking for? </p>
-                    <button onClick={e =>  goToAddSite(e)}>Add new dive site</button>
+                    <Button variant="outlined" onClick={e =>  goToAddSite(e)}>Add new dive site</Button>
                     
                     <Grid item xs={12}>
                     <InputLabel id="demo-simple-select-standard-label">Depth</InputLabel>
@@ -419,8 +421,8 @@ function returnHome(e){
                         className: 'signature'
                     }}
                     />
-                <button onClick={e => save(e)}>Save</button>
-                <button onClick={e => clear(e)}>Clear</button>  
+                <Button variant="outlined" onClick={e => save(e)}>Save</Button>
+                <Button variant="outlined" onClick={e => clear(e)}>Clear</Button>  
 
                 <input
                     className="hidden"

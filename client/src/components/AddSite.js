@@ -3,6 +3,10 @@ import {  useHistory } from "react-router-dom";
 import AddDiveLog from './AddDiveLog'
 import Profile from './Profile'
 
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { blue } from '@mui/material/colors';
+import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, createTheme, ThemeProvider, MenuItem, Select, InputLabel } from "@mui/material";
+
 
 function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
 
@@ -15,6 +19,8 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
 
     const [siteForm, setSiteForm] = useState(initialSiteForm)
     const [siteState, setSiteState] = useState(null)
+
+    const theme = createTheme();
     let history = useHistory();
 
 
@@ -22,31 +28,6 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
         const { name, value } = e.target;
         setSiteForm(siteForm => ({...siteForm, [name]: value}))
     }
-
-    // function handleSubmit(e) {
-    //     e.stopPropagation()
-    //     e.preventDefault()
-
-    //     const newSite = {
-    //         name: siteForm.name,
-    //         location: siteForm.location, 
-    //         lat: siteForm.lat, 
-    //         long: siteForm.long
-    //     }
-
-    //     fetch("/sites", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         }, 
-    //         body: JSON.stringify(newSite)
-    //     })
-    //     .then(response => response.json())
-    //     .then(site => addNewSite(site))
-    //     // .then(console.log())
-    //     .then(setSiteForm(initialSiteForm))
-
-    // }
 
     function handleSubmit(e) {
         e.stopPropagation()
@@ -86,64 +67,103 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <Box
+                sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+                >
+                    <Avatar sx={{  width: 80, height: 80, bgcolor: blue[100] }} aria-label="Coral icon by Icons8" src={"https://img.icons8.com/external-wanicon-flat-wanicon/64/000000/external-coral-world-oceans-day-wanicon-flat-wanicon.png"}>
+                    </Avatar>
+                <Typography component="h1" variant="h5">
+                    Add New Dive Site
+                </Typography>
+                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                    <Grid container spacing={2}>
 
-                <label htmlFor="name">Dive Site Name: </label>
-                <input
-                    type="text"
-                    label="name"
-                    name="name"
-                    value={siteForm.name}
-                    onChange={handleChange}
-                    placeholder="Dive Site Name"
-                ></input> 
+                    <Grid item xs={12}>
+                    <InputLabel id="demo-simple-select-standard-label">Name</InputLabel>
+                    <br></br>
+                        <TextField
+                            type="text"
+                            label="name"
+                            name="name"
+                            value={siteForm.name}
+                            onChange={handleChange}
+                            placeholder="Dive Site Name"
+                        />
+                    </Grid>
 
-                <br></br>
-                <br></br>
+                    <Grid item xs={12}>
+                    <InputLabel id="demo-simple-select-standard-label">Location</InputLabel>
+                    <br></br>
+                        <TextField
+                        required
+                        fullWidth
+                        type="text"
+                        label="location"
+                        name="location"
+                        value={siteForm.location}
+                        onChange={handleChange}
+                        placeholder="Location"
 
-                <br></br>
-                <br></br>
+                        />
+                    </Grid>
 
-                <label htmlFor="location">Location: </label>
-                <input
-                    type="text"
-                    label="location"
-                    name="location"
-                    value={siteForm.location}
-                    onChange={handleChange}
-                    placeholder="Location"
-                ></input> 
+                    <Grid item xs={12}>
+                    <InputLabel id="demo-simple-select-standard-label">Latitude</InputLabel>
+                    <br></br>
+                        <TextField
+                        required
+                        fullWidth
+                        type="text"
+                        label="lat"
+                        name="lat"
+                        value={siteForm.lat}
+                        onChange={handleChange}
+                        placeholder="Latitude"
 
-                <br></br>
-                <br></br>
+                        />
+                    </Grid>
 
-                <label htmlFor="lat">Latitude: </label>
-                <input
-                    type="text"
-                    label="lat"
-                    name="lat"
-                    value={siteForm.lat}
-                    onChange={handleChange}
-                    placeholder="Latitude"
-                ></input> 
+                    <Grid item xs={12}>
+                    <InputLabel id="demo-simple-select-standard-label">Longitude</InputLabel>
+                    <br></br>
+                        <TextField
+                        required
+                        fullWidth
+                        type="text"
+                        label="long"
+                        name="long"
+                        value={siteForm.long}
+                        onChange={handleChange}
+                        placeholder="Longitude"
+                        />
+                    </Grid>
 
-                <br></br>
-                <br></br>
+                    </Grid>
+                    <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                    >
+                    Add Site
+                    </Button>
 
-                <label htmlFor="long">Longitude: </label>
-                <input
-                    type="text"
-                    label="long"
-                    name="long"
-                    value={siteForm.long}
-                    onChange={handleChange}
-                    placeholder="Longitude"
-                ></input> 
-
-                <button type="submit">Add Site</button>
-                <button onClick={(e) => goToAddLog(e)}>Return to Dive Log</button>
-
-            </form>
+                    <Button onClick={(e) => goToAddLog(e)}>
+                        Return to Add Dive Log
+                    </Button>
+                </Box>
+                </Box>
+                {/* <Copyright sx={{ mt: 5 }} /> */}
+            </Container>
+            </ThemeProvider>
             {/* <AddDiveLog
                 addNewLog={addNewLog}
                 user={user}
@@ -156,3 +176,63 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
 }
 
 export default AddSite
+
+
+{/* <form onSubmit={handleSubmit}>
+
+<label htmlFor="name">Dive Site Name: </label>
+<input
+    type="text"
+    label="name"
+    name="name"
+    value={siteForm.name}
+    onChange={handleChange}
+    placeholder="Dive Site Name"
+></input> 
+
+<br></br>
+<br></br>
+
+<br></br>
+<br></br>
+
+<label htmlFor="location">Location: </label>
+<input
+    type="text"
+    label="location"
+    name="location"
+    value={siteForm.location}
+    onChange={handleChange}
+    placeholder="Location"
+></input> 
+
+<br></br>
+<br></br>
+
+<label htmlFor="lat">Latitude: </label>
+<input
+    type="text"
+    label="lat"
+    name="lat"
+    value={siteForm.lat}
+    onChange={handleChange}
+    placeholder="Latitude"
+></input> 
+
+<br></br>
+<br></br>
+
+<label htmlFor="long">Longitude: </label>
+<input
+    type="text"
+    label="long"
+    name="long"
+    value={siteForm.long}
+    onChange={handleChange}
+    placeholder="Longitude"
+></input> 
+
+<button type="submit">Add Site</button>
+<button onClick={(e) => goToAddLog(e)}>Return to Dive Log</button>
+
+</form> */}

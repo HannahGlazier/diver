@@ -120,7 +120,7 @@ function LogCard({
             <Card className="container"  sx={{ maxWidth: 345 }}>
             <CardHeader
                 avatar={
-                <Avatar sx={{ bgcolor: blue[100] }} aria-label="recipe" src={log.user.icon} alt="fish icon from https://icons8.com/icons/set/fish">
+                <Avatar sx={{ bgcolor: blue[100] }} aria-label="fish icon" src={log.user.icon} alt="fish icon from https://icons8.com/icons/set/fish">
                 </Avatar>
                 }
                 action={

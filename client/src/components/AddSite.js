@@ -78,7 +78,7 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
                     alignItems: 'center',
                 }}
                 >
-                    <Avatar sx={{  width: 80, height: 80, bgcolor: blue[100] }} aria-label="Coral icon by Icons8" src={"https://img.icons8.com/external-wanicon-flat-wanicon/64/000000/external-coral-world-oceans-day-wanicon-flat-wanicon.png"}>
+                    <Avatar sx={{  width: 80, height: 80, bgcolor: blue[100] }} aria-label="Scuba Mask icon by Icons8" src={"https://img.icons8.com/color/96/000000/scuba-mask.png"}>
                     </Avatar>
                 <Typography component="h1" variant="h5">
                     Add New Dive Site
@@ -90,8 +90,10 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
                     <InputLabel id="demo-simple-select-standard-label">Name</InputLabel>
                     <br></br>
                         <TextField
+                            required
+                            fullWidth
                             type="text"
-                            label="name"
+                            label="Name"
                             name="name"
                             value={siteForm.name}
                             onChange={handleChange}
@@ -106,7 +108,7 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
                         required
                         fullWidth
                         type="text"
-                        label="location"
+                        label="Location"
                         name="location"
                         value={siteForm.location}
                         onChange={handleChange}
@@ -114,6 +116,7 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
 
                         />
                     </Grid>
+    
 
                     <Grid item xs={12}>
                     <InputLabel id="demo-simple-select-standard-label">Latitude</InputLabel>
@@ -122,7 +125,7 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
                         required
                         fullWidth
                         type="text"
-                        label="lat"
+                        label="Lat"
                         name="lat"
                         value={siteForm.lat}
                         onChange={handleChange}
@@ -138,7 +141,7 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
                         required
                         fullWidth
                         type="text"
-                        label="long"
+                        label="Long"
                         name="long"
                         value={siteForm.long}
                         onChange={handleChange}

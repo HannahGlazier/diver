@@ -8,7 +8,8 @@ import Popup from 'reactjs-popup'
 
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { blue } from '@mui/material/colors';
-import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, createTheme, ThemeProvider, MenuItem, Select, InputLabel } from "@mui/material";
+import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, createTheme, ThemeProvider, MenuItem, Select, InputLabel, Radio, RadioGroup, FormLabel, FormControlLabel, FormControl } from "@mui/material";
+
 
 
 function Copyright() {
@@ -21,6 +22,7 @@ function Copyright() {
     const theme = createTheme();
 
 function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs }) {
+    // const [site, setSite] = useState([])
     const [site, setSite] = useState([])
 
     const initialLogForm = { 
@@ -44,6 +46,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs 
     
     const [signatureState, setSignatureState] = useState("")
     const [logForm, setLogForm] = useState(initialLogForm)
+    
 
     let history = useHistory();
 
@@ -68,41 +71,6 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs 
         const { name, value } = e.target;
         setLogForm(logForm => ({...logForm, [name]: value}))
     }
-
-    // function handleSubmit(e){
-    //     e.preventDefault();
-    //     e.stopPropagation()
-
-    //     const newLog = {
-    //     notes: logForm.notes,
-    //     depth: logForm.depth,
-    //     bottom_temp: logForm.bottom_temp,
-    //     suit_thickness: logForm.suit_thickness,
-    //     weight: logForm.weight,
-    //     time_in: logForm.time_in,
-    //     time_out: logForm.time_out,
-    //     boat: logForm.boat,
-    //     fresh: logForm.fresh,
-    //     date: logForm.date, 
-    //     divemaster: logForm.divemaster,
-    //     dive_budy: logForm.dive_budy,
-    //     signature: signatureState,
-    //     user_id: user.id,
-    //     site_id: logForm.site_id
-    //     }
-
-    //     fetch("/logs", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(newLog)
-    //     })
-    //     .then((response) => response.json())
-    //     .then(setLogForm(initialLogForm))
-    //     .then(newLog => setLogs([...logs, newLog]))
-    //     history.push('/')
-    // }
 
     function handleSubmit(e){
         e.preventDefault();
@@ -143,7 +111,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs 
             }
         })
     }
-
+    // console.log(logForm.fresh)
     // Signature handlers
     let sigPad = useRef({})
     let data = ''
@@ -205,18 +173,20 @@ function returnHome(e){
                     <InputLabel id="demo-simple-select-standard-label">Select Dive Site</InputLabel>
                     <br></br>
                     <Select 
+                            fullWidth
                             labelId= "demo-simple-select-standard-label"
                             id="demo-simple-select-standard"
                             name = "site_id"
-                            value = {logForm.site}
+                            value={logForm.site_id}
                             onChange={handleChange}
-                            label = "Location_Id"
+                            label = "site_id"
                         >
                                 <MenuItem>Select Dive Site</MenuItem>
                                 {siteMap}
                         </Select>
                     </Grid>
 
+                    
                     <p>Dont see the site you're looking for? </p>
                     <Button variant="outlined" onClick={e =>  goToAddSite(e)}>Add new dive site</Button>
                     
@@ -280,18 +250,6 @@ function returnHome(e){
                             onChange={handleChange}
                         />
                     </Grid>
-
-                    {/* <Grid item xs={12}>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-
-                        <KeyboardDatePicker
-                        label="Material Date Picker"
-                        value={selectedDate}
-                        onChange={handleDateChange}
-                        />
-
-                        </MuiPickersUtilsProvider>
-                    </Grid> */}
 
                     <Grid item xs={12}>
                     <InputLabel id="demo-simple-select-standard-label">Dive Master</InputLabel>
@@ -368,7 +326,7 @@ function returnHome(e){
                         />
                     </Grid>
 
-                    <Grid item xs={12}>
+                    {/* <Grid item xs={12}>
                     <InputLabel id="demo-simple-select-standard-label">Fresh Water(T/F)</InputLabel>
                     <br></br>
                         <TextField
@@ -381,7 +339,39 @@ function returnHome(e){
                             onChange={handleChange}
                             placeholder="Water Type"
                         />
+                    </Grid> */}
+                    <Grid>
+                    <InputLabel id="demo-simple-select-standard-label">Select Water Type</InputLabel>
+                    <br></br>
+                    <Select 
+                        fullWidth
+                        labelId= "demo-simple-select-standard-label"
+                        id="demo-simple-select-standard"
+                        name = "fresh"
+                        value={logForm.fresh}
+                        onChange={handleChange}
+                        label = "fresh"
+                    >
+                            <MenuItem value="false">Salt Water</MenuItem>
+                            <MenuItem value="true">Fresh Water</MenuItem>
+                    </Select>
                     </Grid>
+
+
+                    {/* <FormControl>
+                    <FormLabel id="demo-radio-buttons-group-label">Water Type</FormLabel>
+                        <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue={logForm.fresh}
+                        name="radio-buttons-group"
+                        // value={logForm.fresh}
+                        >
+                        <FormControlLabel value="false" control={<Radio />} label="Salt Water" />
+                        <FormControlLabel value="true" control={<Radio />} label="Fresh Water" />
+                        </RadioGroup>
+                    </FormControl> */}
+
+
 
                     <Grid item xs={12}>
                     <InputLabel id="demo-simple-select-standard-label">Boat Dive (T/F)</InputLabel>
@@ -413,7 +403,7 @@ function returnHome(e){
                         />
                     </Grid>
 
-
+{/* 
                 <label>Signature</label>
                     <SignaturePad
                     ref = {sigPad}
@@ -422,9 +412,34 @@ function returnHome(e){
                     }}
                     />
                 <Button variant="outlined" onClick={e => save(e)}>Save</Button>
-                <Button variant="outlined" onClick={e => clear(e)}>Clear</Button>  
+                <Button variant="outlined" onClick={e => clear(e)}>Clear</Button>   */}
 
-                <input
+
+
+
+                    {/* <Popup 
+
+                    modal 
+                    trigger={<button onClick={e => handleProp(e)}> Open Signature Pad</button>}
+                    closeOnDocumentClick={false}
+                    >
+                    {close => (
+                    <>    
+                    <label>Signature</label>
+                    <SignaturePad
+                    ref = {sigPad}
+                    canvasProps={{
+                        className: 'signature'
+                    }}
+                    />
+                    <button onClick={e => save(e)}>Save</button>
+                    <button onClick={e => clear(e)}>Clear</button>  
+                    <button onClick={close}>Close</button> 
+                    </> 
+                    )} 
+                </Popup>   */}
+
+                <input 
                     className="hidden"
                     type="text"
                     label="signature"
@@ -449,6 +464,7 @@ function returnHome(e){
                 {/* <Copyright sx={{ mt: 5 }} /> */}
             </Container>
             </ThemeProvider>
+        
         </div>
     )
 }
@@ -638,7 +654,7 @@ export default AddDiveLog
 // <br></br>
 // <br></br>
 
-//     {/* <Popup 
+
 //     <Popup 
 
 //         modal 
@@ -659,7 +675,7 @@ export default AddDiveLog
 // //         {/* <button onClick={close}>Close</button> 
 // //         </> 
 // //         )} 
-// //     </Popup>   */}
+// //     </Popup>   
 
 
 // //     <input

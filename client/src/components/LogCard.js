@@ -37,12 +37,13 @@ function LogCard({
     isFollowee,
     onChangeFollow,
     long,
-  lat,
+    lat,
 }) {
     const [followTest, setFollowTest] = useState([]);
 
     const MAPBOX_TOKEN =
     "pk.eyJ1IjoiaGFubmFoZ2xhemllciIsImEiOiJjbDJ0OWdzdjcwMTVsM29wZjM4YWQ4anhvIn0.2kctdgtMavhxgpP996WXhA";
+    
     const [isPopupOpen, setIsPopupOpen] = useState({
         0: false,
     });

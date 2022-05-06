@@ -13,12 +13,14 @@ code {
 }
 
 /* LINK */
+
 a {
   text-decoration: none;
   color: black;
 }
 
 /* Signin */
+
 .github{
   display: flex;
   align-items: center;
@@ -27,12 +29,14 @@ a {
 }
 
 /* Signup */
+
 .signup{
   margin: 20px;
   padding: 20px;
 }
 
 /* Profile Page */
+
 .profile{
   text-align: center;
   border: 1px solid;
@@ -41,6 +45,7 @@ a {
 }
 
 /* Log Cards */
+
 .container{
   align-items: center;
   margin: auto;
@@ -61,6 +66,7 @@ a {
 }
 
 /* Signature Feature */
+
 .signature {
   border: 1px solid black;
   width: 10%;
@@ -76,17 +82,3 @@ a {
 .scroll{
   text-align: center;
 }
-
-/* .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  /* border-top: 16px solid #3498db; /* Blue */
-  /* border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); } */

@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import LogCard from './LogCard'
 // import InfiniteScroll from 'react-infinite-scroll-component';
 
-import mapboxgl from 'mapbox-gl';
+// import InfiniteScroll from 'react-infinite-scroller';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 // MUI imports
 import { InputLabel, MenuItem, FormControl, Select, TextField } from "@mui/material";
@@ -16,7 +17,8 @@ function LogContainer({
     handleFollowState, 
     handleUnfollow, 
     onFollow, 
-    setFilterBy 
+    setFilterBy, 
+    fetchData
 }) {
 
     const [sort, setSort] = useState("");
@@ -47,6 +49,7 @@ function LogContainer({
             onChangeFollow={onFollow}
             long={log.site.long}
             lat={log.site.lat}
+            fetchData={fetchData}
         />
     )})
 
@@ -66,7 +69,21 @@ function LogContainer({
                 <MenuItem value="self">Self</MenuItem>
             </Select>
         </FormControl>
-            {logMap}
+
+        <InfiniteScroll
+            dataLength={logMap.length} //This is important field to render the next data
+            next={fetchData}
+            hasMore={true}
+            loader={<h4>Loading...</h4>}
+            endMessage={
+                <p style={{ textAlign: 'center' }}>
+                <b>Yay! You have seen it all</b>
+                </p>
+            }
+            >
+                {logMap}
+        </InfiniteScroll>
+
         </div>
     )
 }

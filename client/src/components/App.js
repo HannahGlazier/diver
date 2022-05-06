@@ -140,7 +140,7 @@ const filterMap = user.followees.map(f => f.id)
               setFollowing={setFollowing}
               setFilterBy={setFilterBy}
               onFollow={setUser}
-              fetchLogs={fetchLogs}
+              // fetchLogs={fetchLogs}
               fetchData={fetchData}
               hasMore={hasMore}
             />

@@ -1,7 +1,5 @@
 class SitesController < ApplicationController
 
-    # skip_before_action :authorize, only: [:index]
-
     # GET /sites
     def index
         render json: Site.all

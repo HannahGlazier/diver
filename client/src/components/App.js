@@ -20,6 +20,8 @@ function App() {
   const [filterBy, setFilterBy] = useState('explore');
   let history = useHistory();
 
+  const [page, setpage] = useState(2);
+  const [hasMore, sethasMore] = useState(true);
 
    // Fetches
 
@@ -29,7 +31,39 @@ function App() {
       .then(logs => setLogs(logs));
     }
 
-  // Auto-Login
+  useEffect(() => {
+    const getLogs = async () => {
+      const res = await fetch("/logs?page=1")
+      const data = await res.json()
+      setLogs(data)
+      console.log(data)
+    }
+    getLogs()
+  }, [])
+
+
+  const fetchLogsTEST = async () => {
+    const res = await fetch(
+      `/logs?page=${page}`
+      // For json server use url below
+      // `http://localhost:3004/comments?_page=${page}&_limit=20`
+    );
+    const data = await res.json();
+    return data;
+  }; 
+
+  const fetchData = async () => {
+    const logsFormServer = await fetchLogsTEST();
+
+    setLogs([...logs, ...logsFormServer]);
+    if (logsFormServer.length === 0 || logsFormServer.length < 20) {
+      sethasMore(false);
+    }
+    setpage(page + 1);
+  };
+
+
+    // Auto-Login
   useEffect(() => {
     fetch("/me").then((response) => {
       if (response.ok) {
@@ -106,6 +140,8 @@ const filterMap = user.followees.map(f => f.id)
               setFollowing={setFollowing}
               setFilterBy={setFilterBy}
               onFollow={setUser}
+              fetchLogs={fetchLogs}
+              fetchData={fetchData}
             />
           </Route>
           <Route exact path="/addLog">

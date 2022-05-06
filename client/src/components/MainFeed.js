@@ -10,7 +10,9 @@ function MainFeed({
     handleFollowState, 
     handleUnfollow, 
     onFollow,
-    setFilterBy
+    setFilterBy,
+    fetchLogs,
+    fetchData
 }) {
 
 
@@ -27,6 +29,8 @@ function MainFeed({
             handleUnfollow={handleUnfollow}
             onFollow={onFollow}
             setFilterBy={setFilterBy}
+            fetchLogs={fetchLogs}
+            fetchData={fetchData}
         />
     </div>
     )

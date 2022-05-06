@@ -68,9 +68,9 @@ function App() {
     fetch("/me").then((response) => {
       if (response.ok) {
         response.json().then((user) => {setUser(user)
-          if (user.id) {
-            fetchLogs()
-          }
+          // if (user.id) {
+          //   fetchLogs()
+          // }
         });   
       } 
     });

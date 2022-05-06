@@ -36,7 +36,6 @@ function App() {
       const res = await fetch("/logs?page=1")
       const data = await res.json()
       setLogs(data)
-      // console.log(data)
     }
     getLogs()
   }, [])
@@ -49,7 +48,6 @@ function App() {
     const data = await res.json();
     return data;
   }; 
-  // console.log(logs)
 
   const fetchData = async () => {
     const logsFromServer = await fetchLogsScroll();

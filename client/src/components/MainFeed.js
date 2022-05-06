@@ -12,7 +12,8 @@ function MainFeed({
     onFollow,
     setFilterBy,
     fetchLogs,
-    fetchData
+    fetchData,
+    hasMore
 }) {
 
 
@@ -31,6 +32,7 @@ function MainFeed({
             setFilterBy={setFilterBy}
             fetchLogs={fetchLogs}
             fetchData={fetchData}
+            hasMore={hasMore}
         />
     </div>
     )

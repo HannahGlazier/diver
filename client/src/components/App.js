@@ -36,27 +36,27 @@ function App() {
       const res = await fetch("/logs?page=1")
       const data = await res.json()
       setLogs(data)
-      console.log(data)
+      // console.log(data)
     }
     getLogs()
   }, [])
 
 
-  const fetchLogsTEST = async () => {
+  const fetchLogsScroll = async () => {
     const res = await fetch(
       `/logs?page=${page}`
-      // For json server use url below
-      // `http://localhost:3004/comments?_page=${page}&_limit=20`
     );
     const data = await res.json();
     return data;
   }; 
+  // console.log(logs)
 
   const fetchData = async () => {
-    const logsFormServer = await fetchLogsTEST();
+    const logsFromServer = await fetchLogsScroll();
 
-    setLogs([...logs, ...logsFormServer]);
-    if (logsFormServer.length === 0 || logsFormServer.length < 20) {
+    setLogs([...logs, ...logsFromServer]);
+    if (logsFromServer.length === 0 ) {
+      console.log(logsFromServer.length)
       sethasMore(false);
     }
     setpage(page + 1);
@@ -142,6 +142,7 @@ const filterMap = user.followees.map(f => f.id)
               onFollow={setUser}
               fetchLogs={fetchLogs}
               fetchData={fetchData}
+              hasMore={hasMore}
             />
           </Route>
           <Route exact path="/addLog">

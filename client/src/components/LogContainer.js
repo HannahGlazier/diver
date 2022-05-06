@@ -18,7 +18,9 @@ function LogContainer({
     handleUnfollow, 
     onFollow, 
     setFilterBy, 
-    fetchData
+    fetchData,
+    handlerStreamAborted,
+    hasMore
 }) {
 
     const [sort, setSort] = useState("");
@@ -71,13 +73,14 @@ function LogContainer({
         </FormControl>
 
         <InfiniteScroll
-            dataLength={logMap.length} //This is important field to render the next data
+            dataLength={logs.length} //This is important field to render the next data
             next={fetchData}
-            hasMore={true}
-            loader={<h4>Loading...</h4>}
+            // hasMore={true}
+            hasMore={hasMore}
+            loader={<h4 className="scroll">Loading...</h4>}
             endMessage={
-                <p style={{ textAlign: 'center' }}>
-                <b>Yay! You have seen it all</b>
+                <p className="scroll">
+                    <b>Yay! You have seen all the dive logs!</b>
                 </p>
             }
             >

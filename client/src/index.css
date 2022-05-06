@@ -70,3 +70,7 @@ a {
 .hidden {
   opacity: 0;
 }
+
+.scroll{
+  text-align: center;
+}

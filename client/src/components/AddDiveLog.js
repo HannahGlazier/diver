@@ -40,7 +40,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs 
         dive_budy: "",
         signature: "",
         user_id: user.id,
-        site_id: site.id 
+        site_id: "" 
         // maybe dont need site id?
     }
     
@@ -111,7 +111,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs 
             }
         })
     }
-    // console.log(logForm.fresh)
+
     // Signature handlers
     let sigPad = useRef({})
     let data = ''
@@ -202,7 +202,6 @@ function returnHome(e){
                         id="password"
                         value={logForm.depth}
                         onChange={handleChange}
-                        // autoComplete="new-password"
                         />
                     </Grid>
 
@@ -357,36 +356,23 @@ function returnHome(e){
                     </Select>
                     </Grid>
 
-
-                    {/* <FormControl>
-                    <FormLabel id="demo-radio-buttons-group-label">Water Type</FormLabel>
-                        <RadioGroup
-                        aria-labelledby="demo-radio-buttons-group-label"
-                        defaultValue={logForm.fresh}
-                        name="radio-buttons-group"
-                        // value={logForm.fresh}
-                        >
-                        <FormControlLabel value="false" control={<Radio />} label="Salt Water" />
-                        <FormControlLabel value="true" control={<Radio />} label="Fresh Water" />
-                        </RadioGroup>
-                    </FormControl> */}
-
-
-
-                    <Grid item xs={12}>
-                    <InputLabel id="demo-simple-select-standard-label">Boat Dive (T/F)</InputLabel>
+                    <Grid>
+                    <InputLabel id="demo-simple-select-standard-label">Select Dive Type</InputLabel>
                     <br></br>
-                        <TextField
-                            required
-                            fullWidth
-                            type="text"
-                            label="boat"
-                            name="boat"
-                            value={logForm.boat}
-                            onChange={handleChange}
-                            placeholder="Boat Dive"
-                        />
+                    <Select 
+                        fullWidth
+                        labelId= "demo-simple-select-standard-label"
+                        id="demo-simple-select-standard"
+                        name = "boat"
+                        value={logForm.boat}
+                        onChange={handleChange}
+                        label = "boat"
+                    >
+                            <MenuItem value="true">Boat Dive</MenuItem>
+                            <MenuItem value="false">Shore Dive</MenuItem>
+                    </Select>
                     </Grid>
+
 
                     <Grid item xs={12}>
                     <InputLabel id="demo-simple-select-standard-label">Notes </InputLabel>
@@ -403,7 +389,7 @@ function returnHome(e){
                         />
                     </Grid>
 
-{/* 
+
                 <label>Signature</label>
                     <SignaturePad
                     ref = {sigPad}
@@ -412,7 +398,7 @@ function returnHome(e){
                     }}
                     />
                 <Button variant="outlined" onClick={e => save(e)}>Save</Button>
-                <Button variant="outlined" onClick={e => clear(e)}>Clear</Button>   */}
+                <Button variant="outlined" onClick={e => clear(e)}>Clear</Button>  
 
 
 

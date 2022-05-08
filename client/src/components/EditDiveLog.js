@@ -21,31 +21,47 @@ function Copyright() {
     }
     const theme = createTheme();
 
-function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs }) {
+function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs, log, onUpdateLog }) {
     // const [site, setSite] = useState([])
     const [site, setSite] = useState([])
 
-    const initialLogForm = { 
-        notes: "",
-        depth: "",
-        bottom_temp: "",
-        suit_thickness: "",
-        weight: "",
-        time_in: "",
-        time_out: "",
-        boat: true,
-        fresh: false,
-        date: "", 
-        divemaster: "",
-        dive_budy: "",
-        signature: "",
-        user_id: user.id,
-        site_id: "" 
-        // maybe dont need site id?
-    }
+    const [notes, setNotes] = useState(log.notes);
+    const [depth, setDepth] = useState(log.depth)
+    const [bottom_temp, setBottom_temp] = useState(log.bottom_temp)
+    const [suit_thickness, setSuit_thickness] = useState(log.suit_thickness)
+    const [weight, setWeight] = useState(log.weight)
+    const [time_in, setTime_in] = useState(log.time_in)
+    const [time_out, setTime_out] = useState(log.time_out)
+    const [boat, setBoat] = useState(log.boat)
+    const [fresh, setFresh] = useState(log.fresh)
+    const [date, setDate] = useState(log.date)
+    const [divemaster, setDivemaster] = useState(log.divemaster)
+    const [dive_budy, setDive_budy] = useState(log.dive_budy)
+    const [signature, setSignature] = useState(log.signature)
+    const [site_id, setSite_id] = useState(log.site_id)
+
+
+    // const initialLogForm = { 
+    //     notes: "",
+    //     depth: "",
+    //     bottom_temp: "",
+    //     suit_thickness: "",
+    //     weight: "",
+    //     time_in: "",
+    //     time_out: "",
+    //     boat: true,
+    //     fresh: false,
+    //     date: "", 
+    //     divemaster: "",
+    //     dive_budy: "",
+    //     signature: "",
+    //     user_id: user.id,
+    //     site_id: "" 
+    //     // maybe dont need site id?
+    // }
     
     const [signatureState, setSignatureState] = useState("")
-    const [logForm, setLogForm] = useState(initialLogForm)
+    // const [logForm, setLogForm] = useState(initialLogForm)
     
 
     let history = useHistory();
@@ -65,46 +81,40 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs 
         >{s.name} - {s.location}</MenuItem>
     ))
 
-    // Begin Dive Log Form Handlers
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setLogForm(logForm => ({...logForm, [name]: value}))
-    }
 
     function handleSubmit(e){
         e.preventDefault();
         e.stopPropagation()
 
-        const newLog = {
-        notes: logForm.notes,
-        depth: logForm.depth,
-        bottom_temp: logForm.bottom_temp,
-        suit_thickness: logForm.suit_thickness,
-        weight: logForm.weight,
-        time_in: logForm.time_in,
-        time_out: logForm.time_out,
-        boat: logForm.boat,
-        fresh: logForm.fresh,
-        date: logForm.date, 
-        divemaster: logForm.divemaster,
-        dive_budy: logForm.dive_budy,
-        signature: signatureState,
-        user_id: user.id,
-        site_id: logForm.site_id
-        }
-
-        fetch("/logs", {
-            method: "POST",
+        fetch(`/logs/${log.id}`, {
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(newLog)
+            body: JSON.stringify({
+                notes,
+                depth, 
+                bottom_temp, 
+                suit_thickness,
+                weight, 
+                time_in,
+                time_out, 
+                boat, 
+                fresh,
+                date,
+                divemaster,
+                dive_budy,
+                signature,
+                site_id
+            })
         })
         .then((r) => {
             if (r.ok) {
-                r.json().then(setLogForm(initialLogForm))
-                .then(newLog => setLogs([...logs, newLog]))
+                r.json().then(updateLog => {
+                    // onUpdateLog(updateLog)
+                    console.log(updateLog)
+                })
+                // .then(newLog => setLogs([...logs, newLog]))
                 history.push('/')
             } else {
                 r.json().then(err => window.alert(err.errors))
@@ -164,7 +174,7 @@ function returnHome(e){
                     <Avatar sx={{  width: 80, height: 80, bgcolor: blue[100] }} aria-label="Scuba Tank icon by Icons8" src={"https://img.icons8.com/fluency/96/000000/scuba-tank.png"}>
                     </Avatar>
                 <Typography component="h1" variant="h5">
-                    Create New Dive Log
+                    Edit Dive Log
                 </Typography>
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                     <Grid container spacing={2}>
@@ -178,8 +188,8 @@ function returnHome(e){
                             labelId= "demo-simple-select-standard-label"
                             id="demo-simple-select-standard"
                             name = "site_id"
-                            value={logForm.site_id}
-                            onChange={handleChange}
+                            value={site_id}
+                            onChange={(e) => setSite_id(e.target.value)}
                             label = "site_id"
                         >
                                 <MenuItem>Select Dive Site</MenuItem>
@@ -202,9 +212,9 @@ function returnHome(e){
                         name="depth"
                         label="Depth"
                         type="number"
-                        id="password"
-                        value={logForm.depth}
-                        onChange={handleChange}
+                        // id="password"
+                        value={depth}
+                        onChange={(e) => setDepth(e.target.value)}
                         />
                     </Grid>
 
@@ -218,8 +228,8 @@ function returnHome(e){
                         label="Suit Thickness"
                         type="number"
                         id="suit_thickness"
-                        value={logForm.suit_thickness}
-                        onChange={handleChange}
+                        value={suit_thickness}
+                        onChange={(e) => setSuit_thickness(e.target.value)}
                         />
                     </Grid>
 
@@ -233,8 +243,8 @@ function returnHome(e){
                         label="Bottom Temp"
                         type="number"
                         id="bottom_temp"
-                        value={logForm.bottom_temp}
-                        onChange={handleChange}
+                        value={bottom_temp}
+                        onChange={(e) => setBottom_temp(e.target.value)}
                         />
                     </Grid>
 
@@ -248,8 +258,8 @@ function returnHome(e){
                             label="Weight"
                             type="number"
                             id="weight"
-                            value={logForm.weight}
-                            onChange={handleChange}
+                            value={weight}
+                            onChange={(e) => setWeight(e.target.value)}
                         />
                     </Grid>
 
@@ -263,8 +273,8 @@ function returnHome(e){
                             label="Dive Master"
                             type="text"
                             id="divemaster"
-                            value={logForm.divemaster}
-                            onChange={handleChange}
+                            value={divemaster}
+                            onChange={(e) => setDivemaster(e.target.value)}
                         />
                     </Grid>
 
@@ -277,8 +287,8 @@ function returnHome(e){
                             type="text"
                             label="Dive Buddy"
                             name="dive_budy"
-                            value={logForm.dive_budy}
-                            onChange={handleChange}
+                            value={dive_budy}
+                            onChange={(e) => setDive_budy(e.target.value)}
                             placeholder="Dive Buddy"
                         />
                     </Grid>
@@ -292,8 +302,8 @@ function returnHome(e){
                             type="time"
                             // label="time_in"
                             name="time_in"
-                            value={logForm.time_in}
-                            onChange={handleChange}
+                            value={time_in}
+                            onChange={(e) => setTime_in(e.target.value)}
                             placeholder="Time In"
                         />
                     </Grid>
@@ -307,8 +317,8 @@ function returnHome(e){
                             type="time"
                             // label="time_out"
                             name="time_out"
-                            value={logForm.time_out}
-                            onChange={handleChange}
+                            value={time_out}
+                            onChange={(e) => setTime_out(e.target.value)}
                             placeholder="Time Out"
                         />
                     </Grid>
@@ -322,8 +332,8 @@ function returnHome(e){
                             type="date"
                             // label="date"
                             name="date"
-                            value={logForm.date}
-                            onChange={handleChange}
+                            value={date}
+                            onChange={(e) => setDate(e.target.value)}
                             placeholder="Date"
                         />
                     </Grid>
@@ -350,8 +360,8 @@ function returnHome(e){
                         labelId= "demo-simple-select-standard-label"
                         id="demo-simple-select-standard"
                         name = "fresh"
-                        value={logForm.fresh}
-                        onChange={handleChange}
+                        value={fresh}
+                        onChange={(e) => setFresh(e.target.value)}
                         label = "fresh"
                     >
                             <MenuItem value="false">Salt Water</MenuItem>
@@ -367,8 +377,8 @@ function returnHome(e){
                         labelId= "demo-simple-select-standard-label"
                         id="demo-simple-select-standard"
                         name = "boat"
-                        value={logForm.boat}
-                        onChange={handleChange}
+                        value={boat}
+                        onChange={(e) => setBoat(e.target.value)}
                         label = "boat"
                     >
                             <MenuItem value="true">Boat Dive</MenuItem>
@@ -386,8 +396,8 @@ function returnHome(e){
                             type="text"
                             label="notes"
                             name="notes"
-                            value={logForm.notes}
-                            onChange={handleChange}
+                            value={notes}
+                            onChange={(e) => setNotes(e.target.value)}
                             placeholder="Dive Notes"
                         />
                     </Grid>
@@ -433,8 +443,8 @@ function returnHome(e){
                     type="text"
                     label="signature"
                     name="signature"
-                    value={signatureState}
-                    onChange={handleChange}
+                    value={signature}
+                    onChange={(e) => setSignature(e.target.value)}
                     placeholder="Signature"
                 ></input> 
 

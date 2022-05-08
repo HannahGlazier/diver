@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import EditDiveLog from "./EditDiveLog"
 
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
@@ -38,8 +39,10 @@ function LogCard({
     onChangeFollow,
     long,
     lat,
+    onUpdateLog
 }) {
     const [followTest, setFollowTest] = useState([]);
+    const [showForm, setShowForm] = useState(true)
 
     const MAPBOX_TOKEN =
     "pk.eyJ1IjoiaGFubmFoZ2xhemllciIsImEiOiJjbDJ0OWdzdjcwMTVsM29wZjM4YWQ4anhvIn0.2kctdgtMavhxgpP996WXhA";
@@ -155,7 +158,8 @@ function LogCard({
 
     return (
         <div>
-        <div></div>
+
+        {showForm ? (
 
         <Card className="container" sx={{ maxWidth: 345 }}>
             <CardHeader
@@ -265,7 +269,16 @@ function LogCard({
                 />
             </CardContent>
             </Collapse>
+            <Button onClick={() => setShowForm(false)}>Edit Dive Log</Button>
         </Card>
+    ) : (
+        <div>
+
+        <EditDiveLog log={log} onUpdateLog={onUpdateLog} setShowForm={setShowForm} />
+        <Button onClick={() => setShowForm(true)}>Close Edit</Button>
+
+        </div>
+    )}
         </div>
     );
 }

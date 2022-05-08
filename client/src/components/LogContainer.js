@@ -20,7 +20,8 @@ function LogContainer({
     setFilterBy, 
     fetchData,
     handlerStreamAborted,
-    hasMore
+    hasMore, 
+    onUpdateLog
 }) {
 
     const [sort, setSort] = useState("");
@@ -52,6 +53,7 @@ function LogContainer({
             long={log.site.long}
             lat={log.site.lat}
             fetchData={fetchData}
+            onUpdateLog={onUpdateLog}
         />
     )})
 

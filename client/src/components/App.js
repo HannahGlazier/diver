@@ -109,6 +109,12 @@ function App() {
     setFollowing([following, ...newFollow]);   
 }
 
+// Update Log
+  function handleUpdateLog(updateLog){
+    console.log("updating log", updateLog)
+    setLogs([...logs, updateLog])
+  }
+
 // Filters
 
 const filterMap = user.followees.map(f => f.id) 
@@ -141,6 +147,7 @@ const filterMap = user.followees.map(f => f.id)
               // fetchLogs={fetchLogs}
               fetchData={fetchData}
               hasMore={hasMore}
+              onUpdateLog={handleUpdateLog}
             />
           </Route>
           <Route exact path="/addLog">

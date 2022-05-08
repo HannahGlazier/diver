@@ -60,7 +60,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs 
 
     const siteMap = site.map(s => (
         <MenuItem
-            key={s.id}
+            key={s.id + Math.random()}
             value={s.id}
         >{s.name} - {s.location}</MenuItem>
     ))
@@ -173,6 +173,7 @@ function returnHome(e){
                     <InputLabel id="demo-simple-select-standard-label">Select Dive Site</InputLabel>
                     <br></br>
                     <Select 
+                            required
                             fullWidth
                             labelId= "demo-simple-select-standard-label"
                             id="demo-simple-select-standard"
@@ -187,7 +188,9 @@ function returnHome(e){
                     </Grid>
 
                     
-                    <p>Dont see the site you're looking for? </p>
+                    {/* <p>Dont see the site you're looking for? </p> */}
+                    <InputLabel id="demo-simple-select-standard-label">Dont see the site you're looking for?</InputLabel>
+
                     <Button variant="outlined" onClick={e =>  goToAddSite(e)}>Add new dive site</Button>
                     
                     <Grid item xs={12}>

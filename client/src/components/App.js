@@ -4,7 +4,8 @@ import { Switch, Route, useHistory } from "react-router-dom";
 
 // Internal Components
 import Header from "./Header"
-import MainFeed from "./MainFeed"
+// import MainFeed from "./MainFeed"
+import LogContainer from "./LogContainer"
 import AddDiveLog from "./AddDiveLog"
 import AddSite from "./AddSite"
 import SignIn from "./SignIn"
@@ -56,7 +57,7 @@ function App() {
 
     setLogs([...logs, ...logsFromServer]);
     if (logsFromServer.length === 0 ) {
-      console.log(logsFromServer.length)
+      // console.log(logsFromServer.length)
       sethasMore(false);
     }
     setpage(page + 1);
@@ -140,7 +141,7 @@ const filterMap = user.followees.map(f => f.id)
         <Header handleLogoutClick={handleLogoutClick} user={user}/>
         <Switch>
           <Route exact path="/">
-            <MainFeed
+            <LogContainer
               logs={filteredLogs}
               handleDeleteLog={handleDeleteLog}
               user={user}

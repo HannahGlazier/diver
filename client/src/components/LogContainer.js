@@ -40,7 +40,7 @@ function LogContainer({
 
         return (
         <LogCard
-            key={log.id}
+            key={log.id + log.depth + log.weight + log.time_in }
             log={log}
             handleDeleteLog={handleDeleteLog}
             user={user}

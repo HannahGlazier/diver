@@ -68,8 +68,9 @@ a {
 /* Signature Feature */
 
 .signature {
-  border: 1px solid black;
-  width: 10%;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  width: 100%;
   min-width: 500px;
 }
 
@@ -81,4 +82,9 @@ a {
 
 .scroll{
   text-align: center;
+}
+
+/* Add Dive Log */
+.spacing{
+  margin: 20px;
 }

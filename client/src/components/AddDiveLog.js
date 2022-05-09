@@ -104,7 +104,9 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs 
         .then((r) => {
             if (r.ok) {
                 r.json().then(setLogForm(initialLogForm))
+                .then(console.log)
                 .then(newLog => setLogs([...logs, newLog]))
+                // .then(newLog => console.log(newLog))
                 history.push('/')
             } else {
                 r.json().then(err => window.alert(err.errors))
@@ -186,12 +188,14 @@ function returnHome(e){
                                 {siteMap}
                         </Select>
                     </Grid>
-
+                    
                     
                     {/* <p>Dont see the site you're looking for? </p> */}
+                    <div className="spacing">
                     <InputLabel id="demo-simple-select-standard-label">Dont see the site you're looking for?</InputLabel>
+                    </div>
 
-                    <Button variant="outlined" onClick={e =>  goToAddSite(e)}>Add new dive site</Button>
+                    <Button className="spacing" variant="text" onClick={e =>  goToAddSite(e)}>Add new dive site</Button>
                     
                     <Grid item xs={12}>
                     <InputLabel id="demo-simple-select-standard-label">Depth</InputLabel>
@@ -290,7 +294,6 @@ function returnHome(e){
                             required
                             fullWidth
                             type="time"
-                            // label="time_in"
                             name="time_in"
                             value={logForm.time_in}
                             onChange={handleChange}
@@ -305,7 +308,6 @@ function returnHome(e){
                             required
                             fullWidth
                             type="time"
-                            // label="time_out"
                             name="time_out"
                             value={logForm.time_out}
                             onChange={handleChange}
@@ -320,7 +322,6 @@ function returnHome(e){
                             required
                             fullWidth
                             type="date"
-                            // label="date"
                             name="date"
                             value={logForm.date}
                             onChange={handleChange}
@@ -342,7 +343,8 @@ function returnHome(e){
                             placeholder="Water Type"
                         />
                     </Grid> */}
-                    <Grid>
+
+                    <Grid className="spacing">
                     <InputLabel id="demo-simple-select-standard-label">Select Water Type</InputLabel>
                     <br></br>
                     <Select 
@@ -359,7 +361,7 @@ function returnHome(e){
                     </Select>
                     </Grid>
 
-                    <Grid>
+                    <Grid className="spacing">
                     <InputLabel id="demo-simple-select-standard-label">Select Dive Type</InputLabel>
                     <br></br>
                     <Select 
@@ -378,11 +380,14 @@ function returnHome(e){
 
 
                     <Grid item xs={12}>
-                    <InputLabel id="demo-simple-select-standard-label">Notes </InputLabel>
+                    <InputLabel id="demo-simple-select-standard-label">Dive Notes: </InputLabel>
                     <br></br>
                         <TextField
                             required
                             fullWidth
+                            multiline
+                            // maxRows={4}
+                            id="outlined-multiline-flexible"
                             type="text"
                             label="notes"
                             name="notes"
@@ -392,24 +397,26 @@ function returnHome(e){
                         />
                     </Grid>
 
-
-                <label>Signature</label>
+                <Grid className="spacing">
+                {/* <label>Signature</label> */}
+                <InputLabel  id="demo-simple-select-standard-label">Divemaster or Buddy Signature: </InputLabel>
+                <br></br>
                     <SignaturePad
                     ref = {sigPad}
                     canvasProps={{
                         className: 'signature'
                     }}
                     />
-                <Button variant="outlined" onClick={e => save(e)}>Save</Button>
-                <Button variant="outlined" onClick={e => clear(e)}>Clear</Button>  
-
+                <Button variant="text" onClick={e => save(e)}>Save</Button>
+                <Button variant="text" onClick={e => clear(e)}>Clear</Button>  
+                </Grid>
 
 
 
                     {/* <Popup 
 
                     modal 
-                    trigger={<button onClick={e => handleProp(e)}> Open Signature Pad</button>}
+                    trigger={<Button onClick={e => handleProp(e)}> Open Signature Pad</Button>}
                     closeOnDocumentClick={false}
                     >
                     {close => (
@@ -426,8 +433,8 @@ function returnHome(e){
                     <button onClick={close}>Close</button> 
                     </> 
                     )} 
-                </Popup>   */}
-
+                </Popup>    */}
+                
                 <input 
                     className="hidden"
                     type="text"

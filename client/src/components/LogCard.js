@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Switch, Route, useHistory } from "react-router-dom";
 import EditDiveLog from "./EditDiveLog"
 
 import { styled } from "@mui/material/styles";
@@ -39,10 +40,13 @@ function LogCard({
     onChangeFollow,
     long,
     lat,
-    onUpdateLog
+    onUpdateLog, 
+    setLogs,
+    logs
 }) {
     const [followTest, setFollowTest] = useState([]);
     const [showForm, setShowForm] = useState(true)
+    let history = useHistory();
 
     const MAPBOX_TOKEN =
     "pk.eyJ1IjoiaGFubmFoZ2xhemllciIsImEiOiJjbDJ0OWdzdjcwMTVsM29wZjM4YWQ4anhvIn0.2kctdgtMavhxgpP996WXhA";
@@ -156,9 +160,24 @@ function LogCard({
     const headerLocation = `${log.site.name} - ${log.site.location}`;
     const headerUserName = `${log.user.name}'s Dive Log`;
 
+    function routeToEdit(){
+        <EditDiveLog log={log} onUpdateLog={onUpdateLog} setShowForm={setShowForm} />
+        history.push('/editDiveLog')
+
+    }
+    function handleUpdateLog(updateLog){
+        // console.log("updating log", updateLog)
+        // if(log.id === updateLog.id){
+        //     logs.filter(log)
+        //     setLogs([...logs, updateLog])
+        // }
+        const newLogs = logs.filter(log => log.id !== updateLog.id)
+        setLogs(newLogs)
+        
+    }
+    
     return (
         <div>
-
         {showForm ? (
 
         <Card className="container" sx={{ maxWidth: 345 }}>
@@ -251,6 +270,7 @@ function LogCard({
                 <Typography paragraph>Time In: {log.time_in}</Typography>
                 <Typography paragraph>Time Out: {log.time_out}</Typography>
                 <Typography paragraph>Bottom Time: {log.bottom_time}</Typography>
+                <Typography>Bottom Temp: {log.bottom_temp}</Typography>
                 <Typography>Suit Thickness: {log.suit_thickness}</Typography>
                 <Typography>Depth: {log.depth}</Typography>
                 <Typography>Weight: {log.weight}</Typography>
@@ -269,12 +289,13 @@ function LogCard({
                 />
             </CardContent>
             </Collapse>
-            <Button onClick={() => setShowForm(false)}>Edit Dive Log</Button>
+                <Button onClick={() => setShowForm(false)}>Edit Dive Log</Button>
         </Card>
     ) : (
         <div>
 
-        <EditDiveLog log={log} onUpdateLog={onUpdateLog} setShowForm={setShowForm} />
+        <EditDiveLog log={log} logs={logs} onUpdateLog={handleUpdateLog} setShowForm={setShowForm} /> 
+        
         <Button onClick={() => setShowForm(true)}>Close Edit</Button>
 
         </div>

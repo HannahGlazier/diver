@@ -14,7 +14,8 @@ function MainFeed({
     fetchLogs,
     fetchData,
     hasMore,
-    onUpdateLog
+    onUpdateLog,
+    setLogs
 }) {
 
 
@@ -35,6 +36,8 @@ function MainFeed({
             fetchData={fetchData}
             hasMore={hasMore}
             onUpdateLog={onUpdateLog}
+            // logs={logs}
+            setLogs={setLogs}
         />
     </div>
     )

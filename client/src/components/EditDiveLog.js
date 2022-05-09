@@ -21,7 +21,7 @@ function Copyright() {
     }
     const theme = createTheme();
 
-function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs, log, onUpdateLog }) {
+function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs, log, onUpdateLog, setShowForm }) {
     // const [site, setSite] = useState([])
     const [site, setSite] = useState([])
 
@@ -111,11 +111,12 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs,
         .then((r) => {
             if (r.ok) {
                 r.json().then(updateLog => {
-                    // onUpdateLog(updateLog)
-                    console.log(updateLog)
+                    onUpdateLog(updateLog)
+                    // console.log(updateLog)
+                    // history.push('/')
+                    setShowForm(true)
                 })
-                // .then(newLog => setLogs([...logs, newLog]))
-                history.push('/')
+                // .then(updateLog => setLogs([...logs, updateLog]))
             } else {
                 r.json().then(err => window.alert(err.errors))
             }
@@ -176,7 +177,7 @@ function returnHome(e){
                 <Typography component="h1" variant="h5">
                     Edit Dive Log
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                <Box component="form" noValidate onSubmit={e => handleSubmit(e)} sx={{ mt: 3 }}>
                     <Grid container spacing={2}>
 
                     <Grid item xs={12}>
@@ -456,7 +457,7 @@ function returnHome(e){
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                     >
-                    Add Log
+                    Update
                     </Button>
                 </Box>
                 </Box>

@@ -9,6 +9,7 @@ import AddDiveLog from "./AddDiveLog"
 import AddSite from "./AddSite"
 import SignIn from "./SignIn"
 import Profile from "./Profile";
+import EditDiveLog from "./EditDiveLog"
 
 
 
@@ -112,6 +113,7 @@ function App() {
 // Update Log
   function handleUpdateLog(updateLog){
     console.log("updating log", updateLog)
+    // logs.filter(log.id === updateLog.id )
     setLogs([...logs, updateLog])
   }
 
@@ -148,6 +150,8 @@ const filterMap = user.followees.map(f => f.id)
               fetchData={fetchData}
               hasMore={hasMore}
               onUpdateLog={handleUpdateLog}
+              // logs={logs}
+              setLogs={setLogs}
             />
           </Route>
           <Route exact path="/addLog">
@@ -170,6 +174,9 @@ const filterMap = user.followees.map(f => f.id)
             <Profile
               user={user}
               />
+          </Route>
+          <Route exact path="/editDiveLog">
+              <EditDiveLog/>
           </Route>
         </Switch>
       </div>

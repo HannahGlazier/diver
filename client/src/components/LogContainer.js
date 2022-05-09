@@ -21,7 +21,8 @@ function LogContainer({
     fetchData,
     handlerStreamAborted,
     hasMore, 
-    onUpdateLog
+    onUpdateLog,
+    setLogs
 }) {
 
     const [sort, setSort] = useState("");
@@ -54,6 +55,8 @@ function LogContainer({
             lat={log.site.lat}
             fetchData={fetchData}
             onUpdateLog={onUpdateLog}
+            // logs={logs}
+            setLogs={setLogs}
         />
     )})
 

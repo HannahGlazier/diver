@@ -24,13 +24,14 @@ function App() {
   const [page, setpage] = useState(2);
   const [hasMore, sethasMore] = useState(true);
 
+
    // Fetches
 
-    function fetchLogs(){
-      fetch("/logs")
-      .then((response) => response.json())
-      .then(logs => setLogs(logs));
-    }
+    // function fetchLogs(){
+    //   fetch("/logs")
+    //   .then((response) => response.json())
+    //   .then(logs => setLogs(logs));
+    // }
 
   useEffect(() => {
     const getLogs = async () => {
@@ -62,13 +63,14 @@ function App() {
   };
 
 
-    // Auto-Login
+  //   // Auto-Login
   useEffect(() => {
     fetch("/me").then((response) => {
       if (response.ok) {
         response.json().then((user) => {setUser(user)
           // if (user.id) {
           //   fetchLogs()
+        
           // }
         });   
       } 
@@ -118,6 +120,7 @@ function App() {
   }
 
 // Filters
+
 
 const filterMap = user.followees.map(f => f.id) 
 
@@ -184,39 +187,3 @@ const filterMap = user.followees.map(f => f.id)
 }
 
 export default App;
-
-// attach fetch to scroll
- // window.addEventListener('scroll', () => {
-
-  //   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-  //   console.log({ scrollTop, scrollHeight, clientHeight });
-  
-
-  //   if(clientHeight + scrollTop >= scrollHeight - 5) {
-  //     console.log('at bottom of page')
-  //     // showLoading()
-  //     // fetch("http://localhost:3000/logs")
-  //     // .then((response) => response.json())
-  //     // .then(console.log);
-  //     // .then(logs => setLogs(logs));
-  //   }
-
-  //   // Show loading 
-  //   // showLoading()
-
-  // })
-
-  // function showLoading() {
-  //   console.log('loading')
-
-    
-  
-  //   fetch("http://localhost:3000/logs")
-  //     .then((response) => response.json())
-  //     .then(logs => setLogs(logs));
-  //     // .then(console.log)
-
-
-  //   console.log('done loading')
-
-  // }

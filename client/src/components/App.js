@@ -118,8 +118,8 @@ function App() {
     console.log("updating log", updateLog)
     // logs.filter(log.id === updateLog.id )
     // setLogs([...logs, updateLog])
-    const newLogs = logs.filter(log1 => log1 !== updateLog)
-    setLogs(newLogs)
+    // const newLogs = logs.filter(log1 => log1 !== updateLog)
+    window.location.reload(true);
   }
 
 // Filters

@@ -117,7 +117,9 @@ function App() {
   function handleUpdateLog(updateLog){
     console.log("updating log", updateLog)
     // logs.filter(log.id === updateLog.id )
-    setLogs([...logs, updateLog])
+    // setLogs([...logs, updateLog])
+    const newLogs = logs.filter(log1 => log1 !== updateLog)
+    setLogs(newLogs)
   }
 
 // Filters

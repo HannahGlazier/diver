@@ -294,7 +294,7 @@ function LogCard({
     ) : (
         <div>
 
-        <EditDiveLog log={log} logs={logs} onUpdateLog={handleUpdateLog} setShowForm={setShowForm} /> 
+        <EditDiveLog log={log} logs={logs} onUpdateLog={onUpdateLog} setShowForm={setShowForm} /> 
         
         <Button onClick={() => setShowForm(true)}>Close Edit</Button>
 

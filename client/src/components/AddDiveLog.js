@@ -60,7 +60,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs 
 
     const siteMap = site.map(s => (
         <MenuItem
-            key={s.id + Math.random()}
+            key={s.id}
             value={s.id}
         >{s.name} - {s.location}</MenuItem>
     ))

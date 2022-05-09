@@ -156,6 +156,10 @@ function LogCard({
         Delete Log
         </Button>
     );
+    
+    const editLog = userId === log.user.id && (
+        <Button onClick={() => setShowForm(false)}>Edit Dive Log</Button>
+    )
 
     const headerLocation = `${log.site.name} - ${log.site.location}`;
     const headerUserName = `${log.user.name}'s Dive Log`;
@@ -289,7 +293,8 @@ function LogCard({
                 />
             </CardContent>
             </Collapse>
-                <Button onClick={() => setShowForm(false)}>Edit Dive Log</Button>
+                {/* <Button onClick={() => setShowForm(false)}>Edit Dive Log</Button> */}
+                {editLog}
         </Card>
     ) : (
         <div>

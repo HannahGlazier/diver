@@ -412,7 +412,7 @@ function returnHome(e){
                         className: 'signature'
                     }}
                     />
-                <Button color="secondary" variant="text" onClick={e => save(e)}>Save</Button>
+                <Button variant="text" onClick={e => save(e)}>Save</Button>
                 <Button variant="text" onClick={e => clear(e)}>Clear</Button>  
                 </Grid>
 

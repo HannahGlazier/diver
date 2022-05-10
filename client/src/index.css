@@ -46,9 +46,20 @@ a {
 
 .profile{
   text-align: center;
-  border: 1px solid;
-  margin: 100px;
-  padding: 20px;
+  /* border: 1px solid; */
+  /* margin: 10px;  */
+  /* padding: 10px;  */
+
+  /* position: absolute; */
+  /* background-position: 50% 0; */
+}
+
+.background{
+  background-image: url('https://images.unsplash.com/photo-1505236732171-72a5b19c4981?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+  background-size: cover;
+  display: block; 
+  height: 300px;
+  /* position: sticky; */
 }
 
 /* Log Cards */
@@ -59,11 +70,12 @@ a {
   margin-bottom: 80px;
   margin-top: 30px;
   padding: 10px;
+  filter: drop-shadow(1px 1px 1px #b71c1c);
 } 
 
 .mapbox{
   border: 1px solid black;
-  filter: drop-shadow(2px 3px 3px #3D52D5);
+  filter: drop-shadow(2px 3px 3px #bdb9b7);
 }
 
 .signature-img{

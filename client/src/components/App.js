@@ -77,6 +77,8 @@ function App() {
     const logsFromServer = await fetchLogsScroll();
 
     setLogs([...logs, ...logsFromServer]);
+  
+
     if (logsFromServer.length === 0 ) {
       // console.log(logsFromServer.length)
       sethasMore(false);
@@ -135,12 +137,10 @@ function App() {
 }
 
 // Update Log
+
   function handleUpdateLog(updateLog){
-    console.log("updating log", updateLog)
-    // logs.filter(log.id === updateLog.id )
-    // setLogs([...logs, updateLog])
-    // const newLogs = logs.filter(log1 => log1 !== updateLog)
-    window.location.reload(true);
+    const newLogs = logs.map(log => log.id === updateLog.id ? updateLog : log)
+    setLogs(newLogs)
   }
 
 // Filters
@@ -148,15 +148,36 @@ function App() {
 
 const filterMap = user.followees.map(f => f.id) 
 
-  const filteredLogs = logs.filter((logs) => {
-    if (filterBy === "explore"){
-      return logs
-    } else if (filterBy === "following"){
-      return filterMap.includes(logs.user.id)
-    } else if (filterBy === "self") {
-      return logs.user.id === user.id
-    } 
-  })
+  // const filteredLogs =  logs.filter((logs) => {
+  //   if (filterBy === "explore"){
+  //     return logs
+  //   } else if (filterBy === "following"){
+  //     return filterMap.includes(logs.user.id)
+  //   } else if (filterBy === "self") {
+  //     return logs.user.id === user.id
+  //   } 
+  // })
+
+function filteredLogs (){
+    if (Array.isArray(logs)){
+    
+      return logs.filter((logs) => {
+        if (filterBy === "explore"){
+          return logs
+        } else if (filterBy === "following"){
+          return filterMap.includes(logs.user.id)
+        } else if (filterBy === "self") {
+          return logs.user.id === user.id
+        }
+        
+    }) 
+      
+  } else {
+    return []
+  }
+}
+
+
 
 
   return (
@@ -165,7 +186,7 @@ const filterMap = user.followees.map(f => f.id)
         <Switch>
           <Route exact path="/">
             <LogContainer
-              logs={filteredLogs}
+              logs={filteredLogs()}
               handleDeleteLog={handleDeleteLog}
               user={user}
               following={following}

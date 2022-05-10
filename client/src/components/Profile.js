@@ -8,26 +8,38 @@ function Profile({ user }) {
 
     const follower = user.followers
     const followee = user.followees
-    // console.log(user)
-    const followerMap = follower.map(f => f.name + " ")
-    const followeeMap = followee.map(f => f.name + " ")
+
+    // const followerMap = follower.map(f => f.name + " ")
+    // const followeeMap = followee.map(f => f.name + " ")
+
+    const followerMap = follower.map(f => (
+        <li key={f.id}>{f.name}</li>
+    ))
+
+    const followeeMap = followee.map(f => (
+        <li key={f.id}>{f.name}</li>
+    ))
 
 // console.log(user)
 
     return (
-        <div className="profile">
-            <div className="background"><h2>{user.name}'s Profile</h2></div>
-                
-                <img src={user.icon} alt="fish icon from https://icons8.com/icons/set/fish"/>
-                <h2>Homebase: {user.homebase}</h2>
-                <h2>Certification Level: {user.certification_level} / {user.certification_date}</h2>
+        <div>
+            <div className="background"></div>
+                <div className="name">
+                    <h2>{user.name}'s Profile</h2>
+                    <h5>{user.certification_level} / {user.certification_date}</h5>
+                    <img src={user.icon} alt="fish icon from https://icons8.com/icons/set/fish"/>
+                </div>
+                <div className="profile">
+                    <h2>Homebase: {user.homebase}</h2>
 
-                <h3>Followers</h3>
-                <h4>{followerMap}</h4>
+                    <h3>Followers ({followerMap.length})</h3>
+                    <h4>{followerMap}</h4>
 
-                <h3>Following</h3>
-                <h4>{followeeMap}</h4> 
-            {/* <div className="background"></div> */}
+                    <h3>Following ({followeeMap.length})</h3>
+                    <h4>{followeeMap}</h4> 
+                {/* <div className="background"></div> */}
+            </div>
         </div>
     )
 }

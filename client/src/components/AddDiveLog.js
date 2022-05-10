@@ -418,7 +418,7 @@ function returnHome(e){
 
 
 
-                <Popup 
+                {/* <Popup 
 
                     modal 
                     trigger={<Button onClick={e => handleProp(e)}> Open Signature Pad</Button>}
@@ -438,7 +438,7 @@ function returnHome(e){
                     <button onClick={close}>Close</button> 
                     </> 
                     )} 
-                </Popup>    
+                </Popup>     */}
                 
                 <input 
                     className="hidden"

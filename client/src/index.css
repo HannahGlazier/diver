@@ -110,8 +110,30 @@ a {
 
 /* Edit Dive Log */
 .edit{
-  background-color: grey;
+  /* background-color: grey; */
   /* justify-content: center; */
   border: 1px solid black;
-  /* margin-left: 2000px; */
+  /* position: sticky; */
+  margin-left: 200px; 
+  /* margin-right: auto; */
+  margin-top: 30px;
+  height: 500px;
+  /* text-align: center;  */
+  padding: 50px;
+  background-color: white;
+  /* position: fixed; */
+  /* width: max-content; */
+  /* margin: 200px; */
+  /* vertical-align: middle  */
+
+
+
+
+  overflow-y: auto;
+  /* height: 40vh; */
+
+}
+
+.opacity{
+  opacity: .75;
 }

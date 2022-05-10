@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 // import InfiniteScroll from 'react-infinite-scroll-component';
 
+
 // Internal Components
 import Header from "./Header"
 // import MainFeed from "./MainFeed"
@@ -33,7 +34,7 @@ function App() {
       primary: {
         light: '#f05545',
         main: '#b71c1c',
-        dark: '#7f0000',
+        dark: '#bdb9b9',
         contrastText: '#fff',
       },
       secondary: {
@@ -42,7 +43,6 @@ function App() {
         dark: '#bdb9b7',
         contrastText: '#000',
       },
-  
     },
 });
 

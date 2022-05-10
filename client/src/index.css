@@ -35,6 +35,13 @@ a {
   padding: 20px;
 }
 
+#logo{
+  height: 65px;
+  position: sticky;
+  margin-right: 10px;
+  margin-left: -26px;
+}
+
 /* Profile Page */
 
 .profile{

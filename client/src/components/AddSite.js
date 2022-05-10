@@ -8,7 +8,7 @@ import { blue } from '@mui/material/colors';
 import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, createTheme, ThemeProvider, MenuItem, Select, InputLabel } from "@mui/material";
 
 
-function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
+function AddSite({ addNewLog, user, setUser, addNewSite, sites, theme }) {
 
     const initialSiteForm = {
         name: "",
@@ -20,7 +20,6 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites }) {
     const [siteForm, setSiteForm] = useState(initialSiteForm)
     const [siteState, setSiteState] = useState(null)
 
-    const theme = createTheme();
     let history = useHistory();
 
 

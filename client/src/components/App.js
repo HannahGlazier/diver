@@ -11,8 +11,11 @@ import AddSite from "./AddSite"
 import SignIn from "./SignIn"
 import Profile from "./Profile";
 import EditDiveLog from "./EditDiveLog"
+import SignUp from "./SignUp"
 
-
+// MUI Imports
+import { blue, orange, pink } from '@mui/material/colors';
+import { createTheme } from "@mui/material";
 
 function App() {
   const [logs, setLogs] = useState([]);
@@ -24,6 +27,24 @@ function App() {
 
   const [page, setpage] = useState(2);
   const [hasMore, sethasMore] = useState(true);
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        light: '#f05545',
+        main: '#b71c1c',
+        dark: '#7f0000',
+        contrastText: '#fff',
+      },
+      secondary: {
+        light: '#ffffff',
+        main: '#efebe9',
+        dark: '#bdb9b7',
+        contrastText: '#000',
+      },
+  
+    },
+});
 
 
    // Fetches
@@ -79,7 +100,7 @@ function App() {
   }, []);
 
 
-  if (!user) return <SignIn setUser={setUser} />;
+  if (!user) return <SignIn setUser={setUser} theme={theme}/>;
 
 
   // Logout
@@ -140,7 +161,7 @@ const filterMap = user.followees.map(f => f.id)
 
   return (
       <div className="App">
-        <Header handleLogoutClick={handleLogoutClick} user={user}/>
+        <Header handleLogoutClick={handleLogoutClick} user={user} theme={theme}/>
         <Switch>
           <Route exact path="/">
             <LogContainer
@@ -158,8 +179,15 @@ const filterMap = user.followees.map(f => f.id)
               onUpdateLog={handleUpdateLog}
               // logs={logs}
               setLogs={setLogs}
+              theme={theme}
             />
           </Route>
+          {/* <Route exact path="/signin">
+              <SignIn />
+          </Route>
+          <Route exact path="/signup">
+              <SignUp />
+          </Route> */}
           <Route exact path="/addLog">
             <AddDiveLog 
               addNewLog={handleAddNewLog}
@@ -168,21 +196,24 @@ const filterMap = user.followees.map(f => f.id)
               sites={sites}
               logs={logs}
               setLogs={setLogs}
+              theme={theme}
             />
           </Route>
           <Route exact path="/addSite">
             <AddSite
                 addNewSite={handleAddNewSite}
                 sites={sites}
+                theme={theme}
               />
           </Route>
           <Route exact path="/profile">
             <Profile
               user={user}
+              theme={theme}
               />
           </Route>
           <Route exact path="/editDiveLog">
-              <EditDiveLog/>
+              <EditDiveLog theme={theme}/>
           </Route>
         </Switch>
       </div>

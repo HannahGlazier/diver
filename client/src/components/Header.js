@@ -4,9 +4,9 @@ import AppBar from '@mui/material/AppBar';
 import { useHistory } from 'react-router-dom';
 // MUI imports
 import MenuIcon from '@mui/icons-material/Menu';
-import { Box, Toolbar, IconButton, Typography, Menu, Button, Tooltip, MenuItem, Avatar, Container } from '@mui/material';
+import { Box, Toolbar, IconButton, Typography, Menu, Button, Tooltip, MenuItem, Avatar, Container, ThemeProvider} from '@mui/material';
 
-function Header({user, setUser, handleLogoutClick}) {
+function Header({user, setUser, handleLogoutClick, theme}) {
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -56,10 +56,12 @@ function Header({user, setUser, handleLogoutClick}) {
   // }
 
   return (
+    <ThemeProvider theme={theme}>
     <AppBar  position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <img id="logo" src={require ('')} alt="logo"/> */}
+          <img id="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhIH0WAJUpyIQpNNE1gwXHwH5t9fx9L6LRSA&usqp=CAU" alt="dive flag logo"/>
+          {/* <div className="logo"></div> */}
           <Typography
             variant="h3"
             noWrap
@@ -183,6 +185,7 @@ function Header({user, setUser, handleLogoutClick}) {
         </Toolbar>
       </Container>
     </AppBar>
+    </ThemeProvider>
   );
 };
 

@@ -22,7 +22,8 @@ function LogContainer({
     handlerStreamAborted,
     hasMore, 
     onUpdateLog,
-    setLogs
+    setLogs, 
+    theme
 }) {
 
     const [sort, setSort] = useState("");
@@ -57,6 +58,7 @@ function LogContainer({
             onUpdateLog={onUpdateLog}
             // logs={logs}
             setLogs={setLogs}
+            theme={theme}
         />
     )})
 
@@ -78,7 +80,7 @@ function LogContainer({
         </FormControl>
 
         <InfiniteScroll
-            dataLength={logs.length} //This is important field to render the next data
+            dataLength={logs.length} 
             next={fetchData}
             // hasMore={true}
             hasMore={hasMore}

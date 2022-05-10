@@ -16,7 +16,7 @@ import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Containe
     }
     const theme = createTheme();
 
-    export default function SignUp( {setUser}) {
+    export default function SignUp( {setUser, theme}) {
     const [showLogin, setShowLogin] = useState(true)
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
@@ -67,6 +67,9 @@ import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Containe
         });
     }
 
+    function backSignin(){
+        history.go('/signin')
+    }
 
     return (
         <div>
@@ -136,22 +139,6 @@ import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Containe
                     autoComplete="password-confirmation"
                     />
                 </Grid>
-
-                {/* <Grid item xs={12}>
-                <InputLabel id="demo-simple-select-standard-label">Certification Level</InputLabel>
-                <br></br>
-                    <TextField
-                    required
-                    fullWidth
-                    name="certification_level"
-                    label="Certification Level"
-                    type="certification_level"
-                    id="certification_level"
-                    value = {certification_level}
-                    onChange = {(e) => setCertificationLevel(e.target.value)}
-                    autoComplete="certification_level"
-                    />
-                </Grid> */}
 
                 <Grid item md={12}>
                 <InputLabel id="demo-simple-select-standard-label">Select Certification Level</InputLabel>
@@ -240,6 +227,7 @@ import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Containe
                 <Grid container justifyContent="flex-end">
                 <Grid item>
                     <Button onClick={() => setShowLogin(false)}>
+                    {/* <Button onClick={backSignin}> */}
                     Already have an account? Sign in
                     </Button>
                 </Grid>

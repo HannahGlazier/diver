@@ -7,7 +7,7 @@ import SignaturePad from 'react-signature-canvas'
 import Popup from 'reactjs-popup'
 
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { blue } from '@mui/material/colors';
+import { blue, orange } from '@mui/material/colors';
 import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, createTheme, ThemeProvider, MenuItem, Select, InputLabel, Radio, RadioGroup, FormLabel, FormControlLabel, FormControl } from "@mui/material";
 
 
@@ -19,9 +19,14 @@ function Copyright() {
         </div>
     );
     }
-    const theme = createTheme();
+    // const theme = createTheme();
+    // const theme = createTheme({
+    //     palette: {
+    //         primary: orange,
+    //     },
+    // });
 
-function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs }) {
+function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs, theme }) {
     // const [site, setSite] = useState([])
     const [site, setSite] = useState([])
 
@@ -407,7 +412,7 @@ function returnHome(e){
                         className: 'signature'
                     }}
                     />
-                <Button variant="text" onClick={e => save(e)}>Save</Button>
+                <Button color="secondary" variant="text" onClick={e => save(e)}>Save</Button>
                 <Button variant="text" onClick={e => clear(e)}>Clear</Button>  
                 </Grid>
 

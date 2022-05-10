@@ -17,7 +17,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 
     const theme = createTheme();
 
-    export default function SignIn({ setUser }) {
+    export default function SignIn({ setUser, theme }) {
 
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
@@ -47,6 +47,9 @@ import GitHubIcon from '@mui/icons-material/GitHub';
         });
     }
 
+    function goSignup(){
+        history.go('/signup')
+    }
 
     return (
             <div>
@@ -119,6 +122,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
                     <Grid container>
                         <Grid item>
                         <Button onClick={() => setShowLogin(false)}>
+                        {/* <Button onClick={goSignup}> */}
                             {"Don't have an account? Sign Up"}
                         </Button>
                         </Grid>
@@ -130,7 +134,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
             </Grid>
             </ThemeProvider>
             ) : (
-            <SignUp setUser={setUser} />
+            <SignUp setUser={setUser} theme={theme}/>
             )}
         </div>
     );

@@ -19,6 +19,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import { ThemeProvider} from '@mui/material';
+
 // import Grid from '@mui/material/Grid';
 
 // MAP
@@ -42,7 +44,8 @@ function LogCard({
     lat,
     onUpdateLog, 
     setLogs,
-    logs
+    logs,
+    theme
 }) {
     const [followTest, setFollowTest] = useState([]);
     const [showForm, setShowForm] = useState(true)
@@ -181,6 +184,7 @@ function LogCard({
     }
     
     return (
+        <ThemeProvider theme={theme}>
         <div>
         {showForm ? (
 
@@ -306,6 +310,7 @@ function LogCard({
         </div>
     )}
         </div>
+        </ThemeProvider>
     );
 }
 

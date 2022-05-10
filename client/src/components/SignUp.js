@@ -59,7 +59,7 @@ import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Containe
         setIsLoading(false);
         if (r.ok) {
             r.json().then((user) => setUser(user));
-            window.location.reload(true);
+            // window.location.reload(true);
             history.push('/')
         } else {
             r.json().then(err => window.alert(err.errors))

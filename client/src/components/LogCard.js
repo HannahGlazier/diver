@@ -168,7 +168,7 @@ function LogCard({
     const headerUserName = `${log.user.name}'s Dive Log`;
 
     function routeToEdit(){
-        <EditDiveLog log={log} onUpdateLog={onUpdateLog} setShowForm={setShowForm} />
+        // <EditDiveLog log={log} onUpdateLog={onUpdateLog} setShowForm={setShowForm} />
         history.push('/editDiveLog')
 
     }
@@ -303,9 +303,10 @@ function LogCard({
     ) : (
         <div>
 
-        <EditDiveLog log={log} logs={logs} onUpdateLog={onUpdateLog} setShowForm={setShowForm} /> 
+        <EditDiveLog theme={theme} log={log} logs={logs} onUpdateLog={onUpdateLog} setShowForm={setShowForm} /> 
         
         <Button onClick={() => setShowForm(true)}>Close Edit</Button>
+        {/* <Button onClick={() => routeToEdit()}>Close Edit</Button> */}
 
         </div>
     )}

@@ -4,7 +4,7 @@ import AddSite from './AddSite'
 import Profile from './Profile'
 
 import SignaturePad from 'react-signature-canvas'
-import Popup from 'reactjs-popup'
+import Popper from '@mui/material/Popper';
 
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { blue } from '@mui/material/colors';
@@ -21,7 +21,7 @@ function Copyright() {
     }
     const theme = createTheme();
 
-function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs, log, onUpdateLog, setShowForm }) {
+function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs, log, onUpdateLog, setShowForm, theme }) {
     // const [site, setSite] = useState([])
     const [site, setSite] = useState([])
 
@@ -41,28 +41,18 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs,
     const [site_id, setSite_id] = useState(log.site_id)
 
 
-    // const initialLogForm = { 
-    //     notes: "",
-    //     depth: "",
-    //     bottom_temp: "",
-    //     suit_thickness: "",
-    //     weight: "",
-    //     time_in: "",
-    //     time_out: "",
-    //     boat: true,
-    //     fresh: false,
-    //     date: "", 
-    //     divemaster: "",
-    //     dive_budy: "",
-    //     signature: "",
-    //     user_id: user.id,
-    //     site_id: "" 
-    //     // maybe dont need site id?
-    // }
-    
-    const [signatureState, setSignatureState] = useState("")
-    // const [logForm, setLogForm] = useState(initialLogForm)
-    
+        const [anchorEl, setAnchorEl] = React.useState(null);
+        
+        const handleClick = (event) => {
+            setAnchorEl(anchorEl ? null : event.currentTarget);
+        };
+        
+        const open = Boolean(anchorEl);
+        const id = open ? 'simple-popper' : undefined;
+        
+        const [signatureState, setSignatureState] = useState("")
+        // const [logForm, setLogForm] = useState(initialLogForm)
+        
 
     let history = useHistory();
 
@@ -161,8 +151,13 @@ function returnHome(e){
 
     return (
         <div>
+            <Button aria-describedby={id} type="button" onClick={handleClick}>
+            Toggle Popper
+            </Button>
             <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
+            <Popper id={id} open={open} anchorEl={anchorEl}>
+            <Box sx={{ border: 1, p: 1, bgcolor: 'background.paper' }}>
+            <Container  className="edit" component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
                 sx={{
@@ -172,8 +167,6 @@ function returnHome(e){
                     alignItems: 'center',
                 }}
                 >
-                    <Avatar sx={{  width: 80, height: 80, bgcolor: blue[100] }} aria-label="Scuba Tank icon by Icons8" src={"https://img.icons8.com/fluency/96/000000/scuba-tank.png"}>
-                    </Avatar>
                 <Typography component="h1" variant="h5">
                     Edit Dive Log
                 </Typography>
@@ -339,20 +332,6 @@ function returnHome(e){
                         />
                     </Grid>
 
-                    {/* <Grid item xs={12}>
-                    <InputLabel id="demo-simple-select-standard-label">Fresh Water(T/F)</InputLabel>
-                    <br></br>
-                        <TextField
-                            required
-                            fullWidth
-                            type="text"
-                            label="fresh"
-                            name="fresh"
-                            value={logForm.fresh}
-                            onChange={handleChange}
-                            placeholder="Water Type"
-                        />
-                    </Grid> */}
                     <Grid>
                     <InputLabel id="demo-simple-select-standard-label">Select Water Type</InputLabel>
                     <br></br>
@@ -414,31 +393,6 @@ function returnHome(e){
                 <Button variant="outlined" onClick={e => save(e)}>Save</Button>
                 <Button variant="outlined" onClick={e => clear(e)}>Clear</Button>  
 
-
-
-
-                    {/* <Popup 
-
-                    modal 
-                    trigger={<button onClick={e => handleProp(e)}> Open Signature Pad</button>}
-                    closeOnDocumentClick={false}
-                    >
-                    {close => (
-                    <>    
-                    <label>Signature</label>
-                    <SignaturePad
-                    ref = {sigPad}
-                    canvasProps={{
-                        className: 'signature'
-                    }}
-                    />
-                    <button onClick={e => save(e)}>Save</button>
-                    <button onClick={e => clear(e)}>Clear</button>  
-                    <button onClick={close}>Close</button> 
-                    </> 
-                    )} 
-                </Popup>   */}
-
                 <input 
                     className="hidden"
                     type="text"
@@ -463,8 +417,9 @@ function returnHome(e){
                 </Box>
                 {/* <Copyright sx={{ mt: 5 }} /> */}
             </Container>
+            </Box>
+            </Popper>
             </ThemeProvider>
-        
         </div>
     )
 }

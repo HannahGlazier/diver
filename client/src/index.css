@@ -107,3 +107,11 @@ a {
 .spacing{
   margin: 20px;
 }
+
+/* Edit Dive Log */
+.edit{
+  background-color: grey;
+  /* justify-content: center; */
+  border: 1px solid black;
+  /* margin-left: 2000px; */
+}

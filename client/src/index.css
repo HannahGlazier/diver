@@ -150,6 +150,10 @@ a {
 
 }
 
+.button{
+  text-align: center;
+}
+
 .opacity{
   opacity: .75;
 }

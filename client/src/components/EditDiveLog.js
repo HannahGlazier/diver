@@ -75,17 +75,17 @@ import {
     const [signature, setSignature] = useState(log.signature);
     const [site_id, setSite_id] = useState(log.site_id);
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    // const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handleClick = (event) => {
-        setAnchorEl(anchorEl ? null : event.currentTarget);
-    };
+    // const handleClick = (event) => {
+    //     setAnchorEl(anchorEl ? null : event.currentTarget);
+    // };
 
-    const open = Boolean(anchorEl);
-    const id = open ? "simple-popper" : undefined;
+    // const open = Boolean(anchorEl);
+    // const id = open ? "simple-popper" : undefined;
 
     const [signatureState, setSignatureState] = useState("");
-    const [placement, setPlacement] = React.useState();
+    // const [placement, setPlacement] = React.useState();
     // const [logForm, setLogForm] = useState(initialLogForm)
 
     let history = useHistory();
@@ -134,7 +134,7 @@ import {
             onUpdateLog(updateLog);
             // console.log(updateLog)
             // history.push('/')
-            setShowForm(true);
+            // setShowForm(true);
             });
             // .then(updateLog => setLogs([...logs, updateLog]))
         } else {
@@ -160,10 +160,10 @@ import {
         setSignatureState(data);
     }
 
-    function handleProp(e) {
-        e.stopPropagation();
-        e.preventDefault();
-    }
+    // function handleProp(e) {
+    //     e.stopPropagation();
+    //     e.preventDefault();
+    // }
     // END Signature handlers
 
     function goToAddSite(e) {
@@ -172,51 +172,14 @@ import {
         history.push("/addSite");
     }
 
-    function returnHome(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        history.push("/");
-    }
+    // function returnHome(e) {
+    //     e.stopPropagation();
+    //     e.preventDefault();
+    //     history.push("/");
+    // }
 
     return (
-        <ThemeProvider theme={theme}>
-            <Button aria-describedby={id} type="button" onClick={handleClick}>
-            Toggle Popper
-            </Button>
-            <Popper
-                disablePortal={true}
-            
-                transition
-                placement="bottom"
-                modifiers={{
-                    preventOverflow: 
-                        {
-                            enabled: true, 
-                            escapeWithReference: true , 
-                            boundariesElement: 'viewport'}
-                        }
-                    }
-                
-                open={open} 
-                anchorEl={anchorEl} >
-            <Grid 
-            container
-            className="edit">
-                
-                <Box>
-                <Container component="main" maxWidth="xs">
-                    <CssBaseline />
-                    <Box
-                    sx={{
-                        marginTop: 8,
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                    }}
-                    >
-                    <Typography component="h1" variant="h5">
-                        Edit Dive Log
-                    </Typography>
+        // <ThemeProvider theme={theme}>
                     <Box
                         component="form"
                         noValidate
@@ -244,7 +207,6 @@ import {
                             </Select>
                         </Grid>
 
-                        {/* <p>Dont see the site you're looking for? </p> */}
                         <InputLabel id="demo-simple-select-standard-label">
                             Dont see the site you're looking for?
                         </InputLabel>
@@ -497,14 +459,8 @@ import {
                         Update
                         </Button>
                     </Box>
-                    </Box>
-                    {/* <Copyright sx={{ mt: 5 }} /> */}
-                </Container>
-                </Box>
-            </Grid>
-            </Popper>
-        </ThemeProvider>
-  );
+        // </ThemeProvider>
+    );
 }
 
 export default AddDiveLog;

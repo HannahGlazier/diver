@@ -21,7 +21,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { ThemeProvider} from '@mui/material';
 
-// import Grid from '@mui/material/Grid';
+import EditIcon from '@mui/icons-material/Edit';
 
 // MAP
 // import ReactMapGL from "react-map-gl"
@@ -161,7 +161,7 @@ function LogCard({
     );
     
     const editLog = userId === log.user.id && (
-        <Button onClick={() => setShowForm(false)}>Edit Dive Log</Button>
+        < EditIcon onClick={() => setShowForm(false)}>Edit Dive Log</ EditIcon>
     )
 
     const headerLocation = `${log.site.name} - ${log.site.location}`;
@@ -200,7 +200,8 @@ function LogCard({
             }
             action={
                 <IconButton aria-label="settings">
-                <MoreVertIcon />
+                {/* <MoreVertIcon /> */}
+                {editLog}
                 </IconButton>
             }
             title={headerLocation}
@@ -298,7 +299,7 @@ function LogCard({
             </CardContent>
             </Collapse>
                 {/* <Button onClick={() => setShowForm(false)}>Edit Dive Log</Button> */}
-                {editLog}
+                {/* {editLog} */}
         </Card>
     ) : (
         <div>

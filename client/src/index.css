@@ -47,10 +47,12 @@ a {
 .profile{
   text-align: center;
   background-color: 	#F0F0F0;
-  height: 4000px;
+
   border-top: 2px solid #D3D3D3;
   padding-top: 20px;
   font-family: 'Source Code Pro', monospace;
+  height: 100vh;
+  max-width: 100vw;
   /* border: 1px solid; */
   /* margin: 10px;  */
   /* padding: 10px;  */

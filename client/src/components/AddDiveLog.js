@@ -19,12 +19,6 @@ function Copyright() {
         </div>
     );
     }
-    // const theme = createTheme();
-    // const theme = createTheme({
-    //     palette: {
-    //         primary: orange,
-    //     },
-    // });
 
 function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs, theme }) {
     // const [site, setSite] = useState([])
@@ -46,7 +40,6 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs,
         signature: "",
         user_id: user.id,
         site_id: "" 
-        // maybe dont need site id?
     }
     
     const [signatureState, setSignatureState] = useState("")
@@ -109,9 +102,7 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs,
         .then((r) => {
             if (r.ok) {
                 r.json().then(setLogForm(initialLogForm))
-                .then(console.log)
                 .then(newLog => setLogs([...logs, newLog]))
-                // .then(newLog => console.log(newLog))
                 history.push('/')
             } else {
                 r.json().then(err => window.alert(err.errors))
@@ -136,10 +127,6 @@ function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs,
         setSignatureState(data)
     }
 
-    function handleProp(e){
-        e.stopPropagation()
-        e.preventDefault()
-    }
     // END Signature handlers
 
 
@@ -334,21 +321,6 @@ function returnHome(e){
                         />
                     </Grid>
 
-                    {/* <Grid item xs={12}>
-                    <InputLabel id="demo-simple-select-standard-label">Fresh Water(T/F)</InputLabel>
-                    <br></br>
-                        <TextField
-                            required
-                            fullWidth
-                            type="text"
-                            label="fresh"
-                            name="fresh"
-                            value={logForm.fresh}
-                            onChange={handleChange}
-                            placeholder="Water Type"
-                        />
-                    </Grid> */}
-
                     <Grid className="spacing">
                     <InputLabel id="demo-simple-select-standard-label">Select Water Type</InputLabel>
                     <br></br>
@@ -415,30 +387,6 @@ function returnHome(e){
                 <Button variant="text" onClick={e => save(e)}>Save</Button>
                 <Button variant="text" onClick={e => clear(e)}>Clear</Button>  
                 </Grid>
-
-
-
-                {/* <Popup 
-
-                    modal 
-                    trigger={<Button onClick={e => handleProp(e)}> Open Signature Pad</Button>}
-                    closeOnDocumentClick={false}
-                    >
-                    {close => (
-                    <>    
-                    <label>Signature</label>
-                    <SignaturePad
-                    ref = {sigPad}
-                    canvasProps={{
-                        className: 'signature'
-                    }}
-                    />
-                    <button onClick={e => save(e)}>Save</button>
-                    <button onClick={e => clear(e)}>Clear</button>  
-                    <button onClick={close}>Close</button> 
-                    </> 
-                    )} 
-                </Popup>     */}
                 
                 <input 
                     className="hidden"

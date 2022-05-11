@@ -42,6 +42,14 @@ a {
   margin-left: -26px;
 }
 
+.imagebacked {
+  margin: 5000px;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  /* display: flex; */
+  }
+
 /* Profile Page */
 
 .profile{

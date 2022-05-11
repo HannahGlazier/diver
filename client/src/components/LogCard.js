@@ -26,7 +26,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Modal } from "react-bootstrap";
 
 // MAP
-// import ReactMapGL from "react-map-gl"
 import mapboxgl from "mapbox-gl";
 import Map, { Marker, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -159,25 +158,16 @@ function LogCard({
         </Button>
     );
 
-    // const editLog = userId === log.user.id && (
-    //     < EditIcon onClick={() => setShowForm(false)}>Edit Dive Log</ EditIcon>
-    // )
 
     const editLog = userId === log.user.id && (
         <EditIcon
         variant="link"
         onClick={handleShow}
-        style={{ "text-decoration": "none", color: "#45A29E" }}
         ></EditIcon>
     );
 
     const headerLocation = `${log.site.name} - ${log.site.location}`;
     const headerUserName = `${log.user.name}'s Dive Log`;
-
-    function handleUpdateLog(updateLog) {
-        const newLogs = logs.filter((log) => log.id !== updateLog.id);
-        setLogs(newLogs);
-    }
 
     return (
         <ThemeProvider theme={theme}>

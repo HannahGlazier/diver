@@ -14,7 +14,7 @@ import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Containe
 
 function Copyright() {
     return (
-        <div id="github">
+        <div className="center">
         <a href= "https://github.com/HannahGlazier" target="_blank" rel="noreferrer"><GitHubIcon/> Hannah Glazier </a>
         </div>
     );
@@ -409,7 +409,7 @@ function returnHome(e){
                     </Button>
                 </Box>
                 </Box>
-                {/* <Copyright sx={{ mt: 5 }} /> */}
+                <Copyright sx={{ mt: 5 }} />
             </Container>
             </ThemeProvider>
         

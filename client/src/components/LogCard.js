@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import EditDiveLog from "./EditDiveLog";
 
 import { styled } from "@mui/material/styles";
@@ -13,11 +13,7 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { blue } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material";
 

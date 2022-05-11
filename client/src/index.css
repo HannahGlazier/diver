@@ -85,7 +85,8 @@ a {
 
 .background{
   padding: 200px;
-  background-image: url('https://images.unsplash.com/photo-1571100835179-418f932af6dd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80');
+  /* background-image: url('https://images.unsplash.com/photo-1571100835179-418f932af6dd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80'); */
+  background-image: url('https://images.unsplash.com/photo-1488921618671-463b781ac428?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
   background-size: cover;
   height: 1000px;
 

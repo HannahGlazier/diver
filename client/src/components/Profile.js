@@ -4,6 +4,13 @@ import Typography from '@mui/material/Typography';
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
 
+
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+
 function Profile({ user }) {
 
     const follower = user.followers
@@ -17,26 +24,46 @@ function Profile({ user }) {
         <li key={f.id}>{f.name}</li>
     ))
 
-// console.log(user)
 
     return (
-        <div>
-            <div className="background"></div>
-                <div className="name">
-                    <h2>{user.name}'s Profile</h2>
-                    <h5>{user.certification_level} / {user.certification_date}</h5>
-                    <img src={user.icon} alt="fish icon from https://icons8.com/icons/set/fish"/>
+<div className="background">
+
+    <Card
+    className="prof-card" 
+    sx={{ maxWidth: 345 }}
+    >
+
+        <img src={user.icon} alt="fish icon from https://icons8.com/icons/set/fish"></img>
+        <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+            {user.name}'s Profile
+            </Typography>
+    
+            <Typography gutterBottom variant="h6" component="div">
+            Based in - {user.homebase}
+            </Typography>
+
+            <Typography cvariant="body2" color="text.secondary">
+                
+                <div  className="follow">
+                <Typography color="text.primary">Followers ({followerMap.length})</Typography>
+                <Typography>{followerMap}</Typography>
                 </div>
-                <div className="profile">
-                    <h2>I am based in {user.homebase}</h2>
 
-                    <h3>Followers ({followerMap.length})</h3>
-                    <h4>{followerMap}</h4>
+                <div  className="follow">
+                <Typography color="text.primary">Following ({followeeMap.length})</Typography>
+                <Typography>{followeeMap}</Typography>
+                </div>
 
-                    <h3>Following ({followeeMap.length})</h3>
-                    <h4>{followeeMap}</h4> 
-                {/* <div className="background"></div> */}
-            </div>
+                </Typography>
+
+        </CardContent>
+        {/* <CardActions>
+            <Button size="small">Share</Button>
+            <Button size="small">Learn More</Button>
+        </CardActions> */}
+        </Card>
+
         </div>
     )
 }

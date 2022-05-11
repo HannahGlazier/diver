@@ -363,7 +363,6 @@ function returnHome(e){
                             required
                             fullWidth
                             multiline
-                            // maxRows={4}
                             id="outlined-multiline-flexible"
                             type="text"
                             label="notes"
@@ -375,7 +374,7 @@ function returnHome(e){
                     </Grid>
 
                 <Grid className="spacing">
-                {/* <label>Signature</label> */}
+
                 <InputLabel  id="demo-simple-select-standard-label">Divemaster or Buddy Signature: </InputLabel>
                 <br></br>
                     <SignaturePad

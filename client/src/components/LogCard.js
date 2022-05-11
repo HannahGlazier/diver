@@ -184,7 +184,6 @@ function LogCard({
                 }
                 action={
                 <IconButton aria-label="settings">
-                    {/* <MoreVertIcon /> */}
                     {editLog}
                 </IconButton>
                 }

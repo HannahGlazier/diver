@@ -9,24 +9,14 @@ import Popper from "@mui/material/Popper";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { blue } from "@mui/material/colors";
 import {
-    Avatar,
     Button,
-    CssBaseline,
     TextField,
     Grid,
     Box,
-    Typography,
-    Container,
     createTheme,
-    ThemeProvider,
     MenuItem,
     Select,
     InputLabel,
-    Radio,
-    RadioGroup,
-    FormLabel,
-    FormControlLabel,
-    FormControl,
     } from "@mui/material";
 
     function Copyright() {
@@ -128,6 +118,10 @@ import {
         });
     }
 
+    // TEST
+    function handleSignature(){
+        setSignature(signatureState)
+    }
 
     // Signature handlers
     let sigPad = useRef({});
@@ -162,6 +156,7 @@ import {
                         noValidate
                         onSubmit={(e) => handleSubmit(e)}
                         sx={{ mt: 3 }}
+                        className="edit"
                     >
                         <Grid container spacing={2}>
                         <Grid item xs={12}>
@@ -184,12 +179,14 @@ import {
                             </Select>
                         </Grid>
 
+                        <div className="spacing">
                         <InputLabel id="demo-simple-select-standard-label">
                             Dont see the site you're looking for?
                         </InputLabel>
+                        </div>
 
                         <Button
-                            variant="outlined"
+                            variant="text"
                             onClick={(e) => goToAddSite(e)}
                         >
                             Add new dive site
@@ -345,7 +342,8 @@ import {
                             />
                         </Grid>
 
-                        <Grid>
+
+                        <Grid className="spacing">
                             <InputLabel id="demo-simple-select-standard-label">
                             Select Water Type
                             </InputLabel>
@@ -364,7 +362,7 @@ import {
                             </Select>
                         </Grid>
 
-                        <Grid>
+                        <Grid className="spacing">
                             <InputLabel id="demo-simple-select-standard-label">
                             Select Dive Type
                             </InputLabel>
@@ -400,7 +398,7 @@ import {
                             />
                         </Grid>
 
-                        <Grid item xs={12}>
+                        {/* <Grid item xs={12}>
                         <InputLabel  id="demo-simple-select-standard-label">Divemaster or Buddy Signature: </InputLabel>
                         <SignaturePad
                             ref={sigPad}
@@ -420,11 +418,11 @@ import {
                             type="text"
                             label="signature"
                             name="signature"
-                            value={signature}
-                            onChange={signatureState => setSignature(signatureState)}
+                            value={signatureState}
+                            onChange={signature => setSignature(signature)}
                             placeholder="Signature"
                         ></input>
-                        </Grid>
+                        </Grid> */}
 
                         </Grid>
                         <Button

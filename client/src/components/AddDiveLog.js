@@ -143,7 +143,7 @@ function returnHome(e){
 }
 
     return (
-        <div>
+        <div className="spacing">
             <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />

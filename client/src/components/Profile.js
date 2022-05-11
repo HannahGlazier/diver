@@ -9,9 +9,6 @@ function Profile({ user }) {
     const follower = user.followers
     const followee = user.followees
 
-    // const followerMap = follower.map(f => f.name + " ")
-    // const followeeMap = followee.map(f => f.name + " ")
-
     const followerMap = follower.map(f => (
         <li key={f.id}>{f.name}</li>
     ))
@@ -31,7 +28,7 @@ function Profile({ user }) {
                     <img src={user.icon} alt="fish icon from https://icons8.com/icons/set/fish"/>
                 </div>
                 <div className="profile">
-                    <h2>Homebase: {user.homebase}</h2>
+                    <h2>I am based in {user.homebase}</h2>
 
                     <h3>Followers ({followerMap.length})</h3>
                     <h4>{followerMap}</h4>

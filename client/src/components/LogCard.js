@@ -191,7 +191,7 @@ function LogCard({
                 title={headerLocation}
                 subheader={log.date}
             />
-            <CardHeader title={headerUserName} />
+            <CardHeader  title={headerUserName} />
             <div className="mapbox">
                 <Map
                 initialViewState={{ ...viewState }}
@@ -252,22 +252,25 @@ function LogCard({
                 </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
-                <Typography paragraph>The Details: </Typography>
-                <Typography paragraph>Time In: {log.time_in}</Typography>
-                <Typography paragraph>Time Out: {log.time_out}</Typography>
-                <Typography paragraph>Bottom Time: {log.bottom_time}</Typography>
-                <Typography>Bottom Temp: {log.bottom_temp}</Typography>
-                <Typography>Suit Thickness: {log.suit_thickness}</Typography>
-                <Typography>Depth: {log.depth}</Typography>
-                <Typography>Weight: {log.weight}</Typography>
-                <Typography>
+                <CardContent className="center">
+                <Typography variant="body" color="text.primary">-The Details-</Typography>
+                <br></br>
+                <br></br>
+                <Typography paragraph variant="body2" color="text.secondary">Time In: {log.time_in}</Typography>
+                <Typography paragraph variant="body2" color="text.secondary">Time Out: {log.time_out}</Typography>
+                <Typography paragraph variant="body2" color="text.secondary">Bottom Time: {log.bottom_time} minutes</Typography>
+                <Typography paragraph variant="body2" color="text.secondary">Bottom Temp: {log.bottom_temp}</Typography>
+                <Typography paragraph variant="body2" color="text.secondary">Suit Thickness: {log.suit_thickness} mm</Typography>
+                <Typography paragraph variant="body2" color="text.secondary">Depth: {log.depth}'</Typography>
+                <Typography paragraph variant="body2" color="text.secondary">Weight: {log.weight} lbs</Typography>
+                <Typography paragraph variant="body2" color="text.secondary">
                     {log.fresh ? "Fresh" : "Salt"} Water -{" "}
                     {log.boat ? "Boat" : "Shore"} Dive
                 </Typography>
-                <Typography>Dive Buddy: {log.dive_budy}</Typography>
-                <Typography>Dive Master: {log.divemaster}</Typography>
-
+                <Typography paragraph variant="body2" color="text.secondary">Dive Buddy: {log.dive_budy}</Typography>
+                <Typography paragraph variant="body2" color="text.secondary">Dive Master: {log.divemaster}</Typography>
+                
+                <Typography variant="body" color="text.primary">Dive Master or Dive Buddy Signature:</Typography>
                 <CardMedia
                     component="img"
                     height="100"
@@ -282,7 +285,7 @@ function LogCard({
 
 
             <Modal show={showModal} onHide={handleClose}>
-                <Modal.Header closeButton>
+                <Modal.Header closeButton> 
                 <Modal.Title>Edit Dive Log</Modal.Title>
                 </Modal.Header>
 

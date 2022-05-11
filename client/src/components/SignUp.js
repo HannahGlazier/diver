@@ -207,11 +207,36 @@ import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Containe
                         label = "Select Icon"
                     >
                             <MenuItem>Select Icon</MenuItem>
-                            <MenuItem value="https://img.icons8.com/color/96/000000/clown-fish.png">Clown Fish</MenuItem>
-                            <MenuItem value="https://img.icons8.com/color/96/000000/fish.png">Angel Fish</MenuItem>
-                            <MenuItem value="https://img.icons8.com/color/96/000000/big-eats-small.png">Big + Small Fish</MenuItem>
-                            <MenuItem value="https://img.icons8.com/emoji/96/000000/blow-fish.png">Puffer Fish</MenuItem>
-                            <MenuItem value="https://img.icons8.com/fluency/96/000000/perch.png">Perch</MenuItem>
+                            <MenuItem 
+                            value="https://img.icons8.com/color/96/000000/clown-fish.png"
+                            className="imagebacked"
+                            style={{backgroundImage: `url('https://img.icons8.com/color/96/000000/clown-fish.png')`}}
+                            >
+                            </MenuItem>
+                            <MenuItem 
+                            value="https://img.icons8.com/color/96/000000/fish.png"
+                            className="imagebacked"
+                            style={{backgroundImage: `url('https://img.icons8.com/color/96/000000/fish.png')`}}
+                            >
+                            </MenuItem>
+                            <MenuItem 
+                            value="https://img.icons8.com/color/96/000000/big-eats-small.png"
+                            className="imagebacked"
+                            style={{backgroundImage: `url('https://img.icons8.com/color/96/000000/big-eats-small.png')`}}
+                            >
+                            </MenuItem>
+                            <MenuItem 
+                            value="https://img.icons8.com/emoji/96/000000/blow-fish.png"
+                            className="imagebacked"
+                            style={{backgroundImage: `url('https://img.icons8.com/emoji/96/000000/blow-fish.png')`}}
+                            >
+                            </MenuItem>
+                            <MenuItem 
+                            value="https://img.icons8.com/fluency/96/000000/perch.png"
+                            className="imagebacked"
+                            style={{backgroundImage: `url('https://img.icons8.com/fluency/96/000000/perch.png')`}}
+                            >
+                            </MenuItem>
                     </Select>
                 </Grid>
 

@@ -57,8 +57,9 @@ import {
     setShowForm,
     theme,
     }) {
-    // const [site, setSite] = useState([])
+
     const [site, setSite] = useState([]);
+    const [signatureState, setSignatureState] = useState("");
 
     const [notes, setNotes] = useState(log.notes);
     const [depth, setDepth] = useState(log.depth);
@@ -75,18 +76,6 @@ import {
     const [signature, setSignature] = useState(log.signature);
     const [site_id, setSite_id] = useState(log.site_id);
 
-    // const [anchorEl, setAnchorEl] = React.useState(null);
-
-    // const handleClick = (event) => {
-    //     setAnchorEl(anchorEl ? null : event.currentTarget);
-    // };
-
-    // const open = Boolean(anchorEl);
-    // const id = open ? "simple-popper" : undefined;
-
-    const [signatureState, setSignatureState] = useState("");
-    // const [placement, setPlacement] = React.useState();
-    // const [logForm, setLogForm] = useState(initialLogForm)
 
     let history = useHistory();
 
@@ -132,16 +121,13 @@ import {
         if (r.ok) {
             r.json().then((updateLog) => {
             onUpdateLog(updateLog);
-            // console.log(updateLog)
-            // history.push('/')
-            // setShowForm(true);
             });
-            // .then(updateLog => setLogs([...logs, updateLog]))
         } else {
             r.json().then((err) => window.alert(err.errors));
         }
         });
     }
+
 
     // Signature handlers
     let sigPad = useRef({});
@@ -158,12 +144,9 @@ import {
         e.preventDefault();
         data = sigPad.current.toDataURL();
         setSignatureState(data);
+        // console.log(data)
     }
 
-    // function handleProp(e) {
-    //     e.stopPropagation();
-    //     e.preventDefault();
-    // }
     // END Signature handlers
 
     function goToAddSite(e) {
@@ -171,12 +154,6 @@ import {
         e.preventDefault();
         history.push("/addSite");
     }
-
-    // function returnHome(e) {
-    //     e.stopPropagation();
-    //     e.preventDefault();
-    //     history.push("/");
-    // }
 
     return (
         // <ThemeProvider theme={theme}>
@@ -329,7 +306,6 @@ import {
                             required
                             fullWidth
                             type="time"
-                            // label="time_in"
                             name="time_in"
                             value={time_in}
                             onChange={(e) => setTime_in(e.target.value)}
@@ -346,7 +322,6 @@ import {
                             required
                             fullWidth
                             type="time"
-                            // label="time_out"
                             name="time_out"
                             value={time_out}
                             onChange={(e) => setTime_out(e.target.value)}
@@ -363,7 +338,6 @@ import {
                             required
                             fullWidth
                             type="date"
-                            // label="date"
                             name="date"
                             value={date}
                             onChange={(e) => setDate(e.target.value)}
@@ -426,7 +400,8 @@ import {
                             />
                         </Grid>
 
-                        <label>Signature</label>
+                        <Grid item xs={12}>
+                        <InputLabel  id="demo-simple-select-standard-label">Divemaster or Buddy Signature: </InputLabel>
                         <SignaturePad
                             ref={sigPad}
                             canvasProps={{
@@ -446,9 +421,11 @@ import {
                             label="signature"
                             name="signature"
                             value={signature}
-                            onChange={(e) => setSignature(e.target.value)}
+                            onChange={signatureState => setSignature(signatureState)}
                             placeholder="Signature"
                         ></input>
+                        </Grid>
+
                         </Grid>
                         <Button
                         type="submit"

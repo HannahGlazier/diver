@@ -263,7 +263,7 @@ import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Containe
         </Container>
         </ThemeProvider>
         ) : (
-            <SignIn />
+            <SignIn theme={theme}/>
         )}
         </div>
     );

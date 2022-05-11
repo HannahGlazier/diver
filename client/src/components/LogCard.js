@@ -162,9 +162,10 @@ function LogCard({
     const editLog = userId === log.user.id && (
         <EditIcon
         variant="link"
-        onClick={handleShow}
+    
         ></EditIcon>
     );
+
 
     const headerLocation = `${log.site.name} - ${log.site.location}`;
     const headerUserName = `${log.user.name}'s Dive Log`;
@@ -183,7 +184,7 @@ function LogCard({
                 ></Avatar>
                 }
                 action={
-                <IconButton aria-label="settings">
+                <IconButton aria-label="settings"  onClick={handleShow}>
                     {editLog}
                 </IconButton>
                 }

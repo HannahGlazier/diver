@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
-import EditDiveLog from "./EditDiveLog"
+import EditDiveLog from "./EditDiveLog";
 
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
@@ -19,9 +19,11 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { ThemeProvider} from '@mui/material';
+import { ThemeProvider } from "@mui/material";
 
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
+
+import { Modal } from "react-bootstrap";
 
 // MAP
 // import ReactMapGL from "react-map-gl"
@@ -42,18 +44,23 @@ function LogCard({
     onChangeFollow,
     long,
     lat,
-    onUpdateLog, 
+    onUpdateLog,
     setLogs,
     logs,
-    theme
-}) {
+    theme,
+    }) {
+    const [showModal, setShowModal] = useState(false);
+    const [order, setOrder] = useState([]);
+    const handleClose = () => setShowModal(false);
+    const handleShow = () => setShowModal(true);
+
     const [followTest, setFollowTest] = useState([]);
-    const [showForm, setShowForm] = useState(true)
+    const [showForm, setShowForm] = useState(true);
     let history = useHistory();
 
     const MAPBOX_TOKEN =
-    "pk.eyJ1IjoiaGFubmFoZ2xhemllciIsImEiOiJjbDJ0OWdzdjcwMTVsM29wZjM4YWQ4anhvIn0.2kctdgtMavhxgpP996WXhA";
-    
+        "pk.eyJ1IjoiaGFubmFoZ2xhemllciIsImEiOiJjbDJ0OWdzdjcwMTVsM29wZjM4YWQ4anhvIn0.2kctdgtMavhxgpP996WXhA";
+
     const [isPopupOpen, setIsPopupOpen] = useState({
         0: false,
     });
@@ -64,15 +71,7 @@ function LogCard({
         zoom: 6,
     });
 
-  // THIS RENDERS!!
-  // const map = new mapboxgl.Map({
-  //     container: 'map', // container ID
-  //     style: 'mapbox://styles/mapbox/streets-v11', // style URL
-  //     center: [-86.52997, 16.32976], // starting position [lng, lat]
-  //     zoom: 9 // starting zoom
-  //     });
-
-  // Material UI Styling
+    // Material UI Styling
 
     const [expanded, setExpanded] = React.useState(false);
 
@@ -91,9 +90,9 @@ function LogCard({
         setExpanded(!expanded);
     };
 
-  // END Material UI Styling
+    // END Material UI Styling
 
-  // POST Follow
+    // POST Follow
     function handleFollow() {
         const newFollow = {
         follower_id: user.id,
@@ -116,7 +115,7 @@ function LogCard({
         });
     }
 
-  // DELETE Unfollow
+    // DELETE Unfollow
 
     function handleDeleteFolow() {
         fetch(`/follows/${log.user.id}`, { method: "DELETE" });
@@ -148,7 +147,7 @@ function LogCard({
         }
     }
 
-  // Handle deleting your personal Dive logs
+    // Handle deleting your personal Dive logs
     function handleDelete(e) {
         e.stopPropagation();
         handleDeleteLog(log);
@@ -159,122 +158,111 @@ function LogCard({
         Delete Log
         </Button>
     );
-    
+
+    // const editLog = userId === log.user.id && (
+    //     < EditIcon onClick={() => setShowForm(false)}>Edit Dive Log</ EditIcon>
+    // )
+
     const editLog = userId === log.user.id && (
-        < EditIcon onClick={() => setShowForm(false)}>Edit Dive Log</ EditIcon>
-    )
+        <EditIcon
+        variant="link"
+        onClick={handleShow}
+        style={{ "text-decoration": "none", color: "#45A29E" }}
+        ></EditIcon>
+    );
 
     const headerLocation = `${log.site.name} - ${log.site.location}`;
     const headerUserName = `${log.user.name}'s Dive Log`;
 
-    function routeToEdit(){
-        // <EditDiveLog log={log} onUpdateLog={onUpdateLog} setShowForm={setShowForm} />
-        history.push('/editDiveLog')
+    function handleUpdateLog(updateLog) {
+        const newLogs = logs.filter((log) => log.id !== updateLog.id);
+        setLogs(newLogs);
+    }
 
-    }
-    function handleUpdateLog(updateLog){
-        // console.log("updating log", updateLog)
-        // if(log.id === updateLog.id){
-        //     logs.filter(log)
-        //     setLogs([...logs, updateLog])
-        // }
-        const newLogs = logs.filter(log => log.id !== updateLog.id)
-        setLogs(newLogs)
-        
-    }
-    
     return (
         <ThemeProvider theme={theme}>
         <div>
-        {showForm ? (
-
-        <Card className="container" sx={{ maxWidth: 345 }}>
+            <Card className="container" sx={{ maxWidth: 345 }}>
             <CardHeader
-            avatar={
+                avatar={
                 <Avatar
-                sx={{ bgcolor: blue[100] }}
-                aria-label="fish icon"
-                src={log.user.icon}
-                alt="fish icon from https://icons8.com/icons/set/fish"
+                    sx={{ bgcolor: blue[100] }}
+                    aria-label="fish icon"
+                    src={log.user.icon}
+                    alt="fish icon from https://icons8.com/icons/set/fish"
                 ></Avatar>
-            }
-            action={
+                }
+                action={
                 <IconButton aria-label="settings">
-                {/* <MoreVertIcon /> */}
-                {editLog}
+                    {/* <MoreVertIcon /> */}
+                    {editLog}
                 </IconButton>
-            }
-            title={headerLocation}
-            subheader={log.date}
+                }
+                title={headerLocation}
+                subheader={log.date}
             />
             <CardHeader title={headerUserName} />
             <div className="mapbox">
-            <Map
-                // id = “map”
-                // initialViewState={{
-                // longitude: -122.4,
-                // latitude: 37.8,
-                // zoom: 11,
-                // }}
+                <Map
                 initialViewState={{ ...viewState }}
                 style={{ width: 323, height: 300 }}
                 mapStyle="mapbox://styles/mapbox/outdoors-v11"
                 mapboxAccessToken={MAPBOX_TOKEN}
-            >
+                >
                 <div key={log.site.id}>
-                <Marker
+                    <Marker
                     longitude={long}
                     latitude={lat}
                     color="blue"
                     onClick={() =>
-                    setIsPopupOpen({ ...isPopupOpen, [log.site.id]: true })
+                        setIsPopupOpen({ ...isPopupOpen, [log.site.id]: true })
                     }
-                />
+                    />
 
-                {isPopupOpen[log.site.id] && (
+                    {isPopupOpen[log.site.id] && (
                     <Popup
-                    key={log.site.id}
-                    longitude={long}
-                    latitude={lat}
-                    color="green"
-                    closeOnClick={false}
-                    onClose={() => setIsPopupOpen(false)}
+                        key={log.site.id}
+                        longitude={long}
+                        latitude={lat}
+                        color="green"
+                        closeOnClick={false}
+                        onClose={() => setIsPopupOpen(false)}
                     >
-                    <div>
+                        <div>
                         <h4>Name: {log.site.name}</h4>
                         <h5>Location: {log.site.location}</h5>
                         <h5>
-                        {lat}, {long}
+                            {lat}, {long}
                         </h5>
-                    </div>
+                        </div>
                     </Popup>
-                )}
+                    )}
                 </div>
-            </Map>
+                </Map>
             </div>
             <CardContent>
-            <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.secondary">
                 - Dive Notes -
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
                 {log.notes}
-            </Typography>
+                </Typography>
             </CardContent>
             <CardActions disableSpacing>
-            {handleFollowConditional()}
-            {deleteLog}
+                {handleFollowConditional()}
+                {deleteLog}
 
-            <ExpandMore
+                <ExpandMore
                 expand={expanded}
                 onClick={handleExpandClick}
                 aria-expanded={expanded}
                 aria-label="show more"
-            >
+                >
                 <ExpandMoreIcon />
-            </ExpandMore>
+                </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <CardContent>
+                <CardContent>
                 <Typography paragraph>The Details: </Typography>
                 <Typography paragraph>Time In: {log.time_in}</Typography>
                 <Typography paragraph>Time Out: {log.time_out}</Typography>
@@ -284,33 +272,48 @@ function LogCard({
                 <Typography>Depth: {log.depth}</Typography>
                 <Typography>Weight: {log.weight}</Typography>
                 <Typography>
-                {log.fresh ? "Fresh" : "Salt"} Water -{" "}
-                {log.boat ? "Boat" : "Shore"} Dive
+                    {log.fresh ? "Fresh" : "Salt"} Water -{" "}
+                    {log.boat ? "Boat" : "Shore"} Dive
                 </Typography>
                 <Typography>Dive Buddy: {log.dive_budy}</Typography>
                 <Typography>Dive Master: {log.divemaster}</Typography>
 
                 <CardMedia
-                component="img"
-                height="100"
-                image={log.signature}
-                alt="signature"
+                    component="img"
+                    height="100"
+                    image={log.signature}
+                    alt="signature"
                 />
-            </CardContent>
+                </CardContent>
             </Collapse>
-                {/* <Button onClick={() => setShowForm(false)}>Edit Dive Log</Button> */}
-                {/* {editLog} */}
-        </Card>
-    ) : (
-        <div>
+            </Card>
 
-        <EditDiveLog theme={theme} log={log} logs={logs} onUpdateLog={onUpdateLog} setShowForm={setShowForm} /> 
-        
-        <Button onClick={() => setShowForm(true)}>Close Edit</Button>
-        {/* <Button onClick={() => routeToEdit()}>Close Edit</Button> */}
+            <div>
 
-        </div>
-    )}
+
+            <Modal show={showModal} onHide={handleClose}>
+                <Modal.Header closeButton>
+                <Modal.Title>Edit Dive Log</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                <EditDiveLog
+                    theme={theme}
+                    log={log}
+                    logs={logs}
+                    onUpdateLog={onUpdateLog}
+                />
+                </Modal.Body>
+
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Close
+                </Button>
+                </Modal.Footer>
+            </Modal>
+
+
+            </div>
         </div>
         </ThemeProvider>
     );

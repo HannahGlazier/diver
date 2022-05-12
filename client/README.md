@@ -6,26 +6,24 @@ Users are able to create an account and add both dive logs and dive sites to the
 
 ## Walkthrough Snapshots
 
-<!-- ## Signin:
-![screenshot of signin page](./client/public/Images/Signin.png)
+## Signin:
+![screenshot of signin page](./public/images/signin.png)
 
 ## Signup:
-![screenshot of signup page](./client/public/Images/Signup.png)
+![screenshot of signup page](./public/images/singup.png)
 
 ## Home:
-![screenshot of homepage](./client/public/Images/Home.png)
+![screenshot of homepage](./public/images/home.png)
 
-## My Activities:
-![screenshot of my activities page](./client/public/Images/MyActivities.png)
+## Add Dive Log:
+![screenshot of my add dive log page](./public/images/addLog.png)
 
-## Add Activity:
-![screenshot of add activity page](./client/public/Images/AddActivity.png)
+## Add Dive Site:
+![screenshot of add dive site page](./public/images/addSite.png)
 
 ## Profile:
-![screenshot of profile page](./client/public/Images/Profile.png)
+![screenshot of profile page](./public/images/profile.png)
 
-## Edit Profile:
-![screenshot of edit profile page](./client/public/Images/Edit.png) -->
 
 ## Backend
 This application's backend was built with Ruby on Rails. After cloning, the backend can be launched by runing `rails db:migrate` to set up the database, `rails db:seed` to seed some initial seed data, and `bundle install` to install the necessary dependencies. Finally, you can run `rails s` to launch the server.

@@ -7,22 +7,22 @@ Users are able to create an account and add both dive logs and dive sites to the
 ## Walkthrough Snapshots
 
 ## Signin:
-![screenshot of signin page](./public/images/signin.png)
+![screenshot of signin page](./client/public/images/signin.png)
 
 ## Signup:
-![screenshot of signup page](./public/images/singup.png)
+![screenshot of signup page](./client/public/images/singup.png)
 
 ## Home:
-![screenshot of homepage](./public/images/home.png)
+![screenshot of homepage](./client/public/images/home.png)
 
 ## Add Dive Log:
-![screenshot of my add dive log page](./public/images/addLog.png)
+![screenshot of my add dive log page](./client/public/images/addLog.png)
 
 ## Add Dive Site:
-![screenshot of add dive site page](./public/images/addSite.png)
+![screenshot of add dive site page](./client/public/images/addSite.png)
 
 ## Profile:
-![screenshot of profile page](./public/images/profile.png)
+![screenshot of profile page](./client/public/images/profile.png)
 
 
 ## Backend

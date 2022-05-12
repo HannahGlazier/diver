@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
 import LogCard from './LogCard'
-// import InfiniteScroll from 'react-infinite-scroll-component';
-
-// import InfiniteScroll from 'react-infinite-scroller';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 // MUI imports
@@ -82,7 +79,6 @@ function LogContainer({
         <InfiniteScroll
             dataLength={logs.length} 
             next={fetchData}
-            // hasMore={true}
             hasMore={hasMore}
             loader={<h4 className="scroll">Loading...</h4>}
             endMessage={

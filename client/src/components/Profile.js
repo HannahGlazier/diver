@@ -45,9 +45,12 @@ function Profile({ user }) {
         <img src={user.icon} alt="fish icon from https://icons8.com/icons/set/fish"></img>
         <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-            {user.name}'s Profile
+            {user.name}
             </Typography>
-    
+            <Typography gutterBottom variant="h6" component="div">
+            {user.certification_level}
+            </Typography>
+
             <Typography gutterBottom variant="h6" component="div">
             Based in - {user.homebase}
             </Typography>

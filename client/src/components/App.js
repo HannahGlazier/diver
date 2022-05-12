@@ -80,7 +80,6 @@ function App() {
   
 
     if (logsFromServer.length === 0 ) {
-      // console.log(logsFromServer.length)
       sethasMore(false);
     }
     setpage(page + 1);

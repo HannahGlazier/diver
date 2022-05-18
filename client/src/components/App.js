@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
-// import InfiniteScroll from 'react-infinite-scroll-component';
 
 
 // Internal Components
 import Header from "./Header"
-// import MainFeed from "./MainFeed"
 import LogContainer from "./LogContainer"
 import AddDiveLog from "./AddDiveLog"
 import AddSite from "./AddSite"
@@ -49,12 +47,6 @@ function App() {
 
    // Fetches
 
-    // function fetchLogs(){
-    //   fetch("/logs")
-    //   .then((response) => response.json())
-    //   .then(logs => setLogs(logs));
-    // }
-
   useEffect(() => {
     const getLogs = async () => {
       const res = await fetch("/logs?page=1")
@@ -91,10 +83,6 @@ function App() {
     fetch("/me").then((response) => {
       if (response.ok) {
         response.json().then((user) => {setUser(user)
-          // if (user.id) {
-          //   fetchLogs()
-        
-          // }
         });   
       } 
     });
@@ -157,28 +145,6 @@ const filterMap = user.followees.map(f => f.id)
     } 
   })
 
-// function filteredLogs (){
-//     if (Array.isArray(logs)){
-    
-//       return logs.filter((logs) => {
-//         if (filterBy === "explore"){
-//           return logs
-//         } else if (filterBy === "following"){
-//           return filterMap.includes(logs.user.id)
-//         } else if (filterBy === "self") {
-//           return logs.user.id === user.id
-//         }
-        
-//     }) 
-      
-//   } else {
-//     return []
-//   }
-// }
-
-
-
-
   return (
       <div className="App">
         <Header handleLogoutClick={handleLogoutClick} user={user} theme={theme}/>
@@ -193,21 +159,13 @@ const filterMap = user.followees.map(f => f.id)
               setFollowing={setFollowing}
               setFilterBy={setFilterBy}
               onFollow={setUser}
-              // fetchLogs={fetchLogs}
               fetchData={fetchData}
               hasMore={hasMore}
               onUpdateLog={handleUpdateLog}
-              // logs={logs}
               setLogs={setLogs}
               theme={theme}
             />
           </Route>
-          {/* <Route exact path="/signin">
-              <SignIn />
-          </Route>
-          <Route exact path="/signup">
-              <SignUp />
-          </Route> */}
           <Route exact path="/addLog">
             <AddDiveLog 
               addNewLog={handleAddNewLog}

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import SignUp from "./SignUp";
 
+// MUI imports
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Paper, Box, Grid, Typography, createTheme, ThemeProvider, Link } from "@mui/material";
 import GitHubIcon from '@mui/icons-material/GitHub';
 

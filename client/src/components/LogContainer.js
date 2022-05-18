@@ -53,7 +53,6 @@ function LogContainer({
             lat={log.site.lat}
             fetchData={fetchData}
             onUpdateLog={onUpdateLog}
-            // logs={logs}
             setLogs={setLogs}
             theme={theme}
         />

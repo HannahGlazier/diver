@@ -118,11 +118,6 @@ import {
         });
     }
 
-    // TEST
-    function handleSignature(){
-        setSignature(signatureState)
-    }
-
     // Signature handlers
     let sigPad = useRef({});
     let data = "";
@@ -138,7 +133,6 @@ import {
         e.preventDefault();
         data = sigPad.current.toDataURL();
         setSignatureState(data);
-        // console.log(data)
     }
 
     // END Signature handlers
@@ -150,7 +144,6 @@ import {
     }
 
     return (
-        // <ThemeProvider theme={theme}>
                     <Box
                         component="form"
                         noValidate
@@ -203,7 +196,6 @@ import {
                             name="depth"
                             label="Depth"
                             type="number"
-                            // id="password"
                             value={depth}
                             onChange={(e) => setDepth(e.target.value)}
                             />
@@ -398,32 +390,6 @@ import {
                             />
                         </Grid>
 
-                        {/* <Grid item xs={12}>
-                        <InputLabel  id="demo-simple-select-standard-label">Divemaster or Buddy Signature: </InputLabel>
-                        <SignaturePad
-                            ref={sigPad}
-                            canvasProps={{
-                            className: "signature",
-                            }}
-                        />
-                        <Button variant="outlined" onClick={(e) => save(e)}>
-                            Save
-                        </Button>
-                        <Button variant="outlined" onClick={(e) => clear(e)}>
-                            Clear
-                        </Button>
-
-                        <input
-                            className="hidden"
-                            type="text"
-                            label="signature"
-                            name="signature"
-                            value={signatureState}
-                            onChange={signature => setSignature(signature)}
-                            placeholder="Signature"
-                        ></input>
-                        </Grid> */}
-
                         </Grid>
                         <Button
                         type="submit"
@@ -434,7 +400,6 @@ import {
                         Update
                         </Button>
                     </Box>
-        // </ThemeProvider>
     );
 }
 

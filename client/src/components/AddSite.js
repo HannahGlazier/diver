@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import {  useHistory } from "react-router-dom";
-import AddDiveLog from './AddDiveLog'
-import Profile from './Profile'
 
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { blue } from '@mui/material/colors';
@@ -162,16 +160,8 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites, theme }) {
                     </Button>
                 </Box>
                 </Box>
-                {/* <Copyright sx={{ mt: 5 }} /> */}
             </Container>
             </ThemeProvider>
-            {/* <AddDiveLog
-                addNewLog={addNewLog}
-                user={user}
-                setUser={setUser}
-                siteState={siteState}
-                sites={sites}
-            /> */}
         </div>
     )
 }

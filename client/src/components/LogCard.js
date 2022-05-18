@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import EditDiveLog from "./EditDiveLog";
 
+// MUI Imports
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -16,9 +17,9 @@ import { blue } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
 import { ThemeProvider } from "@mui/material";
-
 import EditIcon from "@mui/icons-material/Edit";
 
+// Popup
 import { Modal } from "react-bootstrap";
 
 // MAP
@@ -44,15 +45,17 @@ function LogCard({
     logs,
     theme,
     }) {
+
+    // State
     const [showModal, setShowModal] = useState(false);
     const [order, setOrder] = useState([]);
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
-
     const [followTest, setFollowTest] = useState([]);
     const [showForm, setShowForm] = useState(true);
     let history = useHistory();
 
+    // Map handlers
     const MAPBOX_TOKEN =
         "pk.eyJ1IjoiaGFubmFoZ2xhemllciIsImEiOiJjbDJ0OWdzdjcwMTVsM29wZjM4YWQ4anhvIn0.2kctdgtMavhxgpP996WXhA";
 
@@ -122,9 +125,6 @@ function LogCard({
         followees: filteredFollowees,
         });
     }
-
-    // const followeeMap = user.followees.map((f) => f.id);
-    // const doesFollow = followTest.includes(log.user);
 
     function handleFollowConditional() {
         if (isFollowee && userId !== log.user.id) {

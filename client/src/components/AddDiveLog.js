@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
-import AddSite from './AddSite'
-import Profile from './Profile'
 
 import SignaturePad from 'react-signature-canvas'
 import Popup from 'reactjs-popup'
@@ -21,7 +19,7 @@ function Copyright() {
     }
 
 function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs, theme }) {
-    // const [site, setSite] = useState([])
+
     const [site, setSite] = useState([])
 
     const initialLogForm = { 
@@ -182,7 +180,7 @@ function returnHome(e){
                     </Grid>
                     
                     
-                    {/* <p>Dont see the site you're looking for? </p> */}
+
                     <div className="spacing">
                     <InputLabel id="demo-simple-select-standard-label">Dont see the site you're looking for?</InputLabel>
                     </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 // Internal Components
 import Header from "./Header"
@@ -9,7 +9,6 @@ import AddSite from "./AddSite"
 import SignIn from "./SignIn"
 import Profile from "./Profile";
 import EditDiveLog from "./EditDiveLog"
-import SignUp from "./SignUp"
 
 // MUI Imports
 import { createTheme } from "@mui/material";

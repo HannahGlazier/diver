@@ -1,29 +1,16 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react"
 import EditDiveLog from "./EditDiveLog";
 
 // MUI Imports
-import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import { blue } from "@mui/material/colors";
+import { Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, IconButton, Typography, Button, ThemeProvider, styled } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Button from "@mui/material/Button";
-import { ThemeProvider } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import { blue } from "@mui/material/colors";
 
 // Popup
 import { Modal } from "react-bootstrap";
 
 // MAP
-import mapboxgl from "mapbox-gl";
 import Map, { Marker, Popup } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -32,10 +19,6 @@ function LogCard({
     handleDeleteLog,
     user,
     userId,
-    following,
-    setFollowing,
-    handleFollowState,
-    handleUnfollow,
     isFollowee,
     onChangeFollow,
     long,
@@ -48,14 +31,10 @@ function LogCard({
 
     // State
     const [showModal, setShowModal] = useState(false);
-    const [order, setOrder] = useState([]);
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
-    const [followTest, setFollowTest] = useState([]);
-    const [showForm, setShowForm] = useState(true);
-    let history = useHistory();
 
-    // Map handlers
+    // Map Handlers
     const MAPBOX_TOKEN =
         "pk.eyJ1IjoiaGFubmFoZ2xhemllciIsImEiOiJjbDJ0OWdzdjcwMTVsM29wZjM4YWQ4anhvIn0.2kctdgtMavhxgpP996WXhA";
 
@@ -70,7 +49,7 @@ function LogCard({
     });
 
     // Material UI Styling
-
+    
     const [expanded, setExpanded] = React.useState(false);
 
     const ExpandMore = styled((props) => {

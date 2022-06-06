@@ -1,13 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
-import AddSite from "./AddSite";
-import Profile from "./Profile";
-
-import SignaturePad from "react-signature-canvas";
-import Popper from "@mui/material/Popper";
-
-import GitHubIcon from "@mui/icons-material/GitHub";
-import { blue } from "@mui/material/colors";
 import {
     Button,
     TextField,
@@ -19,38 +11,15 @@ import {
     InputLabel,
     } from "@mui/material";
 
-    function Copyright() {
-    return (
-        <div id="github">
-        <a
-            href="https://github.com/HannahGlazier"
-            target="_blank"
-            rel="noreferrer"
-        >
-            <GitHubIcon /> Hannah Glazier{" "}
-        </a>
-        </div>
-    );
-    }
     const theme = createTheme();
 
     function AddDiveLog({
-    addNewLog,
-    user,
-    setUser,
-    siteState,
-    sites,
-    logs,
-    setLogs,
     log,
     onUpdateLog,
-    setShowForm,
-    theme,
     }) {
 
     const [site, setSite] = useState([]);
     const [signatureState, setSignatureState] = useState("");
-
     const [notes, setNotes] = useState(log.notes);
     const [depth, setDepth] = useState(log.depth);
     const [bottom_temp, setBottom_temp] = useState(log.bottom_temp);

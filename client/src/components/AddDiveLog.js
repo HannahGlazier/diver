@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
-
 import SignaturePad from 'react-signature-canvas'
-import Popup from 'reactjs-popup'
 
+// MUI Imports
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { blue, orange } from '@mui/material/colors';
-import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, createTheme, ThemeProvider, MenuItem, Select, InputLabel, Radio, RadioGroup, FormLabel, FormControlLabel, FormControl } from "@mui/material";
+import { blue } from '@mui/material/colors';
+import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, ThemeProvider, MenuItem, Select, InputLabel } from "@mui/material";
 
 
-
+// GitHub Icon
 function Copyright() {
     return (
         <div className="center">
@@ -18,7 +17,7 @@ function Copyright() {
     );
     }
 
-function AddDiveLog({ addNewLog, user, setUser, siteState, sites, logs, setLogs, theme }) {
+function AddDiveLog({ user, logs, setLogs, theme }) {
 
     const [site, setSite] = useState([])
 
@@ -132,12 +131,6 @@ function goToAddSite(e){
     e.stopPropagation()
     e.preventDefault()
     history.push('/addSite')
-}
-
-function returnHome(e){
-    e.stopPropagation()
-    e.preventDefault()
-    history.push('/')
 }
 
     return (

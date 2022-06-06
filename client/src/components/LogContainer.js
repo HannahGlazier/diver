@@ -3,7 +3,7 @@ import LogCard from './LogCard'
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 // MUI imports
-import { InputLabel, MenuItem, FormControl, Select, TextField } from "@mui/material";
+import { InputLabel, MenuItem, FormControl, Select } from "@mui/material";
 
 function LogContainer({ 
     logs, 
@@ -16,7 +16,6 @@ function LogContainer({
     onFollow, 
     setFilterBy, 
     fetchData,
-    handlerStreamAborted,
     hasMore, 
     onUpdateLog,
     setLogs, 
@@ -61,34 +60,33 @@ function LogContainer({
     return (
         <div>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabel id="demo-simple-select-label">View:</InputLabel>
-            <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={sort}
-                onChange={handleFilterBy}
-                label="View"
-            >
-                <MenuItem value="explore">Explore</MenuItem>
-                <MenuItem value="following">Folowing</MenuItem>
-                <MenuItem value="self">Self</MenuItem>
-            </Select>
-        </FormControl>
+                <InputLabel id="demo-simple-select-label">View:</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={sort}
+                    onChange={handleFilterBy}
+                    label="View"
+                >
+                    <MenuItem value="explore">Explore</MenuItem>
+                    <MenuItem value="following">Folowing</MenuItem>
+                    <MenuItem value="self">Self</MenuItem>
+                </Select>
+            </FormControl>
 
-        <InfiniteScroll
-            dataLength={logs.length} 
-            next={fetchData}
-            hasMore={hasMore}
-            loader={<h4 className="scroll">Loading...</h4>}
-            endMessage={
-                <p className="scroll">
-                    <b>Yay! You have seen all the dive logs!</b>
-                </p>
-            }
-            >
-                {logMap}
-        </InfiniteScroll>
-
+            <InfiniteScroll
+                dataLength={logs.length} 
+                next={fetchData}
+                hasMore={hasMore}
+                loader={<h4 className="scroll">Loading...</h4>}
+                endMessage={
+                    <p className="scroll">
+                        <b>Yay! You have seen all the dive logs!</b>
+                    </p>
+                }
+                >
+                    {logMap}
+            </InfiniteScroll>
         </div>
     )
 }

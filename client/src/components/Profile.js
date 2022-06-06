@@ -1,18 +1,12 @@
 import React from 'react'
 
 // MUI Imports
-import Typography from '@mui/material/Typography';
-import CardHeader from '@mui/material/CardHeader';
-import Avatar from '@mui/material/Avatar';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
+import { Typography, Card, CardContent } from '@mui/material'
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 function Profile({ user }) {
 
+// GitHub Icon
     function Copyright() {
         return (
             <div className="center">

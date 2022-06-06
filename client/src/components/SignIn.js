@@ -1,13 +1,12 @@
-
-
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import SignUp from "./SignUp";
 
 // MUI imports
-import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Paper, Box, Grid, Typography, createTheme, ThemeProvider, Link } from "@mui/material";
+import { Avatar, Button, CssBaseline, TextField, Paper, Box, Grid, Typography, createTheme, ThemeProvider } from "@mui/material";
 import GitHubIcon from '@mui/icons-material/GitHub';
 
+// GitHub Icon
     function Copyright() {
         return (
             <div className="center">
@@ -45,10 +44,6 @@ import GitHubIcon from '@mui/icons-material/GitHub';
             r.json().then(err => window.alert(err.errors))
         }
         });
-    }
-
-    function goSignup(){
-        history.go('/signup')
     }
 
     return (

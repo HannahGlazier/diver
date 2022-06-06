@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import {  useHistory } from "react-router-dom";
 
-import GitHubIcon from '@mui/icons-material/GitHub';
+// MUI Imports
 import { blue } from '@mui/material/colors';
-import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, createTheme, ThemeProvider, MenuItem, Select, InputLabel } from "@mui/material";
+import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, ThemeProvider, InputLabel } from "@mui/material";
 
 
-function AddSite({ addNewLog, user, setUser, addNewSite, sites, theme }) {
+function AddSite({ addNewSite, theme }) {
 
     const initialSiteForm = {
         name: "",
@@ -16,7 +16,6 @@ function AddSite({ addNewLog, user, setUser, addNewSite, sites, theme }) {
     }
 
     const [siteForm, setSiteForm] = useState(initialSiteForm)
-    const [siteState, setSiteState] = useState(null)
 
     let history = useHistory();
 

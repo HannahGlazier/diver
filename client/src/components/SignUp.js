@@ -7,6 +7,9 @@ import SignIn from "./SignIn";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, createTheme, ThemeProvider, MenuItem, Select, InputLabel} from "@mui/material";
 
+const theme = createTheme();
+
+// GitHub Icon
     function Copyright() {
     return (
         <div className="center">
@@ -14,7 +17,6 @@ import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Containe
         </div>
     );
     }
-    const theme = createTheme();
 
     export default function SignUp( {setUser, theme}) {
     const [showLogin, setShowLogin] = useState(true)
@@ -28,14 +30,6 @@ import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Containe
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory();
-
-    
-
-    const [selectedDate, setSelectedDate] = useState(new Date());
-    const handleDateChange = (date) => {
-        console.log(date);
-        setSelectedDate(date);
-    };
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -59,16 +53,11 @@ import { Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Containe
         setIsLoading(false);
         if (r.ok) {
             r.json().then((user) => setUser(user));
-            // window.location.reload(true);
             history.push('/')
         } else {
             r.json().then(err => window.alert(err.errors))
         }
         });
-    }
-
-    function backSignin(){
-        history.go('/signin')
     }
 
     return (

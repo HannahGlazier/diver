@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
-
 
 // Internal Components
 import Header from "./Header"
@@ -13,7 +12,6 @@ import EditDiveLog from "./EditDiveLog"
 import SignUp from "./SignUp"
 
 // MUI Imports
-import { blue, orange, pink } from '@mui/material/colors';
 import { createTheme } from "@mui/material";
 
 function App() {
@@ -22,8 +20,6 @@ function App() {
   const [user, setUser] = useState(null);
   const [following, setFollowing] = useState([])
   const [filterBy, setFilterBy] = useState('explore');
-  let history = useHistory();
-
   const [page, setpage] = useState(2);
   const [hasMore, sethasMore] = useState(true);
 
